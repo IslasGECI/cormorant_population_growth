@@ -1,0 +1,28 @@
+[
+  {
+    "docker_parent_image": "islasgeci/jupyter:8e52",
+    "name": "Tendencia poblacional de cormoran en Alcatraz",
+    "description": "Tendencia poblacional de cormoran orejón en Alcatraz",
+    "report": "tendencia_poblacional_cormoran_alcatraz.pdf",
+    "results": [
+        "jsonLambdaCormorantAlcatraz.json",
+        "pngPopulationGrowRateCormorant.png"
+    ],
+    "scripts": [
+        "src/cormorantGrowRateAlcatraz",
+        "src/cliRutaArchivosEntradaSalida.py",
+        "src/calculaLambda.py",
+        "src/PlotsGECI.py"
+    ],
+    "data": [
+        {
+            "source": "tabular_data_packages",
+            "version": "3afcbb10ffbd6ee06d143c04e02a27cfdd516f45",
+            "path": "conteo_nidos_cormoran_isla_alcatraz",
+            "type": "datapackage",
+            "filename": "conteo_nidos_cormoran_isla_alcatraz.csv"
+        }
+    ],
+    "requirements": []
+}
+]
