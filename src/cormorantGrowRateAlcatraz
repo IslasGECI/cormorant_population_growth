@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+#
+# cormorantGrowRateAlcatraz calcula la tasa de crecimiento fundamental (lambda)
+# utilizando un model de una ley de potencia a los datos de cantidad de nidos de cormoran orejon en Isla Alcatraz
+
+from cliRutaArchivoEntradaSalida import ruta_archivos
+from calculaLambda import *
+from PlotsGECI import GECI_Plot
+
+import datetime
+import json
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+import pandas as pd
+
+rutas = ruta_archivos()
+data = pd.read_csv(f'{rutas.entrada[0][0]}')
+
+seasons=np.array(np.linspace(2000,2018,19),dtype=int)
+
+data['Fecha'] = data['Fecha'].str.replace('Ene','Jan')
+data['Fecha'] = data['Fecha'].str.replace("Abr","Apr")
+data['Fecha'] = data['Fecha'].str.replace("Ago","Aug")
+data['Fecha'] = data['Fecha'].str.replace("Dic","Dec")
+
+dates=pd.to_datetime(data['Fecha'], format='%d/%b/%Y')
+delta_dates=dates-datetime.timedelta(days=4*30)
+data=pd.concat([delta_dates,data['Nidos_activos_por_visita']],axis=1)
+
+plot_data = []
+for season in seasons:
+    mask = data['Fecha'].astype(str).str.contains('{}'.format(int(season)))
+    plot_data.append(np.max(data['Nidos_activos_por_visita'][mask]))
+
+seasons = pd.DataFrame(seasons)
+seasons_combined = seasons.astype(str)+"-"+(seasons+1).astype(str)
+plot_data = pd.DataFrame(plot_data)
+plot_data = pd.concat([seasons,plot_data],axis=1)
+plot_data = plot_data.dropna()
+plot_data.columns = ['Temporada','Cantidad']
+
+fitting_results = calcula_lambda(plot_data['Temporada'],plot_data['Cantidad'])
+model = ley_potencia(plot_data['Temporada']-plot_data['Temporada'][0],fitting_results[0],fitting_results[1])
+
+fig, ax = GECI_Plot()
+plt.plot(plot_data['Temporada'],plot_data['Cantidad'],'-o',label='Nidos activos de cormorán orejón')
+plt.plot(plot_data['Temporada'],model,label='Modelo ajustado')
+plt.xticks(seasons[0],seasons_combined[0],rotation=90,size = 12 )
+plt.legend()
+plt.ylim(600,2000)
+plt.xlim(2000,2018)
+plt.xlabel('Temporadas',size=15,labelpad=10)
+plt.ylabel('Cantidad de nidos activos',size=15)
+plt.gcf().subplots_adjust(bottom=0.2)
+if not os.path.exists("reports/figures"): os.makedirs("reports/figures")
+plt.savefig(f"{rutas.salida[1][0]}", dpi=300)
+
+
+with open(f"{rutas.salida[0][0]}", "w") as exit_file:
+    json.dump({"lambda": [str(fitting_results[0])], \
+        "n0": [str(fitting_results[1])]}, exit_file)
