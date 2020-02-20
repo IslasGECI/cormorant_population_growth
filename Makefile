@@ -1,11 +1,13 @@
+
 # I. Definición del _phony_ *all* que enlista todos los objetivos principales
 # ===========================================================================
-all: reports/tendencia_poblacional_cormoran_alcatraz.pdf
+all: reports/tendencia_poblacional_cormoran.pdf
 
-define renderLatex
-cd $(<D) && pdflatex $(<F)
-cd $(<D) && pdflatex $(<F)
+
+define checkDirectories
+if [ ! -d $(@D) ]; then mkdir --parents $(@D); fi
 endef
+
 
 #============================================================================
 # Reporte de lambda de cormorán orejon
@@ -13,37 +15,102 @@ endef
 # ===========================================================================
 # Variables a resultados
 
-csvConteoNidosCormoranOrejonAlcatraz = \
-	data/raw/conteo_nidos_cormoran_isla_alcatraz.csv
+csvConteoNidosCormoranOrejon = \
+	data/raw/conteo_nidos_cormoran_todas_islas.csv
 
 jsonLambdaCormorantAlcatraz = \
 	reports/non-tabular/jsonLambdaCormorantAlcatraz.json
 
-pngPopulationGrowRateCormorant = \
-	reports/figures/pngPopulationGrowRateCormorant.png
+pngPopulationGrowRateCormorantAlcatraz = \
+	reports/figures/pngPopulationGrowRateCormorantAlcatraz.png
+
+jsonLambdaCormorantPatos = \
+	reports/non-tabular/jsonLambdaCormorantPatos.json
+
+pngPopulationGrowRateCormorantPatos = \
+	reports/figures/pngPopulationGrowRateCormorantPatos.png
+
+jsonLambdaCormorantPajaros = \
+	reports/non-tabular/jsonLambdaCormorantPajaros.json
+
+pngPopulationGrowRateCormorantPajaros = \
+	reports/figures/pngPopulationGrowRateCormorantPajaros.png
+
+csvMaximumNestsPatos = \
+	reports/tables/csvMaximumNestsPatos.csv
+
+csvMaximumNestsPajaros = \
+	reports/tables/csvMaximumNestsPajaros.csv
+
+csvMaximumNestsAlcatraz = \
+		reports/tables/csvMaximumNestsAlcatraz.csv
 
 # III. Reglas para construir los objetivos principales
 # ===========================================================================
 
-reports/tendencia_poblacional_cormoran_alcatraz.pdf: reports/tendencia_poblacional_cormoran_alcatraz.tex $(jsonLambdaCormorantAlcatraz) $(pngPopulationGrowRateCormorant)
+reports/tendencia_poblacional_cormoran.pdf: reports/tendencia_poblacional_cormoran.tex $(jsonLambdaCormorantAlcatraz) $(pngPopulationGrowRateCormorantAlcatraz) $(pngPopulationGrowRateCormorantPatos) $(jsonLambdaCormorantPatos) $(pngPopulationGrowRateCormorantPajaros) $(jsonLambdaCormorantPajaros)
 	cd $(<D) && pdflatex $(<F)
 	cd $(<D) && pythontex $(<F)
+	cd $(<D) && bibtex tendencia_poblacional_cormoran
+	cd $(<D) && pdflatex $(<F)
 	cd $(<D) && pdflatex $(<F)
 
 # IV. Reglas para construir las dependencias de los objetivos principales
 # ==========================================================================
 
-$(pngPopulationGrowRateCormorant) $(jsonLambdaCormorantAlcatraz): $(csvConteoNidosCormoranOrejonAlcatraz) src/cormorantGrowRateAlcatraz
-	if [ ! -d $(@D) ]; then mkdir --parents $(@D); fi
-	src/cormorantGrowRateAlcatraz --entrada $< \
-	--salida reports/non-tabular/jsonLambdaCormorantAlcatraz.json \
-	--salida reports/figures/pngPopulationGrowRateCormorant.png
+$(pngPopulationGrowRateCormorantAlcatraz) $(jsonLambdaCormorantAlcatraz): $(csvMaximumNestsAlcatraz) src/calculateCormorantGrowthRate
+	$(checkDirectories)
+	src/calculateCormorantGrowthRate \
+	--input $< \
+	--drop 2005-2006 \
+	--exit reports/non-tabular/jsonLambdaCormorantAlcatraz.json \
+	--exit reports/figures/pngPopulationGrowRateCormorantAlcatraz.png
+	
+$(pngPopulationGrowRateCormorantPatos) $(jsonLambdaCormorantPatos): $(csvMaximumNestsPatos) src/calculateCormorantGrowthRate
+	$(checkDirectories)
+	src/calculateCormorantGrowthRate \
+	--input $< \
+	--drop 2011-2012 \
+	--drop 2015-2016 \
+	--drop 2016-2017 \
+	--exit reports/non-tabular/jsonLambdaCormorantPatos.json \
+	--exit reports/figures/pngPopulationGrowRateCormorantPatos.png
+
+$(pngPopulationGrowRateCormorantPajaros) $(jsonLambdaCormorantPajaros): $(csvMaximumNestsPajaros) src/calculateCormorantGrowthRate
+	$(checkDirectories)
+	src/calculateCormorantGrowthRate \
+	--input $< \
+	--drop 2015-2016 \
+	--drop 2016-2017 \
+	--exit reports/non-tabular/jsonLambdaCormorantPajaros.json \
+	--exit reports/figures/pngPopulationGrowRateCormorantPajaros.png
+
+$(csvMaximumNestsPatos): $(csvConteoNidosCormoranOrejon) src/calculateMaxNestQuantity
+	$(checkDirectories)
+	src/calculateMaxNestQuantity \
+	$< \
+	Patos \
+	> reports/tables/csvMaximumNestsPatos.csv
+
+$(csvMaximumNestsPajaros): $(csvConteoNidosCormoranOrejon) src/calculateMaxNestQuantity
+	$(checkDirectories)
+	src/calculateMaxNestQuantity \
+	$< \
+	Pajaros \
+	> reports/tables/csvMaximumNestsPajaros.csv
+
+$(csvMaximumNestsAlcatraz): $(csvConteoNidosCormoranOrejon) src/calculateMaxNestQuantity
+	$(checkDirectories)
+	src/calculateMaxNestQuantity \
+	$< \
+	Alcatraz \
+	> reports/tables/csvMaximumNestsAlcatraz.csv
 
 # V. Reglas phonies
 # ===========================================================================
 
-$(csvConteoNidosCormoranOrejonAlcatraz):
-	if [ ! -d $(@D) ]; then mkdir --parents $(@D); fi
+$(csvConteoNidosCormoranOrejon):
+	$(checkDirectories)
 	descarga_datos $(@F) $(@D)
 
 #=============================================================================

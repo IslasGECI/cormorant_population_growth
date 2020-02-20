@@ -1,0 +1,8 @@
+
+*.png
+
+reports/non-tabular/
+
+reports/pythontex-files-tendencia_poblacional_cormoran/
+
+reports/tables/
