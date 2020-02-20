@@ -6,3 +6,11 @@ reports/non-tabular/
 reports/pythontex-files-tendencia_poblacional_cormoran/
 
 reports/tables/
+
+.devcontainer/
+
+*.bbl
+
+*.blg
+
+src/__pycache__/
