@@ -1,4 +1,4 @@
-FROM islasgeci/jupyter:8e52
+FROM islasgeci/jupyter:5869
 
 RUN pip install --upgrade pip && \
     pip install \
