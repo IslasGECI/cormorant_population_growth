@@ -2,23 +2,18 @@
 #
 # calculateCormorantGrowthRate calcula la tasa de crecimiento fundamental (lambda)
 # utilizando un model de una ley de potencia a los datos de cantidad de nidos de cormoran orejon en Isla Alcatraz
-
 from cliPathsFiles import path_files
 from calculateLambda import *
-from PlotsGECI import GECI_Plot
-from matplotlib.ticker import MaxNLocator
+from PlotsGECI import *
+from bootstrapTools import *
 
-import datetime
-import json
-import matplotlib.pyplot as plt
-import numpy as np
 import os
 import pandas as pd
 
 path = path_files()
 
 data_path = path.input[0][0]
-json_file = path.exit[0][0]
+distribution_file = path.exit[0][0]
 plot_file = path.exit[1][0]
 drop_values = path.drop
 
@@ -39,9 +34,17 @@ if len(drop_values) != 0:
 plot_data = plot_data.dropna(subset=["Maxima_cantidad_nidos"])
 time_fit = np.array(plot_data.index) + 1
 
-resultado_ajuste_bootstrap, parameters, distribucion = bootstrap_fitting(plot_data)
-model = ley_potencia(time_fit, parameters[0], parameters[1])
-p_value_mayor, p_value_menor = calculate_p_values(distribucion)
+
+parameters = lambda_calculator(plot_data["Temporada"], plot_data["Maxima_cantidad_nidos"])
+lambdas_distribution, intervals = bootstrap_from_time_series(plot_data, "Maxima_cantidad_nidos", N=2000, return_distribution=True)
+lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
+lambdas_distribution.to_csv(distribution_file)
+
+model = power_law(time_fit, parameters[0], parameters[1])
+
+print(parameters[0])
+print(parameters[1])
+
 
 fig, ax = GECI_Plot()
 plt.plot(
@@ -51,7 +54,8 @@ plt.plot(time_fit, model, label="Modelo ajustado")
 plt.legend()
 plt.ylim(0, plot_data["Maxima_cantidad_nidos"].max() * 1.2)
 plt.xlim(0, time_fit.max())
-plt.ylabel("Cantidad de nidos activos", size=15)
+plt.ylabel("Number of breeding pairs", size=15)
+plt.xlabel("Seasons", size=15)
 plt.gcf().subplots_adjust(bottom=0.2)
 ax.xaxis.set_major_locator(MaxNLocator(integer=True))
 
@@ -62,8 +66,8 @@ plt.xticks(time_ticks, seasons_ticks, rotation=90, size=12)
 plt.yticks(
     np.arange(
         0,
-        np.round(np.max(plot_data["Maxima_cantidad_nidos"]) * 1.4),
-        np.round(np.max(plot_data["Maxima_cantidad_nidos"]) * 0.2),
+        roundup(np.max(plot_data["Maxima_cantidad_nidos"]) * 1.4,10),
+        roundup(np.max(plot_data["Maxima_cantidad_nidos"]) * 0.2,10),
     )
 )
 
@@ -71,19 +75,3 @@ plt.yticks(
 if not os.path.exists("reports/figures"):
     os.makedirs("reports/figures")
 plt.savefig(plot_file, dpi=300)
-
-inferior_limit = resultado_ajuste_bootstrap[1] - resultado_ajuste_bootstrap[0]
-superior_limit = resultado_ajuste_bootstrap[2] - resultado_ajuste_bootstrap[1]
-resultado_ajuste_bootstrap = np.around(resultado_ajuste_bootstrap, decimals=2)
-with open(json_file, "w") as exit_file:
-    json.dump(
-        {
-            "lambda": [str(resultado_ajuste_bootstrap[0])],
-            "n0": [str(parameters[1])],
-            "limite_superior": [str(superior_limit)],
-            "limite_inferior": [str(inferior_limit)],
-            "p-valor_mayor": [str(p_value_mayor)],
-            "p-valor_menor": [str(p_value_menor)]
-        },
-        exit_file,
-    )

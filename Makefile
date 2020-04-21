@@ -1,19 +1,25 @@
-
+#============================================================================
+# Reporte de tendencia poblacional de cormorán orejon
 # I. Definición del _phony_ *all* que enlista todos los objetivos principales
 # ===========================================================================
 all: reports/tendencia_poblacional_cormoran.pdf
 
+define renderLatex
+cd $(<D) && pdflatex $(<F)
+cd $(<D) && pdflatex $(<F)
+endef
 
 define checkDirectories
-if [ ! -d $(@D) ]; then mkdir --parents $(@D); fi
+mkdir --parents $(@D)
 endef
 
 
-#============================================================================
-# Reporte de lambda de cormorán orejon
 # II. Declaración de las variables
 # ===========================================================================
 # Variables a resultados
+
+csvDatosParejasAvesMarinas = \
+	data/raw/parejas_aves_marinas_islas_del_pacifico.csv
 
 csvConteoNidosCormoranOrejon = \
 	data/raw/conteo_nidos_cormoran_todas_islas.csv
@@ -43,76 +49,137 @@ csvMaximumNestsPajaros = \
 	reports/tables/csvMaximumNestsPajaros.csv
 
 csvMaximumNestsAlcatraz = \
-		reports/tables/csvMaximumNestsAlcatraz.csv
+	reports/tables/csvMaximumNestsAlcatraz.csv
+
+csvCormorantBurrowsQuantityPacificIslands = \
+	data/processed/csvCormorantBurrowsQuantityPacificIslands.csv
+
+csvGrowthRateCormorantPacificIslands = \
+	reports/tables/csvGrowthRateCormorantPacificIslands.csv
+
+csvFullResultsCormorantPacificIslands = \
+	reports/tables/csvFullResultsCormorantPacificIslands.csv
+
+csvCormorantsPopulationGrowing = \
+	reports/tables/csvCormorantsPopulationGrowing.csv
+
+csvCormorantsPopulationDecreasing = \
+	reports/tables/csvCormorantsPopulationDecreasing.csv
+
+csvGrowthRateDistributionCormorantAlcatraz = \
+	reports/tables/growth_rate_distribution_cormorant_alcatraz.csv
+
+csvGrowthRateDistributionCormorantPatos = \
+	reports/tables/growth_rate_distribution_cormorant_patos.csv
+
+csvGrowthRateDistributionCormorantPajaros = \
+	reports/tables/growth_rate_distribution_cormorant_pajaros.csv
+
+csvCormorantAllGrowthRates = \
+	reports/tables/cormorant_all_islets_growth_rates.csv
+
 
 # III. Reglas para construir los objetivos principales
 # ===========================================================================
 
-reports/tendencia_poblacional_cormoran.pdf: reports/tendencia_poblacional_cormoran.tex $(jsonLambdaCormorantAlcatraz) $(pngPopulationGrowRateCormorantAlcatraz) $(pngPopulationGrowRateCormorantPatos) $(jsonLambdaCormorantPatos) $(pngPopulationGrowRateCormorantPajaros) $(jsonLambdaCormorantPajaros)
+reports/tendencia_poblacional_cormoran.pdf: reports/tendencia_poblacional_cormoran.tex $(pngPopulationGrowRateCormorantAlcatraz) $(pngPopulationGrowRateCormorantPatos) $(pngPopulationGrowRateCormorantPajaros) $(csvCormorantBurrowsQuantityPacificIslands) $(csvGrowthRateCormorantPacificIslands) $(csvCormorantsPopulationDecreasing) $(csvCormorantsPopulationGrowing) $(csvCormorantAllGrowthRates)
 	cd $(<D) && pdflatex $(<F)
 	cd $(<D) && pythontex $(<F)
-	cd $(<D) && bibtex tendencia_poblacional_cormoran
+	cd $(<D) && bibtex $(subst .tex,,$(<F))
 	cd $(<D) && pdflatex $(<F)
 	cd $(<D) && pdflatex $(<F)
 
 # IV. Reglas para construir las dependencias de los objetivos principales
 # ==========================================================================
 
-$(pngPopulationGrowRateCormorantAlcatraz) $(jsonLambdaCormorantAlcatraz): $(csvMaximumNestsAlcatraz) src/calculateCormorantGrowthRate
+$(pngPopulationGrowRateCormorantAlcatraz) $(csvGrowthRateDistributionCormorantAlcatraz): $(csvMaximumNestsAlcatraz) src/calculateCormorantGrowthRate
 	$(checkDirectories)
 	src/calculateCormorantGrowthRate \
 	--input $< \
 	--drop 2005-2006 \
-	--exit reports/non-tabular/jsonLambdaCormorantAlcatraz.json \
-	--exit reports/figures/pngPopulationGrowRateCormorantAlcatraz.png
+	--exit $(csvGrowthRateDistributionCormorantAlcatraz) \
+	--exit $(pngPopulationGrowRateCormorantAlcatraz)
 	
-$(pngPopulationGrowRateCormorantPatos) $(jsonLambdaCormorantPatos): $(csvMaximumNestsPatos) src/calculateCormorantGrowthRate
+$(pngPopulationGrowRateCormorantPatos) $(csvGrowthRateDistributionCormorantPatos): $(csvMaximumNestsPatos) src/calculateCormorantGrowthRate
 	$(checkDirectories)
 	src/calculateCormorantGrowthRate \
 	--input $< \
 	--drop 2011-2012 \
 	--drop 2015-2016 \
 	--drop 2016-2017 \
-	--exit reports/non-tabular/jsonLambdaCormorantPatos.json \
-	--exit reports/figures/pngPopulationGrowRateCormorantPatos.png
+	--exit $(csvGrowthRateDistributionCormorantPatos) \
+	--exit $(pngPopulationGrowRateCormorantPatos)
+	
 
-$(pngPopulationGrowRateCormorantPajaros) $(jsonLambdaCormorantPajaros): $(csvMaximumNestsPajaros) src/calculateCormorantGrowthRate
+$(pngPopulationGrowRateCormorantPajaros) $(csvGrowthRateDistributionCormorantPajaros): $(csvMaximumNestsPajaros) src/calculateCormorantGrowthRate
 	$(checkDirectories)
 	src/calculateCormorantGrowthRate \
 	--input $< \
 	--drop 2015-2016 \
 	--drop 2016-2017 \
-	--exit reports/non-tabular/jsonLambdaCormorantPajaros.json \
-	--exit reports/figures/pngPopulationGrowRateCormorantPajaros.png
+	--exit $(csvGrowthRateDistributionCormorantPajaros) \
+	--exit $(pngPopulationGrowRateCormorantPajaros)
 
-$(csvMaximumNestsPatos): $(csvConteoNidosCormoranOrejon) src/calculateMaxNestQuantity
+$(csvMaximumNestsPatos): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
 	$(checkDirectories)
-	src/calculateMaxNestQuantity \
+	src/calculate_max_nest_quantity \
 	$< \
 	Patos \
-	> reports/tables/csvMaximumNestsPatos.csv
+	> $@
 
-$(csvMaximumNestsPajaros): $(csvConteoNidosCormoranOrejon) src/calculateMaxNestQuantity
+$(csvMaximumNestsPajaros): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
 	$(checkDirectories)
-	src/calculateMaxNestQuantity \
+	src/calculate_max_nest_quantity \
 	$< \
 	Pajaros \
-	> reports/tables/csvMaximumNestsPajaros.csv
+	> $@
 
-$(csvMaximumNestsAlcatraz): $(csvConteoNidosCormoranOrejon) src/calculateMaxNestQuantity
+$(csvMaximumNestsAlcatraz): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
 	$(checkDirectories)
-	src/calculateMaxNestQuantity \
+	src/calculate_max_nest_quantity \
 	$< \
 	Alcatraz \
-	> reports/tables/csvMaximumNestsAlcatraz.csv
+	> $@
+$(csvCormorantBurrowsQuantityPacificIslands): $(csvDatosParejasAvesMarinas) src/calculate_burrows_quantity_per_species
+	$(checkDirectories)
+	src/calculate_burrows_quantity_per_species \
+	$< \
+	"Double-crested Cormorant" \
+	> $@
+
+$(csvGrowthRateCormorantPacificIslands) $(csvFullResultsCormorantPacificIslands): $(csvCormorantBurrowsQuantityPacificIslands) src/calculateGrowthRateSeaBirds
+	$(checkDirectories)
+	mkdir --parents reports/figures
+	src/calculateGrowthRateSeaBirds \
+	--input $< \
+	--exit $(csvFullResultsCormorantPacificIslands) \
+	--exit $(csvGrowthRateCormorantPacificIslands)
+
+$(csvCormorantsPopulationDecreasing): $(csvFullResultsCormorantPacificIslands) src/select_growth_rates_and_p_values
+	$(checkDirectories)
+	src/select_growth_rates_and_p_values $< p_valor_menor \
+	> $@
+
+$(csvCormorantsPopulationGrowing): $(csvFullResultsCormorantPacificIslands) src/select_growth_rates_and_p_values
+	$(checkDirectories)
+	src/select_growth_rates_and_p_values $< p_valor \
+	> $@
+
+$(csvCormorantAllGrowthRates): src/joinCormorantGrowthRates $(csvGrowthRateDistributionCormorantAlcatraz) $(csvGrowthRateDistributionCormorantPatos) $(csvGrowthRateDistributionCormorantPajaros) $(csvFullResultsCormorantPacificIslands)
+	$(checkDirectories)
+	src/joinCormorantGrowthRates \
+	--input $(csvFullResultsCormorantPacificIslands) \
+	--input $(csvGrowthRateDistributionCormorantPatos) \
+	--input $(csvGrowthRateDistributionCormorantPajaros) \
+	--input $(csvGrowthRateDistributionCormorantAlcatraz) \
+	--exit $(csvCormorantAllGrowthRates)
 
 # V. Reglas phonies
 # ===========================================================================
 
-$(csvConteoNidosCormoranOrejon):
+$(csvDatosParejasAvesMarinas):
 	$(checkDirectories)
 	descarga_datos $(@F) $(@D)
-
 #=============================================================================
 # V. Reglas del resto de los phonies
 # ===========================================================================
@@ -126,4 +193,9 @@ clean:
 	rm --force reports/*.log
 	rm --force reports/*.out
 	rm --force reports/*.pdf
-	rm --force reports/*.pytxcode
+	rm --force --recursive reports/tables/
+	rm --force --recursive reports/figures/
+	rm --force --recursive reports/non-tabular/
+	rm --force --recursive reports/pythontex*/
+	rm --force --recursive src/__pycache__/
+

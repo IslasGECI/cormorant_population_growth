@@ -1,26 +1,45 @@
 [
-  {
-    "docker_parent_image": "islasgeci/jupyter:8e52",
-    "name": "Tendencia poblacional de cormoran en Alcatraz",
+  {"name": "Tendencia poblacional de cormoran en Alcatraz",
+    "docker_parent_image": "islasgeci/jupyter:5869",
     "description": "Tendencia poblacional de cormoran orejón en Alcatraz",
-    "report": "tendencia_poblacional_cormoran_alcatraz.pdf",
+    "report": "tendencia_poblacional_cormoran.pdf",
     "results": [
-        "jsonLambdaCormorantAlcatraz.json",
-        "pngPopulationGrowRateCormorant.png"
+        "pngPopulationGrowRateCormorantAlcatraz.png",
+        "pngPopulationGrowRateCormorantPatos.png",
+        "pngPopulationGrowRateCormorantPajaros.png",
+        "Double-crested_Cormorant.png",
+        "csvCormorantsPopulationDecreasing.csv",
+        "csvCormorantsPopulationGrowing.csv",
+        "csvGrowthRateCormorantPacificIslands",
+        "csvCormorantBurrowsQuantityPacificIslands.csv",
+        "csvFullResultsCormorantPacificIslands.csv",
+        "csvMaximumNestsAlcatraz.csv",
+        "csvMaximumNestsPatos.csv",
+        "csvMaximumNestsPajaros.csv",
+        "growth_rate_distribution_cormorant_alcatraz.csv",
+        "growth_rate_distribution_cormorant_patos.csv",
+        "growth_rate_distribution_cormorant_pajaros.csv",
+        "cormorant_all_islets_growth_rates.csv"
     ],
     "scripts": [
-        "src/cormorantGrowRateAlcatraz",
-        "src/cliRutaArchivosEntradaSalida.py",
-        "src/calculaLambda.py",
-        "src/PlotsGECI.py"
+        "src/calculateCormorantGrowthRate",
+        "src/calculate_max_nest_quantity",
+        "src/calculate_burrows_quantity_per_species"
     ],
     "data": [
         {
             "source": "tabular_data_packages",
-            "version": "3afcbb10ffbd6ee06d143c04e02a27cfdd516f45",
-            "path": "conteo_nidos_cormoran_isla_alcatraz",
-            "type": "datapackage",
-            "filename": "conteo_nidos_cormoran_isla_alcatraz.csv"
+            "version": "dd4283115b07c19ad2ac6c3f10ef9a8dc7e506cd",
+            "path": "conteo_nidos_cormoran_todas_islas",
+            "type": "csv",
+            "filename": "conteo_nidos_cormoran_todas_islas.csv"
+        },
+        {
+            "source": "tabular_data_packages",
+            "version": "be27a96dc6280b16f556a962508a6b5d4b7fbea1",
+            "path": "parejas_aves_marinas_islas_del_pacifico",
+            "type": "csv",
+            "filename": "parejas_aves_marinas_islas_del_pacifico.csv"
         }
     ],
     "requirements": []

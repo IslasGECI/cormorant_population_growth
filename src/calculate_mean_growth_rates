@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+FILE_PATH="$1"
+
+csvsql --no-header-row --snifflimit 0 --no-inference --blanks --query \
+    "SELECT a AS Especie, ROUND(AVG(d),3) AS 'Tasa de crecimiento promedio' \
+    FROM csvPorcentajeCambioAvesMarinas \
+    WHERE a!='Especie'
+    GROUP BY a " \
+${FILE_PATH}
