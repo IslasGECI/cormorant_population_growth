@@ -17,34 +17,18 @@
 
 \title{Tendencia poblacional cormorán orejón \\ \begin{large} Grupo de Ecología y Conservación de Islas \end{large}}
 
-\begin{pycode}
-import json
-
-json_alcatraz_path = 'non-tabular/jsonLambdaCormorantAlcatraz.json'
-with open(json_alcatraz_path, encoding='utf8') as results_file:
-    results_alcatraz = json.load(results_file)
-
-json_patos_path = 'non-tabular/jsonLambdaCormorantPatos.json'
-with open(json_patos_path, encoding='utf8') as results_file:
-    results_patos = json.load(results_file)
-
-json_pajaros_path = 'non-tabular/jsonLambdaCormorantPajaros.json'
-with open(json_pajaros_path, encoding='utf8') as results_file:
-    results_pajaros = json.load(results_file)
-
-\end{pycode}
-
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-Calculamos la tasa de crecimiento para cormorán orejón en Isla Alcatraz, Patos y Pajaros, se encontró que las poblaciones han disminuido ligeramente ($\lambda < 1$).
+La población de cormorán orejón está disminuyendo en las islas Alcatraz, Pájaros, Patos y San Benito. En Isla Asunción la población va en aumento. Esta información la obtenemos a partir de ajustar un modelo de crecimiento poblacional, a los datos de cantidad de nidos de cormorán orejón en once islas distintas.
+
 \end{abstract}
 
 \section*{Metodología}
 \subsection*{Modelo}
-A continuación se muestra el modelo del tamaño poblacional:
+A continuación mostramos el modelo del tamaño poblacional:
 
 \begin{equation}
 N(t)=N_{0}\lambda^{t}
@@ -70,25 +54,34 @@ Con esto, calculamos un intervalo de confianza del 95\% para $ \lambda^* $.
 
 \section*{Resultados}
 
-En la Tabla 1 mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para isla Patos, el valor central de la distribución es $0.76$, el limite inferior es $0.76 - 0.14 = 0.62$ y el limite superior $ 0.76 + 0.15 = 0.91$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
+En la Tabla 1 mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para isla Patos, el valor central de la distribución es $0.91$, el límite inferior es $0.91 - 0.14 = 0.77$ y el límite superior $ 0.91 + 0.15 = 1.06$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
 
-
-\begin{table}[h]
+\begin{table}[H]
 \centering
-\caption{Se muestran las tasas de crecimiento $\lambda^*$ y sus intervalos de confianza del 95\%, acompañados del p-valor asociado a la hipótesis de que la población está disminuyendo. Calculadas a partir de un ajuste del modelo (1) a los datos del máximo número de nidos en cada temporada y un remuestreo bootstrap.}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{ccc}
-\hline
-Isla & $\lambda$ & p-valor \\ 
-\hline
-Alcatraz & $ \py{'%.2f'%(float(results_alcatraz['lambda'][0]))}_{-\py{'%.2f'%(float(results_alcatraz['limite_inferior'][0]))}}^{+ \py{'%.2f'%(float(results_alcatraz['limite_superior'][0]))}} $ & \py{'%.2f'%(float(results_alcatraz['p-valor_menor'][0]))} \\ 
-Patos &  $ \py{'%.2f'%(float(results_patos['lambda'][0]))}_{-\py{'%.2f'%(float(results_patos['limite_inferior'][0]))}}^{+ \py{'%.2f'%(float(results_patos['limite_superior'][0]))}} $ & \py{'%.2f'%(float(results_patos['p-valor_menor'][0]))}\\ 
-Pajaros & $ \py{'%.2f'%(float(results_pajaros['lambda'][0]))}_{-\py{'%.2f'%(float(results_pajaros['limite_inferior'][0]))}}^{+ \py{'%.2f'%(float(results_pajaros['limite_superior'][0]))}} $ & \py{'%.2f'%(float(results_pajaros['p-valor_menor'][0]))} \\
-\hline
-\end{tabular}
+\caption{Intervalos de confianza del 95\% de las tasas de crecimiento ($\lambda$) de cormorán orejón en once colonias, calculadas a partir de ajustar el modelo (1) a los datos del máximo de nidos en cada temporada. Realizamos un remuestreo bootstrapping de cada serie de tiempo, para calcular los intervalos de confianza.}
+\label{tab:csvTodasLambdas}
+\csvautotabular{tables/cormorant_all_islets_growth_rates.csv}
 \end{table}
 
-El valor del p-valor para aceptar o rechazar una hipótesis es de $0.1$. El p-valor para isla Alcatraz y Pajaros es $0.01$ y en isla Patos el p-valor fue $0.07$. Esto nos dice que podemos aceptar la hipótesis de que la población está realmente disminuyendo. Podemos entonces concluir que los datos, nos brindan información suficiente para decir con seguridad que la poblacion está disminuyendo en las tres islas.
+Realizamos pruebas estadísticas, con un nivel de significancia de $\alpha = 0.1$, para determinar si nuestros resultados tienen significancia estadística. Por ejemplo, para la hipótesis nula de una población estable o en crecimiento ($H_0: \lambda\geq 1$), el p-valor para las islas Alcatraz y Pajaros es $p=0.01$ y para isla Patos es $p=0.07$. Podemos concluir que los datos, nos brindan información suficiente para decir con seguridad que la población está disminuyendo.
+
+\begin{table}[H]
+\centering
+\caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico que están en crecimiento ($H_o: \lambda\leq 1$, $\alpha = 0.1$).}
+\label{tab:csvPobAumentando}
+\csvautotabular{tables/csvCormorantsPopulationGrowing.csv}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico que están decreciendo ($H_o: \lambda\geq 1$, $\alpha = 0.1$).}
+\label{tab:csvPobDisminuyendo}
+\csvautotabular{tables/csvCormorantsPopulationDecreasing.csv}
+\end{table}
+
+
+\section*{Series de tiempo}
 
 \subsection*{Isla Alcatraz}
 
@@ -108,7 +101,7 @@ Descartamos el punto correspondiente a la temporada 2005-2006. El tamaño poblac
 \caption{En azul se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2012-2018 en Isla Patos en Sinaloa. En naranja el modelo de crecimiento poblacional ajustado.}
 \end{figure}
 
-Descartamos los puntos correspondientes a las temporadas 2011-2012, 2015-2016 y 2016-2017 en las cuales se perdió el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
+Descartamos los puntos correspondientes a las temporadas 2011-2012, 2015-2016 y 2016-2017 de las cuales no tenemos el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
 
 
 \subsection*{Isla Pajaros}
@@ -119,8 +112,18 @@ Descartamos los puntos correspondientes a las temporadas 2011-2012, 2015-2016 y 
 \caption{En azul se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2012-2018 en Isla Pajaros en Sinaloa. En naranja el modelo de crecimiento poblacional ajustado.}
 \end{figure}
 
+Descartamos los puntos correspondiente a las temporadas 2015-2016 y 2016-2017 de las cuales no tenemos el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
 
-Descartamos los puntos correspondiente a las temporadas 2015-2016 y 2016-2017 en las cuales se perdió el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
+
+\subsection*{Islas del Pacífico}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/Double-crested_Cormorant.png}
+\caption{Serie de tiempo del tamaño poblacional de Double-crested Cormorant para todas las colonias..}
+\end{figure}
+
+Para el cormorán orejón tenemos datos en ocho islas del pacífico. Las poblaciones de Todos Santos, San Roque, San Benito y Asunción parecen tener una ligera correlación, las demás no parecen tener una tendencia. La población de Asunción tiene una tasa de crecimiento mayor a 1 y en San Benito menor a 1 $(p < 0.1)$.
 
 \bibliography{../references/tendencia_poblacional_cormoran} 
 \bibliographystyle{apalike}
