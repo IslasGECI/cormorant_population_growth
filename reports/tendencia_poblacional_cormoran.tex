@@ -26,6 +26,11 @@ La población de cormorán orejón está disminuyendo en las islas Alcatraz, Pá
 
 \end{abstract}
 
+\section*{Datos}
+
+Utilizamos dos conjuntos de datos para estos resultados. La base de datos de GECI: \href{https://drive.google.com/drive/u/0/folders/1K2-itQXbNXPhrz4Pb3eRr9NG9A4rR47o}{{\color{blue}\textit{\underline{cantidad de parejas de aves marinas del pacífico}}}}, donde registramos la cantidad anual de parejas o madrigueras para un total de 9 islas y 18 especies. De esta base de datos utilizamos solamente los datos de cormorán orejón. También utilizamos la base de datos href{https://drive.google.com/drive/folders/1aXmotwcGcZjK52USWMdlZoffaMUlI0tT}{{\color{blue}\textit{\underline{conteo de nidos de cormorán}}}}, la cual nos fue compartida por CONANP. En esta tabla tenemos cantidad de nidos por observación directa de 3 islas del golfo: Patos, Pajaros y Bledos.
+
+
 \section*{Metodología}
 \subsection*{Modelo}
 A continuación mostramos el modelo del tamaño poblacional:
@@ -38,7 +43,7 @@ N(t)=N_{0}\lambda^{t}
 
 \subsection*{Cálculo de tasa de crecimiento}
 
-Utilizamos la base de datos \href{https://drive.google.com/drive/folders/1aXmotwcGcZjK52USWMdlZoffaMUlI0tT}{{\color{blue}\textit{\underline{conteo\_nidos\_cormoran}}}}, donde tenemos datos de cantidad de nidos activos para diferentes temporadas durante los últimos 20 años. Para calcular la tasa de crecimiento fundamental $\lambda$, tomamos los máximos de cada temporada. Consideramos una temporada como el intervalo de tiempo entre los meses de septiembre hasta abril.
+Para calcular la tasa de crecimiento fundamental $\lambda$, tomamos la máxima cantidad de nidos de cada temporada. Consideramos una temporada como el intervalo de tiempo entre los meses de septiembre hasta abril.
 
 \subsection*{Bootstrapping no paramétrico}
 
