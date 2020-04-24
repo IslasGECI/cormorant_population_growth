@@ -15,7 +15,7 @@
 
 \author{Fernando Alvarez y Maritza Bello}
 
-\title{Tendencia poblacional cormorán orejón \\ \begin{large} Grupo de Ecología y Conservación de Islas \end{large}}
+\title{Tendencia poblacional de cormorán orejón en las islas del Noroeste de México 2000-2020\\ \begin{large} Grupo de Ecología y Conservación de Islas \end{large}}
 
 \begin{document}
 
@@ -28,7 +28,7 @@ La población de cormorán orejón está disminuyendo en las islas Alcatraz, Pá
 
 \section*{Datos}
 
-Utilizamos dos conjuntos de datos para estos resultados. La base de datos de GECI: \href{https://drive.google.com/drive/u/0/folders/1K2-itQXbNXPhrz4Pb3eRr9NG9A4rR47o}{{\color{blue}\textit{\underline{cantidad de parejas de aves marinas del pacífico}}}}, donde registramos la cantidad anual de parejas o madrigueras para un total de 9 islas y 18 especies. De esta base de datos utilizamos solamente los datos de cormorán orejón. También utilizamos la base de datos href{https://drive.google.com/drive/folders/1aXmotwcGcZjK52USWMdlZoffaMUlI0tT}{{\color{blue}\textit{\underline{conteo de nidos de cormorán}}}}, la cual nos fue compartida por CONANP. En esta tabla tenemos cantidad de nidos por observación directa de 3 islas del golfo: Patos, Pajaros y Bledos.
+Utilizamos dos conjuntos de datos para estos resultados. La base de datos de GECI: \href{https://drive.google.com/drive/u/0/folders/1K2-itQXbNXPhrz4Pb3eRr9NG9A4rR47o}{{\color{blue}\textit{\underline{cantidad de parejas de aves marinas del pacífico}}}}, donde registramos la cantidad anual de parejas o madrigueras para un total de 9 islas y 18 especies. De esta base de datos utilizamos solamente los datos de cormorán orejón. También utilizamos la base de datos \href{https://drive.google.com/drive/folders/1aXmotwcGcZjK52USWMdlZoffaMUlI0tT}{{\color{blue}\textit{\underline{conteo de nidos de cormorán}}}}, la cual nos fue compartida por CONANP. En esta tabla tenemos cantidad de nidos por observación directa de 3 islas del golfo de California: Patos, Pajaros y Bledos.
 
 
 \section*{Metodología}
@@ -59,11 +59,11 @@ Con esto, calculamos un intervalo de confianza del 95\% para $ \lambda^* $.
 
 \section*{Resultados}
 
-En la Tabla 1 mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para isla Patos, el valor central de la distribución es $0.91$, el límite inferior es $0.91 - 0.14 = 0.77$ y el límite superior $ 0.91 + 0.15 = 1.06$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
+En la Tabla \ref{tab:csvTodasLambdas}  mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para isla Patos, el valor central de la distribución es $0.91$, el límite inferior es $0.91 - 0.14 = 0.77$ y el límite superior $ 0.91 + 0.15 = 1.06$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
 
 \begin{table}[H]
 \centering
-\caption{Intervalos de confianza del 95\% de las tasas de crecimiento ($\lambda$) de cormorán orejón en once colonias, calculadas a partir de ajustar el modelo (1) a los datos del máximo de nidos en cada temporada. Realizamos un remuestreo bootstrapping de cada serie de tiempo, para calcular los intervalos de confianza.}
+\caption{Intervalos de confianza del 95\% de las tasas de crecimiento ($\lambda$) de cormorán orejón en once colonias, del Noroeste de México. Fueron calculadas a partir de ajustar el modelo (1) a los datos del máximo de nidos en cada temporada. Realizamos un remuestreo bootstrapping de cada serie de tiempo, para calcular los intervalos de confianza.}
 \label{tab:csvTodasLambdas}
 \csvautotabular{tables/cormorant_all_islets_growth_rates.csv}
 \end{table}
