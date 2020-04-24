@@ -4,11 +4,11 @@ from scipy.optimize import curve_fit
 def power_law(T, Lambda, No):
     return No * np.power(Lambda, T)
 
-def lambda_calculator(temporadas, maximo_nidos, max_iter=2000, lower_bounds = 0, lambda_upper_bound = 50):
-    temporadas = np.array(temporadas)
-    numero_agno = temporadas - temporadas[0]
-    maximo_nidos = np.array(maximo_nidos)
-    popt, pcov = curve_fit(power_law, numero_agno, maximo_nidos, maxfev = max_iter, bounds=((lower_bounds,lower_bounds),(lambda_upper_bound,np.inf)))
+def lambda_calculator(seasons, burrows_max, max_iter=2000, lower_bounds = 0, lambda_upper_bound = 50):
+    seasons = np.array(seasons)
+    index = seasons - seasons[0]
+    burrows_max = np.array(burrows_max)
+    popt, pcov = curve_fit(power_law, index, burrows_max, maxfev = max_iter, bounds=((lower_bounds,lower_bounds),(lambda_upper_bound,np.inf)))
     return popt
 
 def remove_distribution_outliers(data):
