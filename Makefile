@@ -92,87 +92,91 @@ reports/tendencia_poblacional_cormoran.pdf: reports/tendencia_poblacional_cormor
 # IV. Reglas para construir las dependencias de los objetivos principales
 # ==========================================================================
 
-$(pngPopulationGrowRateCormorantAlcatraz) $(csvGrowthRateDistributionCormorantAlcatraz): $(csvMaximumNestsAlcatraz) src/calculateCormorantGrowthRate
+$(pngPopulationGrowRateCormorantAlcatraz) $(csvGrowthRateDistributionCormorantAlcatraz): $(csvMaximumNestsAlcatraz) src/calculate_cormorant_growth_rate
 	$(checkDirectories)
-	src/calculateCormorantGrowthRate \
-	--input $< \
-	--drop 2005-2006 \
-	--exit $(csvGrowthRateDistributionCormorantAlcatraz) \
-	--exit $(pngPopulationGrowRateCormorantAlcatraz)
+	$(word 2, $^) \
+		--input $< \
+		--drop 2005-2006 \
+		--exit $(csvGrowthRateDistributionCormorantAlcatraz) \
+		--exit $(pngPopulationGrowRateCormorantAlcatraz)
 	
-$(pngPopulationGrowRateCormorantPatos) $(csvGrowthRateDistributionCormorantPatos): $(csvMaximumNestsPatos) src/calculateCormorantGrowthRate
+$(pngPopulationGrowRateCormorantPatos) $(csvGrowthRateDistributionCormorantPatos): $(csvMaximumNestsPatos) src/calculate_cormorant_growth_rate
 	$(checkDirectories)
-	src/calculateCormorantGrowthRate \
-	--input $< \
-	--drop 2011-2012 \
-	--drop 2015-2016 \
-	--drop 2016-2017 \
-	--exit $(csvGrowthRateDistributionCormorantPatos) \
-	--exit $(pngPopulationGrowRateCormorantPatos)
+	$(word 2, $^) \
+		--input $< \
+		--drop 2011-2012 \
+		--drop 2015-2016 \
+		--drop 2016-2017 \
+		--exit $(csvGrowthRateDistributionCormorantPatos) \
+		--exit $(pngPopulationGrowRateCormorantPatos)
 	
 
-$(pngPopulationGrowRateCormorantPajaros) $(csvGrowthRateDistributionCormorantPajaros): $(csvMaximumNestsPajaros) src/calculateCormorantGrowthRate
+$(pngPopulationGrowRateCormorantPajaros) $(csvGrowthRateDistributionCormorantPajaros): $(csvMaximumNestsPajaros) src/calculate_cormorant_growth_rate
 	$(checkDirectories)
-	src/calculateCormorantGrowthRate \
-	--input $< \
-	--drop 2015-2016 \
-	--drop 2016-2017 \
-	--exit $(csvGrowthRateDistributionCormorantPajaros) \
-	--exit $(pngPopulationGrowRateCormorantPajaros)
+	$(word 2, $^) \
+		--input $< \
+		--drop 2015-2016 \
+		--drop 2016-2017 \
+		--exit $(csvGrowthRateDistributionCormorantPajaros) \
+		--exit $(pngPopulationGrowRateCormorantPajaros)
 
 $(csvMaximumNestsPatos): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
 	$(checkDirectories)
-	src/calculate_max_nest_quantity \
-	$< \
-	Patos \
-	> $@
+	$(word 2, $^) \
+		$< \
+		Patos \
+		> $@
 
 $(csvMaximumNestsPajaros): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
 	$(checkDirectories)
-	src/calculate_max_nest_quantity \
-	$< \
-	Pajaros \
-	> $@
+	$(word 2, $^) \
+		$< \
+		Pajaros \
+		> $@
 
 $(csvMaximumNestsAlcatraz): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
 	$(checkDirectories)
-	src/calculate_max_nest_quantity \
-	$< \
-	Alcatraz \
-	> $@
+	$(word 2, $^) \
+		$< \
+		Alcatraz \
+		> $@
 $(csvCormorantBurrowsQuantityPacificIslands): $(csvDatosParejasAvesMarinas) src/calculate_burrows_quantity_per_species
 	$(checkDirectories)
-	src/calculate_burrows_quantity_per_species \
-	$< \
-	"Double-crested Cormorant" \
-	> $@
+	$(word 2, $^) \
+		$< \
+		"Double-crested Cormorant" \
+		> $@
 
-$(csvGrowthRateCormorantPacificIslands) $(csvFullResultsCormorantPacificIslands): $(csvCormorantBurrowsQuantityPacificIslands) src/calculateGrowthRateSeaBirds
+$(csvGrowthRateCormorantPacificIslands) $(csvFullResultsCormorantPacificIslands): $(csvCormorantBurrowsQuantityPacificIslands) src/calculate_growth_rate
 	$(checkDirectories)
 	mkdir --parents reports/figures
-	src/calculateGrowthRateSeaBirds \
-	--input $< \
-	--exit $(csvFullResultsCormorantPacificIslands) \
-	--exit $(csvGrowthRateCormorantPacificIslands)
+	$(word 2, $^) \
+		--input $< \
+		--exit $(csvFullResultsCormorantPacificIslands) \
+		--exit $(csvGrowthRateCormorantPacificIslands)
 
 $(csvCormorantsPopulationDecreasing): $(csvFullResultsCormorantPacificIslands) src/select_growth_rates_and_p_values
 	$(checkDirectories)
-	src/select_growth_rates_and_p_values $< p_valor_menor \
-	> $@
+	$(word 2, $^) \
+		$< \
+		p_valor_menor \
+		> $@
 
 $(csvCormorantsPopulationGrowing): $(csvFullResultsCormorantPacificIslands) src/select_growth_rates_and_p_values
 	$(checkDirectories)
-	src/select_growth_rates_and_p_values $< p_valor \
-	> $@
+	$(word 2, $^) \
+		$< \
+		p_valor \
+		> $@
 
-$(csvCormorantAllGrowthRates): src/joinCormorantGrowthRates $(csvGrowthRateDistributionCormorantAlcatraz) $(csvGrowthRateDistributionCormorantPatos) $(csvGrowthRateDistributionCormorantPajaros) $(csvFullResultsCormorantPacificIslands)
+$(csvCormorantAllGrowthRates): src/join_cormorant_growth_rates $(csvGrowthRateDistributionCormorantAlcatraz) $(csvGrowthRateDistributionCormorantPatos) $(csvGrowthRateDistributionCormorantPajaros) $(csvFullResultsCormorantPacificIslands)
 	$(checkDirectories)
-	src/joinCormorantGrowthRates \
-	--input $(csvFullResultsCormorantPacificIslands) \
-	--input $(csvGrowthRateDistributionCormorantPatos) \
-	--input $(csvGrowthRateDistributionCormorantPajaros) \
-	--input $(csvGrowthRateDistributionCormorantAlcatraz) \
-	--exit $(csvCormorantAllGrowthRates)
+	$(word 1, $^) \
+		--input $(csvFullResultsCormorantPacificIslands) \
+		--input $(csvGrowthRateDistributionCormorantPatos) \
+		--input $(csvGrowthRateDistributionCormorantPajaros) \
+		--input $(csvGrowthRateDistributionCormorantAlcatraz) \
+		--exit $(csvCormorantAllGrowthRates)
 
 # V. Reglas phonies
 # ===========================================================================
