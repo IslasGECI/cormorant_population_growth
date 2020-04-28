@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# calculateGrowthRateSeaBirds calcula la tasa de crecimiento fundamental (lambda)
+# calculate_growth_rate calcula la tasa de crecimiento fundamental (lambda)
 # utilizando un ajuste de una ley de potencia a los datos de cantidad de nidos
 import os
 
-from calculateLambda import *
-from PlotsGECI import *
-from cliPathsFiles import path_files
+from calculate_lambda import *
+from geci_plots import *
+from cli_paths import path_files
 from matplotlib.ticker import MaxNLocator
 from tqdm import tqdm
 

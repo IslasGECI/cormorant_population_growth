@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 #
-# joinCormorantGrowthRates une resultados de islas del pacífico e 
+# join_cormorant_growth_rates une resultados de islas del pacífico e 
 # islas de sinaloa.
 
 import matplotlib
 
 matplotlib.use("Agg")
 
-from cliPathsFiles import path_files
-from calculateLambda import *
-from PlotsGECI import GECI_Plot
+from cli_paths import path_files
+from calculate_lambda import *
+from geci_plots import GECI_Plot
 from matplotlib.ticker import MaxNLocator
-from bootstrapTools import *
+from bootstrap_tools import *
 
 import matplotlib.pyplot as plt
 import numpy as np
