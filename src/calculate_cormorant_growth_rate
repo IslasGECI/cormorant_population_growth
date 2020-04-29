@@ -35,7 +35,7 @@ plot_data = plot_data.dropna(subset=["Maxima_cantidad_nidos"])
 time_fit = np.array(plot_data.index) + 1
 
 
-parameters = lambda_calculator(plot_data["Temporada"], plot_data["Maxima_cantidad_nidos"])
+parameters = calculate_lambda(plot_data["Temporada"], plot_data["Maxima_cantidad_nidos"])
 lambdas_distribution, intervals = bootstrap_from_time_series(plot_data, "Maxima_cantidad_nidos", N=2000, return_distribution=True)
 lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
 lambdas_distribution.to_csv(distribution_file)

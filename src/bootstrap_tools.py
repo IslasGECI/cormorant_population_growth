@@ -12,7 +12,7 @@ def power_law(T, Lambda, No):
     return No * np.power(Lambda, T)
 
 
-def lambda_calculator(temporadas, maximo_nidos, max_iter=2000, lower_bounds = 0, lambda_upper_bound = 50):
+def calculate_lambda(temporadas, maximo_nidos, max_iter=2000, lower_bounds = 0, lambda_upper_bound = 50):
     temporadas = np.array(temporadas)
     numero_agno = temporadas - temporadas[0]
     maximo_nidos = np.array(maximo_nidos)
@@ -46,7 +46,7 @@ def lambdas_from_bootstrap_table(dataframe):
     N = len(dataframe)
     print("Calculating bootstrap growth rates distribution:" )
     for i in tqdm(range(N)):
-        fitting_result = lambda_calculator(seasons, dataframe.T[i].values)
+        fitting_result = calculate_lambda(seasons, dataframe.T[i].values)
         lambdas_bootstraps.append(fitting_result[0])
     return lambdas_bootstraps
 
@@ -77,7 +77,7 @@ def bootstrap_from_time_series(dataframe, column_name, N=2000, return_distributi
     print("Calculating bootstrap growth rates distribution:" )
     for i in tqdm(range(N)):
         resampled_data=dataframe.sample(n=len(dataframe),replace=True,random_state=i).sort_index()
-        fitting_result=lambda_calculator(resampled_data['Temporada'],resampled_data[column_name])
+        fitting_result=calculate_lambda(resampled_data['Temporada'],resampled_data[column_name])
         lambdas_bootstraps.append(fitting_result[0])
     lambdas_bootstraps = remove_distribution_outliers(lambdas_bootstraps)
     if return_distribution == True:

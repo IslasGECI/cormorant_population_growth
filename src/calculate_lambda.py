@@ -4,7 +4,11 @@ from scipy.optimize import curve_fit
 def power_law(T, Lambda, No):
     return No * np.power(Lambda, T)
 
-def lambda_calculator(seasons, burrows_max, max_iter=2000, lower_bounds = 0, lambda_upper_bound = 50):
+max_iter=2000
+lower_bounds = 0
+lambda_upper_bound = 50
+
+def calculate_lambda(seasons, burrows_max):
     seasons = np.array(seasons)
     index = seasons - seasons[0]
     burrows_max = np.array(burrows_max)
@@ -22,10 +26,10 @@ def bootstrap_fitting(dataframe):
     lambdas_bootstraps = []
     for i in range(2000):
         resampled_data=dataframe.sample(n=len(dataframe),replace=True,random_state=i).sort_index()
-        fitting_result=lambda_calculator(resampled_data['Temporada'],resampled_data['Maxima_cantidad_nidos'])
+        fitting_result=calculate_lambda(resampled_data['Temporada'],resampled_data['Maxima_cantidad_nidos'])
         lambdas_bootstraps.append(fitting_result[0])
     lambdas_bootstraps = remove_distribution_outliers(lambdas_bootstraps)
-    normal_fit = lambda_calculator(dataframe['Temporada'],dataframe['Maxima_cantidad_nidos'])
+    normal_fit = calculate_lambda(dataframe['Temporada'],dataframe['Maxima_cantidad_nidos'])
     return np.percentile(lambdas_bootstraps,[2.5,50,97.5]), normal_fit, lambdas_bootstraps
 
 def calculate_p_values(distribution):
