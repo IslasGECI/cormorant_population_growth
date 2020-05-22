@@ -3,9 +3,8 @@
 # calculate_cormorant_growth_rate calcula la tasa de crecimiento fundamental (lambda)
 # utilizando un model de una ley de potencia a los datos de cantidad de nidos de cormoran orejon en Isla Alcatraz
 from cli_paths import path_files
-from calculate_lambda import *
 from geci_plots import *
-from bootstrap_tools import *
+from bootstraping_tools import *
 
 import os
 import pandas as pd
@@ -35,15 +34,13 @@ plot_data = plot_data.dropna(subset=["Maxima_cantidad_nidos"])
 time_fit = np.array(plot_data.index) + 1
 
 
-parameters = calculate_lambda(plot_data["Temporada"], plot_data["Maxima_cantidad_nidos"])
+parameters = lambda_calculator(plot_data["Temporada"], plot_data["Maxima_cantidad_nidos"])
 lambdas_distribution, intervals = bootstrap_from_time_series(plot_data, "Maxima_cantidad_nidos", N=2000, return_distribution=True)
 lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
 lambdas_distribution.to_csv(distribution_file)
 
 model = power_law(time_fit, parameters[0], parameters[1])
 
-print(parameters[0])
-print(parameters[1])
 
 
 fig, ax = GECI_Plot()

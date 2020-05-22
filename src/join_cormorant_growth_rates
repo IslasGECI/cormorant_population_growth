@@ -8,10 +8,8 @@ import matplotlib
 matplotlib.use("Agg")
 
 from cli_paths import path_files
-from calculate_lambda import *
-from geci_plots import GECI_Plot
 from matplotlib.ticker import MaxNLocator
-from bootstrap_tools import *
+from bootstraping_tools import *
 
 import matplotlib.pyplot as plt
 import numpy as np
