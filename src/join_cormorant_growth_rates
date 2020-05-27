@@ -22,7 +22,7 @@ pacific_data = path.input[0][0]
 patos_data = path.input[1][0]
 pajaros_data = path.input[2][0]
 alcatraz_data = path.input[3][0]
-result_table = path.exit[0][0]
+result_table = path.output[0][0]
 
 pacific_table = pd.read_csv(pacific_data)
 patos_distribution = pd.read_csv(patos_data)

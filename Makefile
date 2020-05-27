@@ -97,8 +97,8 @@ $(pngPopulationGrowRateCormorantAlcatraz) $(csvGrowthRateDistributionCormorantAl
 	$(word 2, $^) \
 		--input $< \
 		--drop 2005-2006 \
-		--exit $(csvGrowthRateDistributionCormorantAlcatraz) \
-		--exit $(pngPopulationGrowRateCormorantAlcatraz)
+		--output $(csvGrowthRateDistributionCormorantAlcatraz) \
+		--output $(pngPopulationGrowRateCormorantAlcatraz)
 	
 $(pngPopulationGrowRateCormorantPatos) $(csvGrowthRateDistributionCormorantPatos): $(csvMaximumNestsPatos) src/calculate_cormorant_growth_rate
 	$(checkDirectories)
@@ -107,8 +107,8 @@ $(pngPopulationGrowRateCormorantPatos) $(csvGrowthRateDistributionCormorantPatos
 		--drop 2011-2012 \
 		--drop 2015-2016 \
 		--drop 2016-2017 \
-		--exit $(csvGrowthRateDistributionCormorantPatos) \
-		--exit $(pngPopulationGrowRateCormorantPatos)
+		--output $(csvGrowthRateDistributionCormorantPatos) \
+		--output $(pngPopulationGrowRateCormorantPatos)
 	
 
 $(pngPopulationGrowRateCormorantPajaros) $(csvGrowthRateDistributionCormorantPajaros): $(csvMaximumNestsPajaros) src/calculate_cormorant_growth_rate
@@ -117,8 +117,8 @@ $(pngPopulationGrowRateCormorantPajaros) $(csvGrowthRateDistributionCormorantPaj
 		--input $< \
 		--drop 2015-2016 \
 		--drop 2016-2017 \
-		--exit $(csvGrowthRateDistributionCormorantPajaros) \
-		--exit $(pngPopulationGrowRateCormorantPajaros)
+		--output $(csvGrowthRateDistributionCormorantPajaros) \
+		--output $(pngPopulationGrowRateCormorantPajaros)
 
 $(csvMaximumNestsPatos): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
 	$(checkDirectories)
@@ -152,8 +152,8 @@ $(csvGrowthRateCormorantPacificIslands) $(csvFullResultsCormorantPacificIslands)
 	mkdir --parents reports/figures
 	$(word 2, $^) \
 		--input $< \
-		--exit $(csvFullResultsCormorantPacificIslands) \
-		--exit $(csvGrowthRateCormorantPacificIslands)
+		--output $(csvFullResultsCormorantPacificIslands) \
+		--output $(csvGrowthRateCormorantPacificIslands)
 
 $(csvCormorantsPopulationDecreasing): $(csvFullResultsCormorantPacificIslands) src/select_growth_rates_and_p_values
 	$(checkDirectories)
@@ -176,7 +176,7 @@ $(csvCormorantAllGrowthRates): src/join_cormorant_growth_rates $(csvGrowthRateDi
 		--input $(csvGrowthRateDistributionCormorantPatos) \
 		--input $(csvGrowthRateDistributionCormorantPajaros) \
 		--input $(csvGrowthRateDistributionCormorantAlcatraz) \
-		--exit $(csvCormorantAllGrowthRates)
+		--output $(csvCormorantAllGrowthRates)
 
 # V. Reglas phonies
 # ===========================================================================

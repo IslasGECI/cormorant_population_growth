@@ -12,8 +12,8 @@ import pandas as pd
 path = path_files()
 
 data_path = path.input[0][0]
-distribution_file = path.exit[0][0]
-plot_file = path.exit[1][0]
+distribution_file = path.output[0][0]
+plot_file = path.output[1][0]
 drop_values = path.drop
 
 
@@ -43,7 +43,7 @@ model = power_law(time_fit, parameters[0], parameters[1])
 
 
 
-fig, ax = GECI_Plot()
+fig, ax = geci_plot()
 plt.plot(
     time_fit, plot_data["Maxima_cantidad_nidos"], "-o", label="Nidos activos de cormorán orejón"
 )

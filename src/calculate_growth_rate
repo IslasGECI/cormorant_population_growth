@@ -16,8 +16,8 @@ import pandasql as ps
 
 path=path_files()
 data_path = path.input[0][0]
-latex_table = path.exit[1][0]
-results_table = path.exit[0][0]
+latex_table = path.output[1][0]
+results_table = path.output[0][0]
 
 datos_parejas_aves_marinas = pd.read_csv(data_path)
 lambdas = []
