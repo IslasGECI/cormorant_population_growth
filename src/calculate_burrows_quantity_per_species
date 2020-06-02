@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+DATA_FILE=$1
+TABLE_NAME=$(basename "${DATA_FILE}" .csv)
+SPECIES_NAME=$2
+csvsql --query \
+    "SELECT * \
+    FROM ${TABLE_NAME} \
+    WHERE Nombre_en_ingles = '${SPECIES_NAME}'" \
+${DATA_FILE}
