@@ -22,7 +22,7 @@
         "cormorant_all_islets_growth_rates.csv"
     ],
     "scripts": [
-        "src/calculateCormorantGrowthRate",
+        "src/calculate_cormorant_growth_rate",
         "src/calculate_max_nest_quantity",
         "src/calculate_burrows_quantity_per_species"
     ],

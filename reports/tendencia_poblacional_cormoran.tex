@@ -15,7 +15,7 @@
 
 \author{Fernando Alvarez y Maritza Bello}
 
-\title{Tendencia poblacional cormorán orejón \\ \begin{large} Grupo de Ecología y Conservación de Islas \end{large}}
+\title{Tendencia poblacional de cormorán orejón en las islas del Noroeste de México 2000-2020\\ \begin{large} Grupo de Ecología y Conservación de Islas \end{large}}
 
 \begin{document}
 
@@ -25,6 +25,11 @@
 La población de cormorán orejón está disminuyendo en las islas Alcatraz, Pájaros, Patos y San Benito. En Isla Asunción la población va en aumento. Esta información la obtenemos a partir de ajustar un modelo de crecimiento poblacional, a los datos de cantidad de nidos de cormorán orejón en once islas distintas.
 
 \end{abstract}
+
+\section*{Datos}
+
+Utilizamos dos conjuntos de datos para estos resultados. La base de datos de GECI: \href{https://drive.google.com/drive/u/0/folders/1K2-itQXbNXPhrz4Pb3eRr9NG9A4rR47o}{{\color{blue}\textit{\underline{cantidad de parejas de aves marinas del pacífico}}}}, donde registramos la cantidad anual de parejas o madrigueras para un total de 9 islas y 18 especies. De esta base de datos utilizamos solamente los datos de cormorán orejón. También utilizamos la base de datos \href{https://drive.google.com/drive/folders/1aXmotwcGcZjK52USWMdlZoffaMUlI0tT}{{\color{blue}\textit{\underline{conteo de nidos de cormorán}}}}, la cual nos fue compartida por CONANP. En esta tabla tenemos cantidad de nidos por observación directa de 3 islas del golfo de California: Patos, Pajaros y Bledos.
+
 
 \section*{Metodología}
 \subsection*{Modelo}
@@ -38,7 +43,7 @@ N(t)=N_{0}\lambda^{t}
 
 \subsection*{Cálculo de tasa de crecimiento}
 
-Utilizamos la base de datos \href{https://drive.google.com/drive/folders/1aXmotwcGcZjK52USWMdlZoffaMUlI0tT}{{\color{blue}\textit{\underline{conteo\_nidos\_cormoran}}}}, donde tenemos datos de cantidad de nidos activos para diferentes temporadas durante los últimos 20 años. Para calcular la tasa de crecimiento fundamental $\lambda$, tomamos los máximos de cada temporada. Consideramos una temporada como el intervalo de tiempo entre los meses de septiembre hasta abril.
+Para calcular la tasa de crecimiento fundamental $\lambda$, tomamos la máxima cantidad de nidos de cada temporada. Consideramos una temporada como el intervalo de tiempo entre los meses de septiembre hasta abril.
 
 \subsection*{Bootstrapping no paramétrico}
 
@@ -54,11 +59,11 @@ Con esto, calculamos un intervalo de confianza del 95\% para $ \lambda^* $.
 
 \section*{Resultados}
 
-En la Tabla 1 mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para isla Patos, el valor central de la distribución es $0.91$, el límite inferior es $0.91 - 0.14 = 0.77$ y el límite superior $ 0.91 + 0.15 = 1.06$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
+En la Tabla \ref{tab:csvTodasLambdas}  mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para isla Patos, el valor central de la distribución es $0.91$, el límite inferior es $0.91 - 0.14 = 0.77$ y el límite superior $ 0.91 + 0.15 = 1.06$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
 
 \begin{table}[H]
 \centering
-\caption{Intervalos de confianza del 95\% de las tasas de crecimiento ($\lambda$) de cormorán orejón en once colonias, calculadas a partir de ajustar el modelo (1) a los datos del máximo de nidos en cada temporada. Realizamos un remuestreo bootstrapping de cada serie de tiempo, para calcular los intervalos de confianza.}
+\caption{Intervalos de confianza del 95\% de las tasas de crecimiento ($\lambda$) de cormorán orejón en once colonias, del Noroeste de México. Fueron calculadas a partir de ajustar el modelo (1) a los datos del máximo de nidos en cada temporada. Realizamos un remuestreo bootstrapping de cada serie de tiempo, para calcular los intervalos de confianza. El periodo de tiempo analizado varía entre el 2000 al 2020.}
 \label{tab:csvTodasLambdas}
 \csvautotabular{tables/cormorant_all_islets_growth_rates.csv}
 \end{table}
@@ -120,10 +125,10 @@ Descartamos los puntos correspondiente a las temporadas 2015-2016 y 2016-2017 de
 \begin{figure}[H]
 \hspace{-2cm}
     \includegraphics[scale=0.7]{figures/Double-crested_Cormorant.png}
-\caption{Serie de tiempo del tamaño poblacional de Double-crested Cormorant para todas las colonias..}
+\caption{Serie de tiempo del tamaño poblacional de Double-crested Cormorant para todas las colonias de las islas del noroeste de México. Los datos van del 2010 al 2019.}
 \end{figure}
 
-Para el cormorán orejón tenemos datos en ocho islas del pacífico. Las poblaciones de Todos Santos, San Roque, San Benito y Asunción parecen tener una ligera correlación, las demás no parecen tener una tendencia. La población de Asunción tiene una tasa de crecimiento mayor a 1 y en San Benito menor a 1 $(p < 0.1)$.
+Para el cormorán orejón tenemos datos en ocho islas del pacífico norte de México. Las poblaciones de Todos Santos, San Roque, San Benito y Asunción parecen tener una ligera correlación, las demás no parecen tener una tendencia. La población de Asunción tiene una tasa de crecimiento mayor a 1 y en San Benito menor a 1 $(p < 0.1)$.
 
 \bibliography{../references/tendencia_poblacional_cormoran} 
 \bibliographystyle{apalike}

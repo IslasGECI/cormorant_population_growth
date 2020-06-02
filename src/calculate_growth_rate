@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# calculateGrowthRateSeaBirds calcula la tasa de crecimiento fundamental (lambda)
+# calculate_growth_rate calcula la tasa de crecimiento fundamental (lambda)
 # utilizando un ajuste de una ley de potencia a los datos de cantidad de nidos
 import os
 
-from calculateLambda import *
-from PlotsGECI import *
-from cliPathsFiles import path_files
+from bootstraping_tools import *
+from cli_paths import path_files
+from geci_plots import *
 from matplotlib.ticker import MaxNLocator
 from tqdm import tqdm
 
@@ -16,8 +16,8 @@ import pandasql as ps
 
 path=path_files()
 data_path = path.input[0][0]
-latex_table = path.exit[1][0]
-results_table = path.exit[0][0]
+latex_table = path.output[1][0]
+results_table = path.output[0][0]
 
 datos_parejas_aves_marinas = pd.read_csv(data_path)
 lambdas = []
@@ -38,12 +38,13 @@ for especie, _ in tqdm(datos_parejas_aves_marinas.groupby(by="Nombre_en_ingles")
         cantidad_nidos = ps.sqldf(query_temporadas_y_nidos, locals())
         print(especie,isla)
         try:
-            resultado_ajuste_bootstrap, parameters, distribucion = bootstrap_fitting(cantidad_nidos)
-            p_value_mayor, p_value_menor = calculate_p_values(distribucion)
-            distribucion=pd.DataFrame(distribucion)
-            distribucion.to_csv('data/processed/distribucion_de_{}_en_{}.csv'.format(especie.replace(" ", "_"),isla.replace(" ", "_")))
+            parameters = lambda_calculator(cantidad_nidos["Temporada"], cantidad_nidos["Maxima_cantidad_nidos"])
+            lambdas_distribution, intervals = bootstrap_from_time_series(cantidad_nidos, "Maxima_cantidad_nidos", N=2000, return_distribution=True)         
         except RuntimeError:
             pass
+        lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
+        lambdas_distribution.to_csv('data/processed/distribucion_de_{}_en_{}.csv'.format(especie.replace(" ", "_"),isla.replace(" ", "_")))
+        p_value_mayor, p_value_menor = calculate_p_values(lambdas_distribution)
         model = power_law(
             cantidad_nidos["Temporada"] - cantidad_nidos["Temporada"][0],
             parameters[0],
@@ -73,12 +74,10 @@ for especie, _ in tqdm(datos_parejas_aves_marinas.groupby(by="Nombre_en_ingles")
         last_number_calculated = "{} ({})".format(
             model.iloc[-1],
             cantidad_nidos["Temporada"].iloc[-1],
-        )            
-        inferior_limit = resultado_ajuste_bootstrap[1]-resultado_ajuste_bootstrap[0]
-        superior_limit = resultado_ajuste_bootstrap[2]-resultado_ajuste_bootstrap[1]
-        resultado_ajuste_bootstrap = np.around(resultado_ajuste_bootstrap, decimals=2)
-        inferior_limit = np.around(inferior_limit, decimals=2)
-        superior_limit = np.around(superior_limit, decimals=2)
+        )
+
+        inferior_limit, central, superior_limit = get_bootstrap_interval(intervals) 
+        
         lambdas.append(
             [
                 especie,
@@ -87,8 +86,8 @@ for especie, _ in tqdm(datos_parejas_aves_marinas.groupby(by="Nombre_en_ingles")
                 first_number,
                 last_number,
                 last_number_calculated,
-                f"${{{resultado_ajuste_bootstrap[1]}}}_{{-{inferior_limit}}}^{{+{superior_limit}}}$",
-                resultado_ajuste_bootstrap[1],
+                f"${{{central}}}_{{-{inferior_limit}}}^{{+{superior_limit}}}$",
+                central,
                 f"-{inferior_limit}",
                 f"+{superior_limit}",
                 porcentaje_cambio,

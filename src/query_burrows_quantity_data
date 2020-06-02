@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 #
-# queryBurrowsQuantityData limpia la base de datos de especies con menos de 3 temporadas
+# query_burrows_quantity_data limpia la base de datos de especies con menos de 3 temporadas
 
 import pandas as pd
 
-from cliPathsFiles import path_files
+from cli_paths import path_files
 
 path = path_files()
 
 data_path = path.input[0][0]
-output_file = path.exit[0][0]
+output_file = path.output[0][0]
 
 burrows_data = pd.read_csv(data_path)
 
