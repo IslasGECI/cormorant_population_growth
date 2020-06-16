@@ -10,6 +10,6 @@ jobs:
       run: docker build --tag islasgeci .
     - name: Ejecuta objetivo principal del Makefile
       env:
-        docker_username: ${{ secrets.BITBUCKET_USERNAME }}
-        docker_password: ${{ secrets.BITBUCKET_PASSWORD }}
+        BITBUCKET_USERNAME: ${{ secrets.BITBUCKET_USERNAME }}
+        BITBUCKET_PASSWORD: ${{ secrets.BITBUCKET_PASSWORD }}
       run: docker run --env BITBUCKET_USERNAME=${BITBUCKET_USERNAME} --env BITBUCKET_PASSWORD=${BITBUCKET_PASSWORD} --volume ${PWD}:/workdir islasgeci make
