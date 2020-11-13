@@ -11,7 +11,22 @@
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{caption}
+\usepackage{pgfplotstable}
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry} 
+
+\pgfplotstableread[col sep=comma]{./tables/cormorant_all_islets_growth_rates.csv}\AllGrowthRates
+
+\pgfplotstablecreatecol[
+  create col/assign/.code={%
+    \getthisrow{Growth_rate}\entry
+    \edef\entry{\entry}%
+    \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+  }]
+  {Growth rate}\AllGrowthRates
+
+\pgfplotstableread[col sep=comma]{./tables/cormorant_colonies_growing.csv}\ColoniesGrowing
+\pgfplotstableread[col sep=comma]{./tables/cormorant_colonies_decreasing.csv}\ColoniesDecreasing
+\pgfplotstableread[col sep=comma]{./tables/cormorant_colonies_without_significance.csv}\ColoniesWithoutSignificance
 
 \author{Fernando Alvarez y Maritza Bello}
 
@@ -62,73 +77,165 @@ Con esto, calculamos un intervalo de confianza del 95\% para $ \lambda^* $.
 En la Tabla \ref{tab:csvTodasLambdas}  mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para isla Patos, el valor central de la distribución es $0.91$, el límite inferior es $0.91 - 0.14 = 0.77$ y el límite superior $ 0.91 + 0.15 = 1.06$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
 
 \begin{table}[H]
-\centering
-\caption{Intervalos de confianza del 95\% de las tasas de crecimiento ($\lambda$) de cormorán orejón en once colonias, del Noroeste de México. Fueron calculadas a partir de ajustar el modelo (1) a los datos del máximo de nidos en cada temporada. Realizamos un remuestreo bootstrapping de cada serie de tiempo, para calcular los intervalos de confianza. El periodo de tiempo analizado varía entre el 2000 al 2020.}
-\label{tab:csvTodasLambdas}
-\csvautotabular{tables/cormorant_all_islets_growth_rates.csv}
+  \centering
+  \caption{Intervalos de confianza del 95\% de las tasas de crecimiento ($\lambda$) de cormorán orejón en once colonias, del Noroeste de México. Fueron calculadas a partir de ajustar el modelo (1) a los datos del máximo de nidos en cada temporada. Realizamos un remuestreo bootstrapping de cada serie de tiempo, para calcular los intervalos de confianza. El periodo de tiempo analizado varía entre el 2000 al 2020.}
+   \pgfplotstabletypeset[
+     string type,
+     columns={Islet,{Growth rate}},
+     assign column name/.style={/pgfplots/table/column name={\textbf{#1}}},
+    every head row/.style={before row=\toprule,after row=\midrule},
+    every last row/.style={after row=\bottomrule},
+    ]{\AllGrowthRates}
+  \label{tab:csvTodasLambdas}
 \end{table}
 
-Realizamos pruebas estadísticas, con un nivel de significancia de $\alpha = 0.1$, para determinar si nuestros resultados tienen significancia estadística. Por ejemplo, para la hipótesis nula de una población estable o en crecimiento ($H_0: \lambda\geq 1$), el p-valor para las islas Alcatraz y Pajaros es $p=0.01$ y para isla Patos es $p=0.07$. Podemos concluir que los datos, nos brindan información suficiente para decir con seguridad que la población está disminuyendo.
+Realizamos pruebas estadísticas, con un nivel de significancia de $\alpha = 0.1$, para determinar si nuestros resultados tienen significancia estadística. Las tablas \ref{tab:csvPobAumentando} y \ref{tab:csvPobDisminuyendo} muestran las colonias con las cuales obtuvimos resultados con significancia estadística y pudimos estimar una tendencia poblacional.
 
 \begin{table}[H]
-\centering
-\caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico que están en crecimiento ($H_o: \lambda\leq 1$, $\alpha = 0.1$).}
-\label{tab:csvPobAumentando}
-\csvautotabular{tables/csvCormorantsPopulationGrowing.csv}
+  \centering
+  \caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico que están en crecimiento ($H_o: \lambda\leq 1$, $\alpha = 0.1$).}
+   \pgfplotstabletypeset[
+     string type,
+     assign column name/.style={/pgfplots/table/column name={\textbf{#1}}},
+    every head row/.style={before row=\toprule,after row=\midrule},
+    every last row/.style={after row=\bottomrule},
+    ]{\ColoniesGrowing}
+  \label{tab:csvPobAumentando}
 \end{table}
 
 
 \begin{table}[H]
-\centering
-\caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico que están decreciendo ($H_o: \lambda\geq 1$, $\alpha = 0.1$).}
-\label{tab:csvPobDisminuyendo}
-\csvautotabular{tables/csvCormorantsPopulationDecreasing.csv}
+  \centering
+  \caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico que están decreciendo ($H_o: \lambda\geq 1$, $\alpha = 0.1$).}
+   \pgfplotstabletypeset[
+     string type,
+     assign column name/.style={/pgfplots/table/column name={\textbf{#1}}},
+    every head row/.style={before row=\toprule,after row=\midrule},
+    every last row/.style={after row=\bottomrule},
+    ]{\ColoniesDecreasing}
+  \label{tab:csvPobDisminuyendo}
+\end{table}
+
+La tabla \ref{tab:csvPobSinSignificancia} muestra las colonias para las cuales no se cuenta con información suficiente para rechazar la hipótesis nula.
+
+\begin{table}[H]
+  \centering
+  \caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico para las que no observaron tendencias globales aparentes. El p-valor calculado no tuvo significancia en las dos hipótesis nula probadas: de una población en crecimiento, ni de una población en decrecimiento.}
+   \pgfplotstabletypeset[
+      string type,
+      columns={Archipelago/Island,{Growth rate}},
+      assign column name/.style={/pgfplots/table/column name={\textbf{#1}}},
+      every head row/.style={before row=\toprule,after row=\midrule},
+      every last row/.style={after row=\bottomrule},
+    ]{\ColoniesWithoutSignificance}
+  \label{tab:csvPobSinSignificancia}
 \end{table}
 
 
 \section*{Series de tiempo}
 
-\subsection*{Isla Alcatraz}
+\subsection*{Alcatraz}
 
 \begin{figure}[H]
 \hspace{-2cm}
-    \includegraphics[scale=0.7]{figures/pngPopulationGrowRateCormorantAlcatraz.png}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_alcatraz.png}
 \caption{En azul se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) de los ultimos 20 años en Isla Alcatraz. En naranja el modelo de crecimiento poblacional ajustado.}
 \end{figure}
 
 Descartamos el punto correspondiente a la temporada 2005-2006. El tamaño poblacional oscila entre 800 y 2000 parejas. 
 
-\subsection*{Isla Patos}
+\subsection*{Asunción}
 
 \begin{figure}[H]
 \hspace{-2cm}
-    \includegraphics[scale=0.7]{figures/pngPopulationGrowRateCormorantPatos.png}
-\caption{En azul se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2012-2018 en Isla Patos en Sinaloa. En naranja el modelo de crecimiento poblacional ajustado.}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_asuncion.png}
+\caption{}
 \end{figure}
 
-Descartamos los puntos correspondientes a las temporadas 2011-2012, 2015-2016 y 2016-2017 de las cuales no tenemos el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
+\subsection*{Bledos}
 
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_bledos.png}
+\caption{}
+\end{figure}
+
+\subsection*{Coronado}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_coronado.png}
+\caption{}
+\end{figure}
+
+\subsection*{Natividad}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_natividad.png}
+\caption{}
+\end{figure}
 
 \subsection*{Isla Pajaros}
 
 \begin{figure}[H]
 \hspace{-2cm}
-    \includegraphics[scale=0.7]{figures/pngPopulationGrowRateCormorantPajaros.png}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_pajaros.png}
 \caption{En azul se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2012-2018 en Isla Pajaros en Sinaloa. En naranja el modelo de crecimiento poblacional ajustado.}
 \end{figure}
 
 Descartamos los puntos correspondiente a las temporadas 2015-2016 y 2016-2017 de las cuales no tenemos el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
 
 
-\subsection*{Islas del Pacífico}
+\subsection*{Isla Patos}
 
 \begin{figure}[H]
 \hspace{-2cm}
-    \includegraphics[scale=0.7]{figures/Double-crested_Cormorant.png}
-\caption{Serie de tiempo del tamaño poblacional de Double-crested Cormorant para todas las colonias de las islas del noroeste de México. Los datos van del 2010 al 2019.}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_patos.png}
+\caption{En azul se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2012-2018 en Isla Patos en Sinaloa. En naranja el modelo de crecimiento poblacional ajustado.}
 \end{figure}
 
-Para el cormorán orejón tenemos datos en ocho islas del pacífico norte de México. Las poblaciones de Todos Santos, San Roque, San Benito y Asunción parecen tener una ligera correlación, las demás no parecen tener una tendencia. La población de Asunción tiene una tasa de crecimiento mayor a 1 y en San Benito menor a 1 $(p < 0.1)$.
+Descartamos los puntos correspondientes a las temporadas 2011-2012, 2015-2016 y 2016-2017 de las cuales no tenemos el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
+
+\subsection*{San Benito}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_san_benito.png}
+\caption{}
+\end{figure}
+
+\subsection*{San Jerónimo}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_san_jeronimo.png}
+\caption{}
+\end{figure}
+
+\subsection*{San Martín}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_san_martin.png}
+\caption{}
+\end{figure}
+
+\subsection*{San Roque}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_san_martin.png}
+\caption{}
+\end{figure}
+
+\subsection*{Todos Santos}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_todos_santos.png}
+\caption{}
+\end{figure}
 
 \bibliography{../references/tendencia_poblacional_cormoran} 
 \bibliographystyle{apalike}
