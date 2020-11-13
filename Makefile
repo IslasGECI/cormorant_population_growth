@@ -18,71 +18,49 @@ endef
 # ===========================================================================
 # Variables a resultados
 
-csvDatosParejasAvesMarinas = \
-	data/raw/parejas_aves_marinas_islas_del_pacifico.csv
-
 csvConteoNidosCormoranOrejon = \
 	data/raw/conteo_nidos_cormoran_todas_islas.csv
 
-jsonLambdaCormorantAlcatraz = \
-	reports/non-tabular/jsonLambdaCormorantAlcatraz.json
+csvDatosParejasAvesMarinas = \
+	data/raw/parejas_aves_marinas_islas_del_pacifico.csv
 
-pngPopulationGrowRateCormorantAlcatraz = \
-	reports/figures/pngPopulationGrowRateCormorantAlcatraz.png
+csvCormorantMaximumNests = \
+	data/processed/cormorant_all_islets_data.csv
 
-jsonLambdaCormorantPatos = \
-	reports/non-tabular/jsonLambdaCormorantPatos.json
+csvCormorantCleanData = \
+	data/processed/cormorant_all_islets_clean_data.csv
 
-pngPopulationGrowRateCormorantPatos = \
-	reports/figures/pngPopulationGrowRateCormorantPatos.png
-
-jsonLambdaCormorantPajaros = \
-	reports/non-tabular/jsonLambdaCormorantPajaros.json
-
-pngPopulationGrowRateCormorantPajaros = \
-	reports/figures/pngPopulationGrowRateCormorantPajaros.png
-
-csvMaximumNestsPatos = \
-	reports/tables/csvMaximumNestsPatos.csv
-
-csvMaximumNestsPajaros = \
-	reports/tables/csvMaximumNestsPajaros.csv
-
-csvMaximumNestsAlcatraz = \
-	reports/tables/csvMaximumNestsAlcatraz.csv
-
-csvCormorantBurrowsQuantityPacificIslands = \
-	data/processed/csvCormorantBurrowsQuantityPacificIslands.csv
-
-csvGrowthRateCormorantPacificIslands = \
-	reports/tables/csvGrowthRateCormorantPacificIslands.csv
-
-csvFullResultsCormorantPacificIslands = \
-	reports/tables/csvFullResultsCormorantPacificIslands.csv
-
-csvCormorantsPopulationGrowing = \
-	reports/tables/csvCormorantsPopulationGrowing.csv
-
-csvCormorantsPopulationDecreasing = \
-	reports/tables/csvCormorantsPopulationDecreasing.csv
-
-csvGrowthRateDistributionCormorantAlcatraz = \
-	reports/tables/growth_rate_distribution_cormorant_alcatraz.csv
-
-csvGrowthRateDistributionCormorantPatos = \
-	reports/tables/growth_rate_distribution_cormorant_patos.csv
-
-csvGrowthRateDistributionCormorantPajaros = \
-	reports/tables/growth_rate_distribution_cormorant_pajaros.csv
+pngPopulationGrowRateCormorantAllIslets = \
+	reports/figures/cormorant_population_trend_alcatraz.png \
+	reports/figures/cormorant_population_trend_asuncion.png \
+	reports/figures/cormorant_population_trend_bledos.png \
+	reports/figures/cormorant_population_trend_coronado.png \
+	reports/figures/cormorant_population_trend_natividad.png \
+	reports/figures/cormorant_population_trend_pajaros.png \
+	reports/figures/cormorant_population_trend_patos.png \
+	reports/figures/cormorant_population_trend_san_benito.png \
+	reports/figures/cormorant_population_trend_san_jeronimo.png \
+	reports/figures/cormorant_population_trend_san_martin.png \
+	reports/figures/cormorant_population_trend_san_roque.png \
+	reports/figures/cormorant_population_trend_todos_santos.png
 
 csvCormorantAllGrowthRates = \
 	reports/tables/cormorant_all_islets_growth_rates.csv
+
+csvCormorantsPopulationGrowing = \
+	reports/tables/cormorant_colonies_growing.csv
+
+csvCormorantsPopulationDecreasing = \
+	reports/tables/cormorant_colonies_decreasing.csv
+
+csvCormorantsPopulationWithoutSignificance = \
+	reports/tables/cormorant_colonies_without_significance.csv
 
 
 # III. Reglas para construir los objetivos principales
 # ===========================================================================
 
-reports/tendencia_poblacional_cormoran.pdf: reports/tendencia_poblacional_cormoran.tex $(pngPopulationGrowRateCormorantAlcatraz) $(pngPopulationGrowRateCormorantPatos) $(pngPopulationGrowRateCormorantPajaros) $(csvCormorantBurrowsQuantityPacificIslands) $(csvGrowthRateCormorantPacificIslands) $(csvCormorantsPopulationDecreasing) $(csvCormorantsPopulationGrowing) $(csvCormorantAllGrowthRates)
+reports/tendencia_poblacional_cormoran.pdf: reports/tendencia_poblacional_cormoran.tex $(pngPopulationGrowRateCormorantAllIslets) $(csvCormorantAllGrowthRates) $(csvCormorantsPopulationDecreasing) $(csvCormorantsPopulationGrowing) $(csvCormorantsPopulationWithoutSignificance)
 	cd $(<D) && pdflatex $(<F)
 	cd $(<D) && pythontex $(<F)
 	cd $(<D) && bibtex $(subst .tex,,$(<F))
@@ -92,91 +70,47 @@ reports/tendencia_poblacional_cormoran.pdf: reports/tendencia_poblacional_cormor
 # IV. Reglas para construir las dependencias de los objetivos principales
 # ==========================================================================
 
-$(pngPopulationGrowRateCormorantAlcatraz) $(csvGrowthRateDistributionCormorantAlcatraz): $(csvMaximumNestsAlcatraz) src/calculate_cormorant_growth_rate
+$(csvCormorantMaximumNests): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
+	$(checkDirectories)
+	$(word 2, $^) \
+		$< \
+		> $@
+
+$(csvCormorantCleanData): $(csvCormorantMaximumNests) src/query_burrows_quantity_data
 	$(checkDirectories)
 	$(word 2, $^) \
 		--input $< \
-		--drop 2005-2006 \
-		--output $(csvGrowthRateDistributionCormorantAlcatraz) \
-		--output $(pngPopulationGrowRateCormorantAlcatraz)
-	
-$(pngPopulationGrowRateCormorantPatos) $(csvGrowthRateDistributionCormorantPatos): $(csvMaximumNestsPatos) src/calculate_cormorant_growth_rate
+		--output $(csvCormorantCleanData)
+
+$(pngPopulationGrowRateCormorantAllIslets) $(csvCormorantAllGrowthRates): $(csvCormorantCleanData) src/calculate_cormorant_growth_rate
 	$(checkDirectories)
 	$(word 2, $^) \
 		--input $< \
-		--drop 2011-2012 \
-		--drop 2015-2016 \
-		--drop 2016-2017 \
-		--output $(csvGrowthRateDistributionCormorantPatos) \
-		--output $(pngPopulationGrowRateCormorantPatos)
-	
-
-$(pngPopulationGrowRateCormorantPajaros) $(csvGrowthRateDistributionCormorantPajaros): $(csvMaximumNestsPajaros) src/calculate_cormorant_growth_rate
-	$(checkDirectories)
-	$(word 2, $^) \
-		--input $< \
-		--drop 2015-2016 \
-		--drop 2016-2017 \
-		--output $(csvGrowthRateDistributionCormorantPajaros) \
-		--output $(pngPopulationGrowRateCormorantPajaros)
-
-$(csvMaximumNestsPatos): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
-	$(checkDirectories)
-	$(word 2, $^) \
-		$< \
-		Patos \
-		> $@
-
-$(csvMaximumNestsPajaros): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
-	$(checkDirectories)
-	$(word 2, $^) \
-		$< \
-		Pajaros \
-		> $@
-
-$(csvMaximumNestsAlcatraz): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
-	$(checkDirectories)
-	$(word 2, $^) \
-		$< \
-		Alcatraz \
-		> $@
-$(csvCormorantBurrowsQuantityPacificIslands): $(csvDatosParejasAvesMarinas) src/calculate_burrows_quantity_per_species
-	$(checkDirectories)
-	$(word 2, $^) \
-		$< \
-		"Double-crested Cormorant" \
-		> $@
-
-$(csvGrowthRateCormorantPacificIslands) $(csvFullResultsCormorantPacificIslands): $(csvCormorantBurrowsQuantityPacificIslands) src/calculate_growth_rate
-	$(checkDirectories)
-	mkdir --parents reports/figures
-	$(word 2, $^) \
-		--input $< \
-		--output $(csvFullResultsCormorantPacificIslands) \
-		--output $(csvGrowthRateCormorantPacificIslands)
-
-$(csvCormorantsPopulationDecreasing): $(csvFullResultsCormorantPacificIslands) src/select_growth_rates_and_p_values
-	$(checkDirectories)
-	$(word 2, $^) \
-		$< \
-		p_valor_menor \
-		> $@
-
-$(csvCormorantsPopulationGrowing): $(csvFullResultsCormorantPacificIslands) src/select_growth_rates_and_p_values
-	$(checkDirectories)
-	$(word 2, $^) \
-		$< \
-		p_valor \
-		> $@
-
-$(csvCormorantAllGrowthRates): src/join_cormorant_growth_rates $(csvGrowthRateDistributionCormorantAlcatraz) $(csvGrowthRateDistributionCormorantPatos) $(csvGrowthRateDistributionCormorantPajaros) $(csvFullResultsCormorantPacificIslands)
-	$(checkDirectories)
-	$(word 1, $^) \
-		--input $(csvFullResultsCormorantPacificIslands) \
-		--input $(csvGrowthRateDistributionCormorantPatos) \
-		--input $(csvGrowthRateDistributionCormorantPajaros) \
-		--input $(csvGrowthRateDistributionCormorantAlcatraz) \
 		--output $(csvCormorantAllGrowthRates)
+
+$(csvCormorantsPopulationDecreasing): $(csvCormorantAllGrowthRates) src/select_growth_rates_and_p_values
+	$(checkDirectories)
+	$(word 2, $^) \
+		$< \
+		p_value_menor \
+		"<= 0.1" \
+		> $@
+
+$(csvCormorantsPopulationGrowing): $(csvCormorantAllGrowthRates) src/select_growth_rates_and_p_values
+	$(checkDirectories)
+	$(word 2, $^) \
+		$< \
+		p_value \
+		"<= 0.1" \
+		> $@
+
+$(csvCormorantsPopulationWithoutSignificance): $(csvCormorantAllGrowthRates) src/select_growth_rates_and_p_values
+	$(checkDirectories)
+	$(word 2, $^) \
+		$< \
+		p_value \
+		"> 0.1 AND p_value < 0.9" \
+		> $@
 
 # V. Reglas phonies
 # ===========================================================================
@@ -184,6 +118,7 @@ $(csvCormorantAllGrowthRates): src/join_cormorant_growth_rates $(csvGrowthRateDi
 $(csvDatosParejasAvesMarinas):
 	$(checkDirectories)
 	descarga_datos $(@F) $(@D)
+
 #=============================================================================
 # V. Reglas del resto de los phonies
 # ===========================================================================
@@ -198,6 +133,7 @@ clean:
 	rm --force reports/*.out
 	rm --force reports/*.pdf
 	rm --force --recursive reports/tables/
+	rm --force --recursive data/processed/
 	rm --force --recursive reports/figures/
 	rm --force --recursive reports/non-tabular/
 	rm --force --recursive reports/pythontex*/
