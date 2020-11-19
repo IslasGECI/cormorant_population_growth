@@ -9,12 +9,6 @@ from bootstraping_tools import *
 import os
 import pandas as pd
 
-
-def generate_latex_interval_string(intervals):
-    Min, Med, Max = get_bootstrap_interval(intervals)
-    return f"${{{Med}}}_{{-{Min}}}^{{+{Max}}}$"
-
-
 path = path_files()
 
 data_path = path.input[0][0]
@@ -31,8 +25,7 @@ for islet in cormorant_data.Isla.unique():
     plot_data = plot_data.reset_index(drop=True)
 
     ticks_text = plot_data.Intervalo.unique()
-    ticks_positions = np.linspace(1, len(ticks_text), len(ticks_text))
-    ticks_positions[-1] = ticks_positions[-1] + 0.05
+    ticks_positions = ticks_positions_array(ticks_text)
 
     plot_data = plot_data.dropna(subset=["Maxima_cantidad_nidos"])
     min_value = plot_data["Maxima_cantidad_nidos"].min()
@@ -43,7 +36,7 @@ for islet in cormorant_data.Isla.unique():
     lambdas_distribution, intervals = bootstrap_from_time_series(
         plot_data,
         "Maxima_cantidad_nidos",
-        N=20,
+        N=2000,
         return_distribution=True,
         remove_outliers=True,
     )
@@ -75,14 +68,8 @@ for islet in cormorant_data.Isla.unique():
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
 
     plt.xticks(ticks_positions, ticks_text, rotation=90, size=20)
-    plt.yticks(
-        np.arange(
-            np.floor(min_value - min_value * 0.15),
-            roundup(np.max(plot_data["Maxima_cantidad_nidos"]) * 1.4, 10),
-            roundup(np.max(plot_data["Maxima_cantidad_nidos"]) * 0.2, 10),
-        ),
-        size=20,
-    )
+    y_ticks_array = rounded_ticks_array(limite_superior, min_value)
+    plt.yticks(y_ticks_array)
     plt.draw()
 
     p = leg.get_window_extent()
