@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 #
-DATA_FILE=${1}
-TABLE_NAME=$(basename "${DATA_FILE}" .csv)
-P_VALUE_COLUMN=${2}
-CONDITIONAL=${3}
+data_file=${1}
+table_name=$(basename "${data_file}" .csv)
+p_value_column=${2}
+conditional=${3}
 csvsql --snifflimit 0 --no-inference --blanks --query "
 SELECT 
   Islet AS 'Archipelago/Island',
   Growth_rate AS 'Growth rate',
   CASE
-    WHEN ${P_VALUE_COLUMN} < 0.001
+    WHEN ${p_value_column} < 0.001
     THEN '$<0.001$'
-    ELSE ${P_VALUE_COLUMN}
+    ELSE ${p_value_column}
   END 'p-value'
-FROM ${TABLE_NAME}
-WHERE ${P_VALUE_COLUMN} ${CONDITIONAL} \
-" ${DATA_FILE}
+FROM ${table_name}
+WHERE ${p_value_column} ${conditional}
+" ${data_file}
