@@ -33,7 +33,6 @@ csvCormorantCleanData = \
 pngPopulationGrowRateCormorantAllIslets = \
 	reports/figures/cormorant_population_trend_alcatraz.png \
 	reports/figures/cormorant_population_trend_asuncion.png \
-	reports/figures/cormorant_population_trend_bledos.png \
 	reports/figures/cormorant_population_trend_coronado.png \
 	reports/figures/cormorant_population_trend_natividad.png \
 	reports/figures/cormorant_population_trend_pajaros.png \
