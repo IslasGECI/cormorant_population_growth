@@ -29,6 +29,7 @@ for islet in cormorant_data.Isla.unique():
 
     plot_data = plot_data.dropna(subset=["Maxima_cantidad_nidos"])
     min_value = plot_data["Maxima_cantidad_nidos"].min()
+    max_value = plot_data["Maxima_cantidad_nidos"].max()
     time_fit = np.array(plot_data.index) + 1
     time_to_model = np.linspace(time_fit.min(), time_fit.max(), 100)
 
@@ -58,9 +59,7 @@ for islet in cormorant_data.Isla.unique():
     plt.plot(time_fit, plot_data["Maxima_cantidad_nidos"], "-Dk", label="Active Nests")
     plt.plot(time_to_model, model_med, label="Population growth model", color="b")
     leg = plt.legend(loc=0)
-    plt.ylim(
-        plot_data["Maxima_cantidad_nidos"].min(), plot_data["Maxima_cantidad_nidos"].max() * 1.2
-    )
+    plt.ylim(min_value, max_value * 1.2)
     plt.xlim(time_fit.min() - 0.2, time_fit.max())
     plt.ylabel("Number of breeding pairs", size=15)
     plt.xlabel("Seasons", size=15)
@@ -68,7 +67,7 @@ for islet in cormorant_data.Isla.unique():
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
 
     plt.xticks(ticks_positions, ticks_text, rotation=90, size=20)
-    y_ticks_array = rounded_ticks_array(limite_superior, min_value)
+    y_ticks_array = rounded_ticks_array(max_value, min_value)
     plt.yticks(y_ticks_array)
     plt.draw()
 
