@@ -130,6 +130,9 @@ clean:
 	rm --force reports/*.fdb_latexmk
 	rm --force reports/*.fls
 	rm --force reports/*.log
+	rm --force reports/*.bbl
+	rm --force reports/*.blg
+	rm --force reports/*.pytxcode
 	rm --force reports/*.out
 	rm --force reports/*.pdf
 	rm --force --recursive reports/tables/
