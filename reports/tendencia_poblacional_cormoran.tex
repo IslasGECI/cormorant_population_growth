@@ -43,7 +43,7 @@ La población de cormorán orejón está disminuyendo en las islas Alcatraz, Pá
 
 \section*{Datos}
 
-Utilizamos dos conjuntos de datos para estos resultados. La base de datos de GECI: \href{https://drive.google.com/drive/u/0/folders/1K2-itQXbNXPhrz4Pb3eRr9NG9A4rR47o}{{\color{blue}\textit{cantidad de parejas de aves marinas del pacífico}}}, donde registramos la cantidad anual de parejas o madrigueras para un total de 9 islas y 18 especies. De esta base de datos utilizamos solamente los datos de cormorán orejón. También utilizamos la base de datos \href{https://drive.google.com/drive/folders/1aXmotwcGcZjK52USWMdlZoffaMUlI0tT}{{\color{blue}\textit{\underline{conteo de nidos de cormorán}}}}, la cual nos fue compartida por CONANP. En esta tabla tenemos cantidad de nidos por observación directa de 3 islas del golfo de California: Patos, Pajaros y Bledos.
+Utilizamos dos conjuntos de datos para estos resultados. La base de datos de GECI: \href{https://drive.google.com/drive/u/0/folders/1K2-itQXbNXPhrz4Pb3eRr9NG9A4rR47o}{{\color{blue}\textit{cantidad de parejas de aves marinas del pacífico}}}, donde registramos la cantidad anual de parejas o madrigueras para un total de 9 islas y 18 especies. De esta base de datos utilizamos solamente los datos de cormorán orejón. También utilizamos la base de datos \href{https://drive.google.com/drive/folders/1aXmotwcGcZjK52USWMdlZoffaMUlI0tT}{{\color{blue}\textit{\underline{conteo de nidos de cormorán}}}}, la cual CONANP nos compartío. En esta tabla tenemos cantidad de nidos por observación directa de 3 islas del golfo de California: Patos, Pájaros y Bledos.
 
 
 \section*{Metodología}
@@ -65,7 +65,7 @@ Para calcular la tasa de crecimiento fundamental $\lambda$, tomamos la máxima c
 Hicimos un remuestreo no paramétrico de los datos de cantidad de madrigueras. Este procedimiento no hace suposiciones de la distribución de los datos \cite{carpenter2000bootstrap}. El algoritmo que implementamos es el siguiente: 
 
 \begin{itemize}
-    \item Tomamos una muestra de $n$ observaciones aleatorias con la posibilidad de remplazo, a partir del conjunto original de datos de cantidad de madrigueras con actividad, $ N_{\mbox{obs}} $. Esta muestra es un conjunto de datos bootstrap, $N^{*}$. Donde $n$ es el total de registros ($n=14$ para Alcatraz, $n=5$ para Patos y $n=6$ para Pajaros).
+    \item Tomamos una muestra de $n$ observaciones aleatorias con la posibilidad de remplazo, a partir del conjunto original de datos de cantidad de madrigueras con actividad, $ N_{\mbox{obs}} $. Esta muestra es un conjunto de datos bootstrap, $N^{*}$. Donde $n$ es el total de registros ($n=14$ para Alcatraz, $n=5$ para Patos y $n=6$ para Pájaros).
     \item Calculamos la versión bootstrap $\lambda^*$ de la tasa de crecimiento $\lambda$, ajustando el modelo (1) al nuevo conjunto $N^{*}$.
     \item Repetimos los pasos anteriores $B = 2000$ veces y obtenemos la distribución bootstrap de la tasa de crecimiento $\lambda^*$.
 \end{itemize}
@@ -74,7 +74,7 @@ Con esto, calculamos un intervalo de confianza del 95\% para $ \lambda^* $.
 
 \section*{Resultados}
 
-En la Tabla \ref{tab:csvTodasLambdas}  mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para isla Patos, el valor central de la distribución es $0.91$, el límite inferior es $0.91 - 0.14 = 0.77$ y el límite superior $ 0.91 + 0.15 = 1.06$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
+En la Tabla \ref{tab:csvTodasLambdas}  mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para Isla Patos, el valor central de la distribución es $0.91$, el límite inferior es $0.91 - 0.14 = 0.77$ y el límite superior $ 0.91 + 0.15 = 1.06$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
 
 \begin{table}[H]
   \centering
@@ -168,12 +168,12 @@ Descartamos el punto correspondiente a la temporada 2005-2006. El tamaño poblac
 \caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada del periodo 2013-2019 en Isla Natividad. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La linea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. No se encontraron tendencias significativas para esta colonia.}
 \end{figure}
 
-\subsection*{Isla Pajaros}
+\subsection*{Isla Pájaros}
 
 \begin{figure}[H]
 \hspace{-2cm}
     \includegraphics[scale=0.7]{figures/cormorant_population_trend_pajaros.png}
-\caption{En negro se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2011-2019 en Isla Pajaros. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La linea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. El p-value nos indica que esta colonia está decreciendo.}
+\caption{En negro se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2011-2019 en Isla Pájaros. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La linea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. El p-value nos indica que esta colonia está decreciendo.}
 \end{figure}
 
 Descartamos los puntos correspondiente a las temporadas 2015-2016 y 2016-2017 de las cuales no tenemos el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
