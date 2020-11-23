@@ -21,9 +21,6 @@ endef
 csvConteoNidosCormoranOrejon = \
 	data/raw/conteo_nidos_cormoran_todas_islas.csv
 
-csvDatosParejasAvesMarinas = \
-	data/raw/parejas_aves_marinas_islas_del_pacifico.csv
-
 csvCormorantMaximumNests = \
 	data/processed/cormorant_all_islets_data.csv
 
@@ -113,10 +110,6 @@ $(csvCormorantsPopulationWithoutSignificance): $(csvCormorantAllGrowthRates) src
 
 # V. Reglas phonies
 # ===========================================================================
-
-$(csvDatosParejasAvesMarinas):
-	$(checkDirectories)
-	descarga_datos $(@F) $(@D)
 
 #=============================================================================
 # V. Reglas del resto de los phonies
