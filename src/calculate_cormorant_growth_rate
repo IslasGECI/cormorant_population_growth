@@ -37,7 +37,7 @@ for islet in cormorant_data.Isla.unique():
     lambdas_distribution, intervals = bootstrap_from_time_series(
         plot_data,
         "Maxima_cantidad_nidos",
-        N=2000,
+        N=20,
         return_distribution=True,
         remove_outliers=True,
     )
@@ -58,9 +58,12 @@ for islet in cormorant_data.Isla.unique():
     )
     plt.plot(time_fit, plot_data["Maxima_cantidad_nidos"], "-Dk", label="Active Nests")
     plt.plot(time_to_model, model_med, label="Population growth model", color="b")
-    leg = plt.legend(loc=0)
-    plt.ylim(min_value, max_value * 1.2)
+    if islet == 'Natividad':
+        leg = plt.legend(loc='upper left')
+    else:
+        leg = plt.legend(loc='best')
     plt.xlim(time_fit.min() - 0.2, time_fit.max())
+    plt.ylim(min_value, max_value)
     plt.ylabel("Number of breeding pairs", size=20)
     plt.xlabel("Seasons", size=20)
     plt.gcf().subplots_adjust(bottom=0.2)
