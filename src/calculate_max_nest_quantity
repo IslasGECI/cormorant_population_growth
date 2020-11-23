@@ -2,8 +2,7 @@
 #
 data_file=$1
 table_name=$(basename "$data_file" .csv)
-islet_name=$2
-csvsql --snifflimit 0 --no-inference --query "
+csvsql --query "
 SELECT
   Isla,
   Intervalo,
