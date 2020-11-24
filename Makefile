@@ -134,6 +134,8 @@ clean:
 	rm --force --recursive reports/non-tabular/
 	rm --force --recursive reports/pythontex*/
 	rm --force --recursive src/__pycache__/
+	rm --force --recursive tests/__pycache__/
+	rm --force --recursive population_growth/__pycache__/
 
 tests:
 	pytest tests/test_Population_trend.py
