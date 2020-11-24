@@ -15,10 +15,12 @@ data_path = path.input[0][0]
 latex_table = path.output[0][0]
 
 cormorant_data = pd.read_csv(data_path)
-lambdas_results = []
 
+Tendencia_Cormoran_Pacifico(cormorant_data)
 for islet in cormorant_data.Isla.unique():
-    plot_data = cormorant_data[cormorant_data.Isla == islet]
+    Tendencia_Cormoran_Pacifico.set_isle(islet)
+    Tendencia_Cormoran_Pacifico.calculate_trends()
+    Tendencia_Cormoran_Pacifico.plot_trend()
     season = plot_data["Intervalo"].str.split("-", n=1, expand=True)
     plot_data["Temporada"] = season[0].astype("int32")
     plot_data = plot_data.rename(columns={"Nidos_activos_por_visita": "Maxima_cantidad_nidos"})
@@ -51,38 +53,13 @@ for islet in cormorant_data.Isla.unique():
     model_min = power_law(time_to_model, intervals[0], parameters[1])
     model_med = power_law(time_to_model, intervals[1], parameters[1])
     model_max = power_law(time_to_model, intervals[2], parameters[1])
-
-    fig, ax = geci_plot()
-    ax.fill_between(
-        time_to_model, model_min, model_max, alpha=0.2, label="Confidence zone", color="b"
-    )
-    plt.plot(time_fit, plot_data["Maxima_cantidad_nidos"], "-Dk", label="Active Nests")
-    plt.plot(time_to_model, model_med, label="Population growth model", color="b")
-    if islet == 'Natividad':
-        leg = plt.legend(loc='upper left')
-    else:
-        leg = plt.legend(loc='best')
-    plt.xlim(time_fit.min() - 0.2, time_fit.max())
-    plt.ylim(min_value, max_value)
-    plt.ylabel("Number of breeding pairs", size=20)
-    plt.xlabel("Seasons", size=20)
-    plt.gcf().subplots_adjust(bottom=0.2)
-    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-
-    plt.xticks(ticks_positions, ticks_text, rotation=90, size=15)
-    y_ticks_array = rounded_ticks_array(max_value, min_value)
-    plt.yticks(y_ticks_array)
-    plt.draw()
-
-    p = leg.get_window_extent()
-    ax.annotate(
-        r"$\lambda =$ {}".format(lambda_latex),
-        (p.p0[0], p.p1[1] - 320),
-        xycoords="figure pixels",
-        fontsize=25,
-        color="k",
-        alpha=1,
-    )
+    Graficador = Ploter_Trends(Tendencia)
+    Graficador.plot_confidence_zone()
+    Graficador.plot_raw_data()
+    Graficador.plot_growth_model()
+    Graficador.legend()
+    Graficador.tunner_axis()
+    Gradicafor.add_p_value_to_legend()
 
     plt.savefig(
         "reports/figures/cormorant_population_trend_{}".format(islet.replace(" ", "_").lower()),
