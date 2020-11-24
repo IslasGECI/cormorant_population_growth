@@ -13,6 +13,7 @@ define checkDirectories
 mkdir --parents $(@D)
 endef
 
+.PHONY: all clean tests
 
 # II. Declaración de las variables
 # ===========================================================================
@@ -134,3 +135,5 @@ clean:
 	rm --force --recursive reports/pythontex*/
 	rm --force --recursive src/__pycache__/
 
+tests:
+	pytest tests/test_Population_trend.py
