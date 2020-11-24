@@ -8,8 +8,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Construye imagen
       run: docker build --tag islasgeci .
+    - name: Corre pruebas
+      run: docker run islasgeci make tests
     - name: Ejecuta objetivo principal del Makefile
-      env:
-        BITBUCKET_USERNAME: ${{ secrets.BITBUCKET_USERNAME }}
-        BITBUCKET_PASSWORD: ${{ secrets.BITBUCKET_PASSWORD }}
-      run: docker run --env BITBUCKET_USERNAME=${BITBUCKET_USERNAME} --env BITBUCKET_PASSWORD=${BITBUCKET_PASSWORD} --volume ${PWD}:/workdir islasgeci make
+      run: docker run islasgeci make
