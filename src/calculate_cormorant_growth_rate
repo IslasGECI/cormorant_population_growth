@@ -12,63 +12,87 @@ import pandas as pd
 path = path_files()
 
 data_path = path.input[0][0]
-distribution_file = path.output[0][0]
-plot_file = path.output[1][0]
-drop_values = path.drop
+latex_table = path.output[0][0]
 
+cormorant_data = pd.read_csv(data_path)
+lambdas_results = []
 
-plot_data = pd.read_csv(data_path)
+for islet in cormorant_data.Isla.unique():
+    plot_data = cormorant_data[cormorant_data.Isla == islet]
+    season = plot_data["Intervalo"].str.split("-", n=1, expand=True)
+    plot_data["Temporada"] = season[0].astype("int32")
+    plot_data = plot_data.rename(columns={"Nidos_activos_por_visita": "Maxima_cantidad_nidos"})
+    plot_data = plot_data.reset_index(drop=True)
 
-season = plot_data["Intervalo"].str.split("-", n=1, expand=True)
-plot_data["Temporada"] = season[0].astype("int32")
-plot_data = plot_data.rename(columns={"Nidos_activos_por_visita": "Maxima_cantidad_nidos"})
+    ticks_text = plot_data.Intervalo.unique()
+    ticks_positions = ticks_positions_array(ticks_text)
 
-seasons_ticks = plot_data.Intervalo.unique()
-time_ticks = np.linspace(1, len(seasons_ticks), len(seasons_ticks))
+    plot_data = plot_data.dropna(subset=["Maxima_cantidad_nidos"])
+    min_value = plot_data["Maxima_cantidad_nidos"].min()
+    max_value = plot_data["Maxima_cantidad_nidos"].max()
+    time_fit = np.array(plot_data.index) + 1
+    time_to_model = np.linspace(time_fit.min(), time_fit.max(), 100)
 
-if len(drop_values) != 0:
-    for droping in drop_values:
-        plot_data = plot_data[plot_data.Intervalo != droping[0]]
-
-plot_data = plot_data.dropna(subset=["Maxima_cantidad_nidos"])
-time_fit = np.array(plot_data.index) + 1
-
-
-parameters = lambda_calculator(plot_data["Temporada"], plot_data["Maxima_cantidad_nidos"])
-lambdas_distribution, intervals = bootstrap_from_time_series(plot_data, "Maxima_cantidad_nidos", N=2000, return_distribution=True)
-lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
-lambdas_distribution.to_csv(distribution_file)
-
-model = power_law(time_fit, parameters[0], parameters[1])
-
-
-
-fig, ax = geci_plot()
-plt.plot(
-    time_fit, plot_data["Maxima_cantidad_nidos"], "-o", label="Nidos activos de cormorán orejón"
-)
-plt.plot(time_fit, model, label="Modelo ajustado")
-plt.legend()
-plt.ylim(0, plot_data["Maxima_cantidad_nidos"].max() * 1.2)
-plt.xlim(0, time_fit.max())
-plt.ylabel("Number of breeding pairs", size=15)
-plt.xlabel("Seasons", size=15)
-plt.gcf().subplots_adjust(bottom=0.2)
-ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-
-extra_tick_index = len(seasons_ticks) - 1
-time_ticks[extra_tick_index] = time_ticks[extra_tick_index] + 0.1
-
-plt.xticks(time_ticks, seasons_ticks, rotation=90, size=12)
-plt.yticks(
-    np.arange(
-        0,
-        roundup(np.max(plot_data["Maxima_cantidad_nidos"]) * 1.4,10),
-        roundup(np.max(plot_data["Maxima_cantidad_nidos"]) * 0.2,10),
+    parameters = lambda_calculator(plot_data["Temporada"], plot_data["Maxima_cantidad_nidos"])
+    lambdas_distribution, intervals = bootstrap_from_time_series(
+        plot_data,
+        "Maxima_cantidad_nidos",
+        N=20,
+        return_distribution=True,
+        remove_outliers=True,
     )
-)
+    lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
+    p_value_mayor, p_value_menor = calculate_p_values(lambdas_distribution)
 
+    lambda_latex = generate_latex_interval_string(intervals)
 
-if not os.path.exists("reports/figures"):
-    os.makedirs("reports/figures")
-plt.savefig(plot_file, dpi=300)
+    lambdas_results.append([islet, lambda_latex, p_value_mayor, p_value_menor])
+
+    model_min = power_law(time_to_model, intervals[0], parameters[1])
+    model_med = power_law(time_to_model, intervals[1], parameters[1])
+    model_max = power_law(time_to_model, intervals[2], parameters[1])
+
+    fig, ax = geci_plot()
+    ax.fill_between(
+        time_to_model, model_min, model_max, alpha=0.2, label="Confidence zone", color="b"
+    )
+    plt.plot(time_fit, plot_data["Maxima_cantidad_nidos"], "-Dk", label="Active Nests")
+    plt.plot(time_to_model, model_med, label="Population growth model", color="b")
+    if islet == 'Natividad':
+        leg = plt.legend(loc='upper left')
+    else:
+        leg = plt.legend(loc='best')
+    plt.xlim(time_fit.min() - 0.2, time_fit.max())
+    plt.ylim(min_value, max_value)
+    plt.ylabel("Number of breeding pairs", size=20)
+    plt.xlabel("Seasons", size=20)
+    plt.gcf().subplots_adjust(bottom=0.2)
+    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+
+    plt.xticks(ticks_positions, ticks_text, rotation=90, size=15)
+    y_ticks_array = rounded_ticks_array(max_value, min_value)
+    plt.yticks(y_ticks_array)
+    plt.draw()
+
+    p = leg.get_window_extent()
+    ax.annotate(
+        r"$\lambda =$ {}".format(lambda_latex),
+        (p.p0[0], p.p1[1] - 320),
+        xycoords="figure pixels",
+        fontsize=25,
+        color="k",
+        alpha=1,
+    )
+
+    plt.savefig(
+        "reports/figures/cormorant_population_trend_{}".format(islet.replace(" ", "_").lower()),
+        dpi=300,
+    )
+
+lambdas_table = pd.DataFrame(lambdas_results)
+lambdas_table.columns = ["Islet", "Growth_rate", "p_value", "p_value_menor"]
+
+if not os.path.exists("reports/tables"):
+    os.makedirs("reports/tables")
+
+lambdas_table.round(decimals=3).to_csv(latex_table, index=False)
