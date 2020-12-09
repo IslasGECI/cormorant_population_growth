@@ -5,6 +5,8 @@
 from cli_paths import path_files
 from geci_plots import *
 from bootstraping_tools import *
+from population_growth.Tendencia_Cormoran_Pacifico_class import *
+from population_growth.Gradicafor_class import *
 
 import os
 import pandas as pd

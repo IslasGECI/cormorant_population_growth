@@ -1,7 +1,10 @@
 class Tendencia_Cormoran_Pacifico:
 
-    def set_isle(self):
+    def set_islet(self, islet):
         plot_data = cormorant_data[cormorant_data.Isla == islet]
+        self.plot_data = plot_data
+    
+    def set_season(self):
         season = plot_data["Intervalo"].str.split("-", n=1, expand=True)
         plot_data["Temporada"] = season[0].astype("int32")
         plot_data = plot_data.rename(columns={"Nidos_activos_por_visita": "Maxima_cantidad_nidos"})
