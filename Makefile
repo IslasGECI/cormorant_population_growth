@@ -28,6 +28,9 @@ csvCormorantMaximumNests = \
 csvCormorantCleanData = \
 	data/processed/cormorant_all_islets_clean_data.csv
 
+csvCormorantSeasonInterval = \
+	data/processed/cormoran_season_interval.csv
+
 pngPopulationGrowRateCormorantAllIslets = \
 	reports/figures/cormorant_population_trend_alcatraz.png \
 	reports/figures/cormorant_population_trend_asuncion.png \
@@ -107,6 +110,12 @@ $(csvCormorantsPopulationWithoutSignificance): $(csvCormorantAllGrowthRates) src
 		$< \
 		p_value \
 		"> 0.1 AND p_value < 0.9" \
+		> $@
+
+$(csvCormorantSeasonInterval): $(csvConteoNidosCormoranOrejon) src/query_get_season_interval
+	$(checkDirectories)
+	$(word 2, $^) \
+		$< \
 		> $@
 
 # V. Reglas phonies
