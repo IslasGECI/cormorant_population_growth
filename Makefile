@@ -39,7 +39,9 @@ pngPopulationGrowRateCormorantAllIslets = \
 	reports/figures/cormorant_population_trend_san_jeronimo.png \
 	reports/figures/cormorant_population_trend_san_martin.png \
 	reports/figures/cormorant_population_trend_san_roque.png \
-	reports/figures/cormorant_population_trend_todos_santos.png
+	reports/figures/cormorant_population_trend_todos_santos.png \
+	reports/figures/cormorant_population_trend_coronado_norte.png \
+	reports/figures/cormorant_population_trend_coronado_sur.png
 
 csvCormorantAllGrowthRates = \
 	reports/tables/cormorant_all_islets_growth_rates.csv
