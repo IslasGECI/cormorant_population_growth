@@ -1,11 +1,11 @@
 Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
-01/Ene/2004,Alcatraz,2004,NA,Sin datos en esta temporada
-01/Ene/2005,Alcatraz,2005,NA,Sin datos en esta temporada
-01/Ene/2007,Alcatraz,2007,NA,Sin datos en esta temporada
-01/Ene/2008,Alcatraz,2008,NA,Sin datos en esta temporada
-01/Ene/2009,Alcatraz,2009,NA,Sin datos en esta temporada
-01/Ene/2015,Bledos,2015,NA,No usar
-01/Ene/2016,Bledos,2016,NA,No usar
+01/Ene/2004,Alcatraz,2003,NA,Sin datos en esta temporada
+01/Ene/2005,Alcatraz,2004,NA,Sin datos en esta temporada
+01/Ene/2007,Alcatraz,2006,NA,Sin datos en esta temporada
+01/Ene/2008,Alcatraz,2007,NA,Sin datos en esta temporada
+01/Ene/2009,Alcatraz,2008,NA,Sin datos en esta temporada
+01/Ene/2015,Bledos,2014,NA,No usar
+01/Ene/2016,Bledos,2015,NA,No usar
 05/Oct/2000,Alcatraz,2000,353,NA
 12/Oct/2000,Alcatraz,2000,547,NA
 17/Oct/2000,Alcatraz,2000,592,NA
@@ -86,7 +86,7 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 14/Mar/2012,Alcatraz,2011,206,NA
 29/Mar/2012,Alcatraz,2011,59,NA
 19/Abr/2012,Alcatraz,2011,13,NA
-18/Sep/2012,Alcatraz,2011,21,NA
+18/Sep/2012,Alcatraz,2012,21,NA
 10/Feb/2012,Alcatraz,2011,571,NA
 24/Oct/2012,Alcatraz,2012,739,NA
 05/Nov/2012,Alcatraz,2012,906,NA
@@ -206,14 +206,14 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 27/Abr/2012,Patos,2011,216,No usar
 31/May/2012,Patos,2011,8,No usar
 29/Jun/2012,Patos,2011,0,No usar
-27/Jul/2012,Patos,2011,0,No usar
+27/Jul/2012,Patos,2012,0,No usar
 26/Oct/2012,Patos,2012,600,NA
 30/Nov/2012,Patos,2012,1464,NA
 14/Dic/2012,Patos,2012,1528,NA
 25/Feb/2013,Patos,2012,388,NA
 26/Abr/2013,Patos,2012,90,NA
 24/May/2013,Patos,2012,289,NA
-26/Jul/2013,Patos,2012,0,NA
+26/Jul/2013,Patos,2013,0,NA
 31/Oct/2013,Patos,2013,484,NA
 29/Nov/2013,Patos,2013,501,NA
 13/Dic/2013,Patos,2013,1040,NA
@@ -221,18 +221,18 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 28/Mar/2014,Patos,2013,30,NA
 18/Abr/2013,Patos,2012,100,NA
 30/May/2013,Patos,2012,14,NA
-25/Jul/2014,Patos,2013,0,NA
+25/Jul/2014,Patos,2014,0,NA
 24/Oct/2014,Patos,2014,496,NA
 21/Nov/2014,Patos,2014,990,Se perdió el pico de temporada en diciembre 2014
 23/Ene/2015,Patos,2014,447,NA
 20/Feb/2015,Patos,2014,216,NA
 20/Mar/2015,Patos,2014,139,NA
-17/Jul/2015,Patos,2014,0,NA
+17/Jul/2015,Patos,2015,0,NA
 26/Feb/2016,Patos,2015,52,No usar
 25/Mar/2016,Patos,2015,156,No usar
 22/Abr/2016,Patos,2015,167,No usar
 27/May/2016,Patos,2015,24,No usar
-22/Jul/2016,Patos,2015,0,No usar
+22/Jul/2016,Patos,2016,0,No usar
 31/Ago/2016,Patos,2016,0,No usar
 24/Feb/2017,Patos,2016,1,No usar
 31/Mar/2017,Patos,2016,68,No usar
@@ -246,7 +246,7 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 19/Ene/2018,Patos,2017,193,NA
 13/Abr/2018,Patos,2017,319,NA
 25/May/2018,Patos,2017,1,NA
-27/Jun/2018,Patos,2018,42,NA
+27/Jun/2018,Patos,2017,42,NA
 19/Sep/2018,Patos,2018,236,NA
 17/Oct/2018,Patos,2018,202,NA
 16/Nov/2018,Patos,2018,265,NA
@@ -260,7 +260,7 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 29/Mar/2012,Pajaros,2011,616,NA
 26/Abr/2012,Pajaros,2011,1168,NA
 30/May/2012,Pajaros,2011,168,NA
-28/Jun/2012,Pajaros,2012,12,NA
+28/Jun/2012,Pajaros,2011,12,NA
 26/Jul/2012,Pajaros,2012,0,NA
 27/Sep/2012,Pajaros,2012,0,NA
 25/Oct/2012,Pajaros,2012,1700,NA
@@ -269,15 +269,15 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 28/Mar/2013,Pajaros,2012,0,NA
 25/Abr/2013,Pajaros,2012,427,NA
 23/May/2013,Pajaros,2012,190,NA
-27/Jun/2013,Pajaros,2013,0,NA
-25/Jun/2013,Pajaros,2013,0,NA
+27/Jun/2013,Pajaros,2012,0,NA
+25/Jun/2013,Pajaros,2012,0,NA
 19/Sep/2013,Pajaros,2013,620,NA
 30/Oct/2013,Pajaros,2013,565,NA
 28/Nov/2013,Pajaros,2013,1390,NA
 27/Feb/2014,Pajaros,2013,0,NA
 27/Mar/2014,Pajaros,2013,17,NA
 29/May/2014,Pajaros,2013,0,NA
-26/Jun/2014,Pajaros,2014,44,NA
+26/Jun/2014,Pajaros,2013,44,NA
 24/Jul/2014,Pajaros,2014,2,NA
 28/Ago/2014,Pajaros,2014,0,NA
 25/Sep/2014,Pajaros,2014,535,NA
@@ -291,11 +291,11 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 24/Mar/2016,Pajaros,2015,26,No usar
 21/Abr/2016,Pajaros,2015,17,No usar
 26/May/2016,Pajaros,2015,16,No usar
-23/Jun/2016,Pajaros,2016,135,No usar
+23/Jun/2016,Pajaros,2015,135,No usar
 22/Oct/2016,Pajaros,2016,0,No usar
 23/Feb/2017,Pajaros,2016,69,No usar
 30/Mar/2017,Pajaros,2016,570,No usar
-22/Jun/2017,Pajaros,2017,0,No usar
+22/Jun/2017,Pajaros,2016,0,No usar
 20/Jul/2017,Pajaros,2017,0,No usar
 21/Sep/2017,Pajaros,2017,0,NA
 19/Oct/2017,Pajaros,2017,0,NA
@@ -305,7 +305,7 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 08/Mar/2018,Pajaros,2017,586,NA
 12/Abr/2018,Pajaros,2017,142,NA
 24/May/2018,Pajaros,2017,12,NA
-26/Jun/2018,Pajaros,2018,0,NA
+26/Jun/2018,Pajaros,2017,0,NA
 18/Sep/2018,Pajaros,2018,0,NA
 16/Oct/2018,Pajaros,2018,611,NA
 17/Nov/2018,Pajaros,2018,636,NA
@@ -321,7 +321,7 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 24/Feb/2017,Bledos,2016,0,No usar
 31/Mar/2017,Bledos,2016,0,No usar
 28/Abr/2017,Bledos,2016,15,No usar
-23/Jun/2017,Bledos,2017,0,No usar
+23/Jun/2017,Bledos,2016,0,No usar
 21/Jul/2017,Bledos,2017,0,No usar
 22/Sep/2017,Bledos,2017,0,No usar
 20/Oct/2017,Bledos,2017,90,No usar
@@ -331,14 +331,14 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 09/Mar/2018,Bledos,2017,38,No usar
 13/Abr/2018,Bledos,2017,22,No usar
 25/May/2018,Bledos,2017,3,No usar
-27/Jun/2018,Bledos,2018,5,No usar
+27/Jun/2018,Bledos,2017,5,No usar
 19/Sep/2018,Bledos,2018,0,No usar
 17/Oct/2018,Bledos,2018,333,No usar
 16/Nov/2018,Bledos,2018,637,No usar
 12/Dic/2018,Bledos,2018,676,No usar
 31/Ene/2019,Bledos,2018,362,No usar
 28/Feb/2019,Bledos,2018,383,No usar
-20/Abr/2019,Bledos,2019,56,No usar
+20/Abr/2019,Bledos,2018,56,No usar
 01/Oct/2019,Alcatraz,2019,402,NA
 18/Oct/2019,Alcatraz,2019,417,section H not counted
 06/Nov/2019,Alcatraz,2019,682,NA
@@ -346,7 +346,7 @@ Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
 13/Dic/2019,Alcatraz,2019,778,NA
 09/Ene/2020,Alcatraz,2019,360,NA
 31/Ene/2020,Alcatraz,2019,136,NA
-NA,Alcatraz,2020,760,Enviado por correo
+NA,Alcatraz,2021,760,Enviado por correo
 NA,Coronado,2013,187,NA
 NA,Coronado,2014,185,NA
 NA,Coronado,2015,127,NA
@@ -413,14 +413,14 @@ NA,Coronado Norte,1989,12,Reference: F. Gress; unpubl. Data.
 NA,Coronado Norte,1991,24,Reference: F. Gress; unpubl. Data. 
 NA,Coronado Norte,2002,163,Reference: Gress et al. 2005. 
 NA,Coronado Norte,2003,220,Reference: Gress et al. 2005. 
-19/Abr/2005,Coronado Norte,2005,130,Reference: Carter et al. 2006. Actual and potential nests.
-20/May/2005,Coronado Norte,2005,130,Reference: Carter et al. 2006. 
-22/Jun/2005,Coronado Norte,2005,130,Reference: Carter et al. 2006. 
+19/Abr/2005,Coronado Norte,2004,130,Reference: Carter et al. 2006. Actual and potential nests.
+20/May/2005,Coronado Norte,2004,130,Reference: Carter et al. 2006. 
+22/Jun/2005,Coronado Norte,2004,130,Reference: Carter et al. 2006. 
 19/Jul/2005,Coronado Norte,2005,130,Reference: Carter et al. 2006. Chicks of all ages
-04/Mar/2006,Coronado Norte,2006,38,Reference: Whitworth et al. 2007. No cormorant chicks were observed
-23/Abr/2006,Coronado Norte,2006,75,Reference: Whitworth et al. 2009. 
-21/May/2006,Coronado Norte,2006,50,Reference: Whitworth et al. 2011. The reduced number of active nests since late April presumably reflected fledging; there was no evidence of widespread nest abandonment.
-18/Jun/2006,Coronado Norte,2006,168,Reference: Whitworth et al. 2013. 
+04/Mar/2006,Coronado Norte,2005,38,Reference: Whitworth et al. 2007. No cormorant chicks were observed
+23/Abr/2006,Coronado Norte,2005,75,Reference: Whitworth et al. 2009. 
+21/May/2006,Coronado Norte,2005,50,Reference: Whitworth et al. 2011. The reduced number of active nests since late April presumably reflected fledging; there was no evidence of widespread nest abandonment.
+18/Jun/2006,Coronado Norte,2005,168,Reference: Whitworth et al. 2013. 
 NA,Coronado Sur,1969,32,Reference: Gress et al. (1973). 
 NA,Coronado Sur,1970,30,Reference: Gress et al. (1973). 
 NA,Coronado Sur,1971,25,Reference: Gress et al. (1973). 
@@ -433,11 +433,11 @@ NA,Coronado Sur,1991,150,Reference: F. Gress; unpubl. Data.
 NA,Coronado Sur,1993,140,Reference: F. Gress and H. Carter; unpubl. Data. 
 NA,Coronado Sur,2002,155,Reference: Gress et al. 2005. 
 NA,Coronado Sur,2003,176,Reference: Gress et al. 2005. 
-19/Abr/2005,Coronado Sur,2005,110,Reference: Carter et al. 2006. Actual and potential nests.
-20/May/2005,Coronado Sur,2005,170,Reference: Carter et al. 2006. 
-22/Jun/2005,Coronado Sur,2005,170,Reference: Carter et al. 2006. 
+19/Abr/2005,Coronado Sur,2004,110,Reference: Carter et al. 2006. Actual and potential nests.
+20/May/2005,Coronado Sur,2004,170,Reference: Carter et al. 2006. 
+22/Jun/2005,Coronado Sur,2004,170,Reference: Carter et al. 2006. 
 19/Jul/2005,Coronado Sur,2005,170,Reference: Carter et al. 2006. Chicks of all ages
-04/Mar/2006,Coronado Sur,2006,40,Reference: Whitworth et al. 2008. No cormorant chicks were observed
-23/Abr/2006,Coronado Sur,2006,180,Reference: Whitworth et al. 2010. 
-21/May/2006,Coronado Sur,2006,150,Reference: Whitworth et al. 2012. Fledging from earlier-built nests had just begun.
-18/Jun/2006,Coronado Sur,2006,230,Reference: Whitworth et al. 2014. The total number of nest attempts on South Island was 230; the largest on record
+04/Mar/2006,Coronado Sur,2005,40,Reference: Whitworth et al. 2008. No cormorant chicks were observed
+23/Abr/2006,Coronado Sur,2005,180,Reference: Whitworth et al. 2010. 
+21/May/2006,Coronado Sur,2005,150,Reference: Whitworth et al. 2012. Fledging from earlier-built nests had just begun.
+18/Jun/2006,Coronado Sur,2005,230,Reference: Whitworth et al. 2014. The total number of nest attempts on South Island was 230; the largest on record
