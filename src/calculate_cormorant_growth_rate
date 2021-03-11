@@ -16,27 +16,20 @@ latex_table = path.output[0][0]
 
 cormorant_data = pd.read_csv(data_path)
 lambdas_results = []
+interest_variable = "Maxima_cantidad_nidos"
 
 for islet in cormorant_data.Isla.unique():
     plot_data = cormorant_data[cormorant_data.Isla == islet]
-    season = plot_data["Intervalo"].str.split("-", n=1, expand=True)
-    plot_data["Temporada"] = season[0].astype("int32")
-    plot_data = plot_data.rename(columns={"Nidos_activos_por_visita": "Maxima_cantidad_nidos"})
-    plot_data = plot_data.reset_index(drop=True)
+    plot_data = plot_data.rename(columns={"Nidos_activos_por_visita": interest_variable})
+    plot_data["Temporada_index"] = pd.to_datetime(plot_data["Temporada"], format="%Y")
+    plot_data = plot_data.set_index(["Temporada_index"])
+    plot_data = plot_data.dropna(subset=[interest_variable])
+    plot_seasons = plot_data["Temporada"][:] - plot_data["Temporada"][0] + 1
 
-    ticks_text = plot_data.Intervalo.unique()
-    ticks_positions = ticks_positions_array(ticks_text)
-
-    plot_data = plot_data.dropna(subset=["Maxima_cantidad_nidos"])
-    min_value = plot_data["Maxima_cantidad_nidos"].min()
-    max_value = plot_data["Maxima_cantidad_nidos"].max()
-    time_fit = np.array(plot_data.index) + 1
-    time_to_model = np.linspace(time_fit.min(), time_fit.max(), 100)
-
-    parameters = lambda_calculator(plot_data["Temporada"], plot_data["Maxima_cantidad_nidos"])
+    parameters = lambda_calculator(plot_data["Temporada"], plot_data[interest_variable])
     lambdas_distribution, intervals = bootstrap_from_time_series(
         plot_data,
-        "Maxima_cantidad_nidos",
+        interest_variable,
         N=20,
         return_distribution=True,
         remove_outliers=True,
@@ -48,6 +41,11 @@ for islet in cormorant_data.Isla.unique():
 
     lambdas_results.append([islet, lambda_latex, p_value_mayor, p_value_menor])
 
+    plot_data = plot_data.resample("Y").max()
+    ticks_text = plot_data.index.strftime("%Y")
+    ticks_positions = ticks_positions_array(ticks_text)
+    time_to_model = np.linspace(ticks_positions.min(), ticks_positions.max(), 100)
+    plot_data = plot_data.dropna(subset=[interest_variable])
     model_min = power_law(time_to_model, intervals[0], parameters[1])
     model_med = power_law(time_to_model, intervals[1], parameters[1])
     model_max = power_law(time_to_model, intervals[2], parameters[1])
@@ -56,22 +54,25 @@ for islet in cormorant_data.Isla.unique():
     ax.fill_between(
         time_to_model, model_min, model_max, alpha=0.2, label="Confidence zone", color="b"
     )
-    plt.plot(time_fit, plot_data["Maxima_cantidad_nidos"], "-Dk", label="Active Nests")
+    plt.plot(plot_seasons, plot_data[interest_variable], "-Dk", label="Active Nests")
     plt.plot(time_to_model, model_med, label="Population growth model", color="b")
-    if islet == 'Natividad':
-        leg = plt.legend(loc='upper left')
+    if islet == "Natividad":
+        leg = plt.legend(loc="upper left")
     else:
-        leg = plt.legend(loc='best')
-    plt.xlim(time_fit.min() - 0.2, time_fit.max())
-    plt.ylim(min_value, max_value)
+        leg = plt.legend(loc="best")
+    plt.xlim(ticks_positions.min() - 0.2, ticks_positions.max())
+    ax.set_ylim(
+        0,
+        roundup(
+            plot_data[interest_variable].max() * 1.2,
+            10 ** order_magnitude(plot_data[interest_variable]),
+        ),
+    )
     plt.ylabel("Number of breeding pairs", size=20)
     plt.xlabel("Seasons", size=20)
     plt.gcf().subplots_adjust(bottom=0.2)
-    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-
-    plt.xticks(ticks_positions, ticks_text, rotation=90, size=15)
-    y_ticks_array = rounded_ticks_array(max_value, min_value)
-    plt.yticks(y_ticks_array)
+    plt.xticks(ticks_positions, ticks_text, rotation=90, size=20)
+    plt.yticks(size=20)
     plt.draw()
 
     p = leg.get_window_extent()
