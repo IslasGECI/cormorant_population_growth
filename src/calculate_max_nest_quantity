@@ -5,7 +5,7 @@ table_name=$(basename "$data_file" .csv)
 csvsql --query "
 SELECT
   Isla,
-  Intervalo,
+  Temporada,
   CASE
     WHEN MAX(Nidos_activos_por_visita) IS NULL THEN 'NA'
     ELSE MAX(Nidos_activos_por_visita)
@@ -15,5 +15,5 @@ SELECT
     ELSE Notas
   END Notas
 FROM ${table_name}
-GROUP BY Isla, Intervalo
+GROUP BY Isla, Temporada
 " ${data_file} 
