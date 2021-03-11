@@ -5,7 +5,7 @@ COPY . .
 
 RUN pip install --upgrade pip && \
     pip install \
-    git+https://github.com/IslasGECI/analytictools.git@5633bbfa7fbc0fc40aa50067a71092602b817789 \
+    git+https://github.com/IslasGECI/analytictools.git@bf4af5a568534e120fe1228277584226c97e017e \
     git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta \
     pandasql
 
