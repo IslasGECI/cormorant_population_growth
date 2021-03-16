@@ -76,7 +76,7 @@ $(csvCormorantMaximumNests): $(csvConteoNidosCormoranOrejon) src/calculate_max_n
 	$(checkDirectories)
 	$(word 2, $^) \
 		$< \
-		max_nest_quantity.sql \
+		sql/max_nest_quantity.sql \
 		> $@
 
 $(csvCormorantCleanData): $(csvCormorantMaximumNests) src/query_burrows_quantity_data
