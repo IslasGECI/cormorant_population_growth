@@ -1,11 +1,10 @@
 from population_growth import Population_trend
 import pytest
+import pandas as pd
 
 
-@pytest.mark.skip(reason="no way of currently testing this")
+cormorant_data = pd.read_csv("tests/data_tests/conteo_nidos_cormoran_test.csv")
 def test_method__init__():
     Population_trend()
 
 
-def test_nothing():
-    pass
