@@ -9,14 +9,16 @@ from bootstraping_tools import *
 import os
 import pandas as pd
 
-path = path_files()
+interest_variable = "Nidos_activos_por_visita"
+lambdas_results = []
 
+path = path_files()
 data_path = path.input[0][0]
 latex_table = path.output[0][0]
 
 cormorant_data = pd.read_csv(data_path)
-lambdas_results = []
-interest_variable = "Nidos_activos_por_visita"
+cormorant_data = cormorant_data.dropna(subset=[interest_variable])
+
 
 def filter_data_by_islet(df, islet):
     return df[df.Isla == islet]
@@ -39,9 +41,7 @@ def plot_growth_rate_interval(legend_mpl_object, lambda_latex):
 
 for islet in cormorant_data.Isla.unique():
     fit_data = filter_data_by_islet(cormorant_data, islet)
-    fit_data = fit_data.dropna(subset=[interest_variable])
 
-    parameters = lambda_calculator(fit_data["Temporada"], fit_data[interest_variable])
     lambdas_distribution, intervals = bootstrap_from_time_series(
         fit_data,
         interest_variable,
@@ -49,10 +49,10 @@ for islet in cormorant_data.Isla.unique():
         return_distribution=True,
         remove_outliers=True,
     )
-    lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
-    p_value_mayor, p_value_menor = calculate_p_values(lambdas_distribution)
 
     lambda_latex = generate_latex_interval_string(intervals)
+    lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
+    p_value_mayor, p_value_menor = calculate_p_values(lambdas_distribution)
     lambdas_results.append([islet, lambda_latex, p_value_mayor, p_value_menor])
 
     plot_seasons = fit_data["Temporada"][:] - fit_data["Temporada"].iloc[0] + 1
@@ -60,15 +60,16 @@ for islet in cormorant_data.Isla.unique():
     ticks_positions = ticks_positions_array(ticks_text)
     time_to_model = np.linspace(ticks_positions.min(), ticks_positions.max(), 100)
 
+    parameters = lambda_calculator(fit_data["Temporada"], fit_data[interest_variable])
     model_min = power_law(time_to_model, intervals[0], parameters[1])
     model_med = power_law(time_to_model, intervals[1], parameters[1])
     model_max = power_law(time_to_model, intervals[2], parameters[1])
 
     fig, ax = geci_plot()
+    plt.plot(plot_seasons, fit_data[interest_variable], "-Dk", label="Active Nests")
     ax.fill_between(
         time_to_model, model_min, model_max, alpha=0.2, label="Confidence zone", color="b"
     )
-    plt.plot(plot_seasons, fit_data[interest_variable], "-Dk", label="Active Nests")
     plt.plot(time_to_model, model_med, label="Population growth model", color="b")
     if islet == "Natividad":
         legend_mpl_object = plt.legend(loc="upper left")
