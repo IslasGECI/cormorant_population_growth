@@ -26,8 +26,8 @@ def resample_seasons(df):
     last_season = int(df.Temporada.max())
     return np.linspace(first_season, last_season, last_season-first_season+ 1).astype(int)
 
-def plot_growth_rate_interval(lambda_latex):
-    legend_box_positions = leg.get_window_extent()
+def plot_growth_rate_interval(legend_mpl_object, lambda_latex):
+    legend_box_positions = legend_mpl_object.get_window_extent()
     ax.annotate(
         r"$\lambda =$ {}".format(lambda_latex),
         (legend_box_positions.p0[0], legend_box_positions.p1[1] - 320),
@@ -71,9 +71,9 @@ for islet in cormorant_data.Isla.unique():
     plt.plot(plot_seasons, fit_data[interest_variable], "-Dk", label="Active Nests")
     plt.plot(time_to_model, model_med, label="Population growth model", color="b")
     if islet == "Natividad":
-        leg = plt.legend(loc="upper left")
+        legend_mpl_object = plt.legend(loc="upper left")
     else:
-        leg = plt.legend(loc="best")
+        legend_mpl_object = plt.legend(loc="best")
     plt.xlim(ticks_positions.min() - 0.2, ticks_positions.max())
     ax.set_ylim(
         0,
@@ -88,7 +88,7 @@ for islet in cormorant_data.Isla.unique():
     plt.xticks(ticks_positions, ticks_text, rotation=90, size=20)
     plt.yticks(size=20)
     plt.draw()
-    plot_growth_rate_interval(lambda_latex)
+    plot_growth_rate_interval(legend_mpl_object, lambda_latex)
 
     plt.savefig(
         "reports/figures/cormorant_population_trend_{}".format(islet.replace(" ", "_").lower()),
