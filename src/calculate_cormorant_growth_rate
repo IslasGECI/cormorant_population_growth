@@ -39,6 +39,20 @@ def plot_growth_rate_interval(legend_mpl_object, lambda_latex):
         alpha=1,
     )
 
+def set_labels():
+    plt.ylabel("Number of breeding pairs", size=20)
+    plt.xlabel("Seasons", size=20)
+
+def set_ticks():
+    plt.xticks(ticks_positions, ticks_text, rotation=90, size=20)
+    plt.yticks(size=20)
+
+def set_legend_location(islet):
+    legend_mpl_object = plt.legend(loc="best")
+    if islet == "Natividad":
+        legend_mpl_object = plt.legend(loc="upper left")
+    return legend_mpl_object
+
 for islet in cormorant_data.Isla.unique():
     fit_data = filter_data_by_islet(cormorant_data, islet)
 
@@ -66,15 +80,12 @@ for islet in cormorant_data.Isla.unique():
     model_max = power_law(time_to_model, intervals[2], parameters[1])
 
     fig, ax = geci_plot()
-    plt.plot(plot_seasons, fit_data[interest_variable], "-Dk", label="Active Nests")
     ax.fill_between(
         time_to_model, model_min, model_max, alpha=0.2, label="Confidence zone", color="b"
     )
     plt.plot(time_to_model, model_med, label="Population growth model", color="b")
-    if islet == "Natividad":
-        legend_mpl_object = plt.legend(loc="upper left")
-    else:
-        legend_mpl_object = plt.legend(loc="best")
+    plt.plot(plot_seasons, fit_data[interest_variable], "-Dk", label="Active Nests")
+    legend_mpl_object = set_legend_location(islet)
     plt.xlim(ticks_positions.min() - 0.2, ticks_positions.max())
     ax.set_ylim(
         0,
@@ -83,11 +94,9 @@ for islet in cormorant_data.Isla.unique():
             10 ** order_magnitude(fit_data[interest_variable]),
         ),
     )
-    plt.ylabel("Number of breeding pairs", size=20)
-    plt.xlabel("Seasons", size=20)
+    set_labels()
+    set_ticks()
     plt.gcf().subplots_adjust(bottom=0.2)
-    plt.xticks(ticks_positions, ticks_text, rotation=90, size=20)
-    plt.yticks(size=20)
     plt.draw()
     plot_growth_rate_interval(legend_mpl_object, lambda_latex)
 
