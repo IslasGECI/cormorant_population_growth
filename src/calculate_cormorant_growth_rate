@@ -53,6 +53,13 @@ def set_legend_location(islet):
         legend_mpl_object = plt.legend(loc="upper left")
     return legend_mpl_object
 
+def calculate_upper_limit(data_interest_variable):
+    upper_limit = roundup(
+        data_interest_variable.max() * 1.2,
+        10 ** order_magnitude(data_interest_variable),
+    )
+    return upper_limit
+
 for islet in cormorant_data.Isla.unique():
     fit_data = filter_data_by_islet(cormorant_data, islet)
 
@@ -89,10 +96,7 @@ for islet in cormorant_data.Isla.unique():
     plt.xlim(ticks_positions.min() - 0.2, ticks_positions.max())
     ax.set_ylim(
         0,
-        roundup(
-            fit_data[interest_variable].max() * 1.2,
-            10 ** order_magnitude(fit_data[interest_variable]),
-        ),
+        calculate_upper_limit(fit_data[interest_variable]),
     )
     set_labels()
     set_ticks()
