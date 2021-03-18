@@ -13,7 +13,7 @@ define checkDirectories
 mkdir --parents $(@D)
 endef
 
-.PHONY: all clean tests
+.PHONY: all check clean mutants tests
 
 # II. Declaración de las variables
 # ===========================================================================
@@ -28,6 +28,9 @@ csvCormorantMaximumNests = \
 csvCormorantCleanData = \
 	data/processed/cormorant_all_islets_clean_data.csv
 
+csvCormorantSeasonInterval = \
+	data/processed/cormoran_season_interval.csv
+
 pngPopulationGrowRateCormorantAllIslets = \
 	reports/figures/cormorant_population_trend_alcatraz.png \
 	reports/figures/cormorant_population_trend_asuncion.png \
@@ -39,7 +42,9 @@ pngPopulationGrowRateCormorantAllIslets = \
 	reports/figures/cormorant_population_trend_san_jeronimo.png \
 	reports/figures/cormorant_population_trend_san_martin.png \
 	reports/figures/cormorant_population_trend_san_roque.png \
-	reports/figures/cormorant_population_trend_todos_santos.png
+	reports/figures/cormorant_population_trend_todos_santos.png \
+	reports/figures/cormorant_population_trend_coronado_norte.png \
+	reports/figures/cormorant_population_trend_coronado_sur.png
 
 csvCormorantAllGrowthRates = \
 	reports/tables/cormorant_all_islets_growth_rates.csv
@@ -71,6 +76,7 @@ $(csvCormorantMaximumNests): $(csvConteoNidosCormoranOrejon) src/calculate_max_n
 	$(checkDirectories)
 	$(word 2, $^) \
 		$< \
+		sql/max_nest_quantity.sql \
 		> $@
 
 $(csvCormorantCleanData): $(csvCormorantMaximumNests) src/query_burrows_quantity_data
@@ -109,6 +115,12 @@ $(csvCormorantsPopulationWithoutSignificance): $(csvCormorantAllGrowthRates) src
 		"> 0.1 AND p_value < 0.9" \
 		> $@
 
+$(csvCormorantSeasonInterval): $(csvConteoNidosCormoranOrejon) src/query_get_season_interval
+	$(checkDirectories)
+	$(word 2, $^) \
+		$< \
+		> $@
+
 # V. Reglas phonies
 # ===========================================================================
 
@@ -116,6 +128,14 @@ $(csvCormorantsPopulationWithoutSignificance): $(csvCormorantAllGrowthRates) src
 # V. Reglas del resto de los phonies
 # ===========================================================================
 # Elimina los residuos de LaTeX
+
+check:
+	black --check --line-length 100 population_growth
+	black --check --line-length 100 src
+	black --check --line-length 100 tests
+	flake8 --max-line-length 100 population_growth
+	flake8 --max-line-length 100 src
+	flake8 --max-line-length 100 tests
 
 clean:
 	rm --force reports/*.aux
@@ -136,6 +156,11 @@ clean:
 	rm --force --recursive src/__pycache__/
 	rm --force --recursive tests/__pycache__/
 	rm --force --recursive population_growth/__pycache__/
+	rm --force .mutmut-cache
+
+mutants:
+	mutmut run --paths-to-mutate population_growth
 
 tests:
 	pytest tests/test_Population_trend.py
+

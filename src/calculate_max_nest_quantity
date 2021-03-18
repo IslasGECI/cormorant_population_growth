@@ -1,19 +1,10 @@
 #!/usr/bin/env bash
 #
 data_file=$1
-table_name=$(basename "$data_file" .csv)
+sql_query=$2
+export table_name=$(basename "$data_file" .csv)
+src_path=$(dirname "${0}")
+query=$(envsubst < ${src_path}/${sql_query})
 csvsql --query "
-SELECT
-  Isla,
-  Intervalo,
-  CASE
-    WHEN MAX(Nidos_activos_por_visita) IS NULL THEN 'NA'
-    ELSE MAX(Nidos_activos_por_visita)
-  END Nidos_activos_por_visita,
-  CASE
-    WHEN Notas IS NULL THEN 'NA'
-    ELSE Notas
-  END Notas
-FROM ${table_name}
-GROUP BY Isla, Intervalo
+$query
 " ${data_file} 

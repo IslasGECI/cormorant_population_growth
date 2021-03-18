@@ -1,400 +1,443 @@
-Fecha,Isla,Intervalo,Nidos_activos_por_visita,Notas
-01/Ene/2004,Alcatraz,2003-2004,NA,Sin datos en esta temporada
-01/Ene/2005,Alcatraz,2004-2005,NA,Sin datos en esta temporada
-01/Ene/2007,Alcatraz,2006-2007,NA,Sin datos en esta temporada
-01/Ene/2008,Alcatraz,2007-2008,NA,Sin datos en esta temporada
-01/Ene/2009,Alcatraz,2008-2009,NA,Sin datos en esta temporada
-01/Ene/2015,Bledos,2014-2015,NA,No usar
-01/Ene/2016,Bledos,2015-2016,NA,No usar
-05/Oct/2000,Alcatraz,2000-2001,353,NA
-12/Oct/2000,Alcatraz,2000-2001,547,NA
-17/Oct/2000,Alcatraz,2000-2001,592,NA
-25/Oct/2000,Alcatraz,2000-2001,537,NA
-03/Nov/2000,Alcatraz,2000-2001,571,NA
-12/Nov/2000,Alcatraz,2000-2001,564,NA
-28/Nov/2000,Alcatraz,2000-2001,1037,NA
-12/Dic/2000,Alcatraz,2000-2001,1220,NA
-02/Ene/2001,Alcatraz,2000-2001,1225,NA
-08/Mar/2001,Alcatraz,2000-2001,496,NA
-07/Abr/2001,Alcatraz,2000-2001,61,NA
-12/Sep/2001,Alcatraz,2001-2002,324,NA
-23/Sep/2001,Alcatraz,2001-2002,649,NA
-07/Oct/2001,Alcatraz,2001-2002,1091,NA
-25/Oct/2001,Alcatraz,2001-2002,1088,NA
-30/Oct/2001,Alcatraz,2001-2002,683,NA
-04/Nov/2001,Alcatraz,2001-2002,538,NA
-07/Nov/2001,Alcatraz,2001-2002,513,NA
-14/Nov/2001,Alcatraz,2001-2002,643,NA
-24/Nov/2001,Alcatraz,2001-2002,722,NA
-29/Nov/2001,Alcatraz,2001-2002,1093,NA
-13/Dic/2001,Alcatraz,2001-2002,801,NA
-12/Ene/2002,Alcatraz,2001-2002,1039,NA
-19/Ene/2002,Alcatraz,2001-2002,1034,NA
-17/Feb/2002,Alcatraz,2001-2002,837,NA
-23/Feb/2002,Alcatraz,2001-2002,607,NA
-28/Feb/2002,Alcatraz,2001-2002,548,NA
-04/Mar/2002,Alcatraz,2001-2002,391,NA
-19/Mar/2002,Alcatraz,2001-2002,109,NA
-01/Abr/2002,Alcatraz,2001-2002,11,NA
-27/Oct/2002,Alcatraz,2002-2003,1075,NA
-02/Nov/2002,Alcatraz,2002-2003,971,NA
-07/Nov/2002,Alcatraz,2002-2003,1020,NA
-24/Nov/2002,Alcatraz,2002-2003,1510,NA
-30/Nov/2002,Alcatraz,2002-2003,1683,NA
-08/Dic/2002,Alcatraz,2002-2003,1628,NA
-24/Ene/2003,Alcatraz,2002-2003,949,NA
-29/Ene/2003,Alcatraz,2002-2003,263,NA
-22/Feb/2003,Alcatraz,2002-2003,4,NA
-22/Oct/2005,Alcatraz,2005-2006,583,No usar
-05/Nov/2005,Alcatraz,2005-2006,817,No usar
-31/Ene/2006,Alcatraz,2005-2006,275,No usar
-16/Mar/2006,Alcatraz,2005-2006,342,No usar
-25/Abr/2006,Alcatraz,2005-2006,43,No usar
-15/Oct/2009,Alcatraz,2009-2010,527,NA
-26/Oct/2009,Alcatraz,2009-2010,801,NA
-09/Nov/2009,Alcatraz,2009-2010,937,NA
-23/Nov/2009,Alcatraz,2009-2010,991,NA
-01/Dic/2009,Alcatraz,2009-2010,1291,NA
-17/Dic/2009,Alcatraz,2009-2010,1394,NA
-13/Ene/2010,Alcatraz,2009-2010,858,NA
-29/Ene/2010,Alcatraz,2009-2010,50,NA
-07/Oct/2010,Alcatraz,2010-2011,447,NA
-14/Oct/2010,Alcatraz,2010-2011,652,NA
-21/Oct/2010,Alcatraz,2010-2011,1004,NA
-25/Oct/2010,Alcatraz,2010-2011,1054,NA
-09/Nov/2010,Alcatraz,2010-2011,1334,NA
-18/Nov/2010,Alcatraz,2010-2011,1556,NA
-02/Dic/2010,Alcatraz,2010-2011,1968,NA
-10/Dic/2010,Alcatraz,2010-2011,1782,NA
-17/Ene/2011,Alcatraz,2010-2011,478,NA
-25/Ene/2011,Alcatraz,2010-2011,192,NA
-16/Feb/2011,Alcatraz,2010-2011,44,NA
-06/Sep/2011,Alcatraz,2011-2012,0,NA
-28/Sep/2011,Alcatraz,2011-2012,290,NA
-15/Oct/2011,Alcatraz,2011-2012,691,NA
-26/Oct/2011,Alcatraz,2011-2012,714,NA
-14/Nov/2011,Alcatraz,2011-2012,1048,NA
-25/Nov/2011,Alcatraz,2011-2012,1544,NA
-05/Dic/2011,Alcatraz,2011-2012,1298,NA
-12/Dic/2011,Alcatraz,2011-2012,888,NA
-09/Ene/2012,Alcatraz,2011-2012,528,NA
-18/Ene/2012,Alcatraz,2011-2012,243,NA
-26/Ene/2012,Alcatraz,2011-2012,193,NA
-02/Feb/2012,Alcatraz,2011-2012,167,NA
-16/Feb/2012,Alcatraz,2011-2012,246,NA
-28/Feb/2012,Alcatraz,2011-2012,286,NA
-14/Mar/2012,Alcatraz,2011-2012,206,NA
-29/Mar/2012,Alcatraz,2011-2012,59,NA
-19/Abr/2012,Alcatraz,2011-2012,13,NA
-18/Sep/2012,Alcatraz,2012-2013,21,NA
-10/Feb/2012,Alcatraz,2012-2013,571,NA
-24/Oct/2012,Alcatraz,2012-2013,739,NA
-05/Nov/2012,Alcatraz,2012-2013,906,NA
-20/Nov/2012,Alcatraz,2012-2013,1158,NA
-03/Dic/2012,Alcatraz,2012-2013,1142,NA
-12/Dic/2012,Alcatraz,2012-2013,1468,NA
-08/Ene/2013,Alcatraz,2012-2013,1351,NA
-23/Ene/2013,Alcatraz,2012-2013,1083,NA
-05/Feb/2013,Alcatraz,2012-2013,699,NA
-21/Feb/2013,Alcatraz,2012-2013,439,NA
-05/Mar/2013,Alcatraz,2012-2013,173,NA
-20/Mar/2013,Alcatraz,2012-2013,98,NA
-04/Abr/2013,Alcatraz,2012-2013,22,NA
-18/Sep/2013,Alcatraz,2013-2014,27,NA
-25/Sep/2013,Alcatraz,2013-2014,174,NA
-02/Oct/2013,Alcatraz,2013-2014,430,NA
-09/Oct/2013,Alcatraz,2013-2014,605,NA
-16/Oct/2013,Alcatraz,2013-2014,465,NA
-23/Oct/2013,Alcatraz,2013-2014,452,NA
-30/Oct/2013,Alcatraz,2013-2014,423,NA
-06/Nov/2013,Alcatraz,2013-2014,314,NA
-13/Nov/2013,Alcatraz,2013-2014,228,NA
-20/Nov/2013,Alcatraz,2013-2014,162,NA
-26/Nov/2013,Alcatraz,2013-2014,88,NA
-06/Dic/2013,Alcatraz,2013-2014,109,NA
-11/Dic/2013,Alcatraz,2013-2014,281,NA
-09/Ene/2014,Alcatraz,2013-2014,506,NA
-16/Ene/2014,Alcatraz,2013-2014,406,NA
-22/Ene/2014,Alcatraz,2013-2014,406,NA
-30/Ene/2014,Alcatraz,2013-2014,265,NA
-06/Feb/2014,Alcatraz,2013-2014,82,NA
-12/Feb/2014,Alcatraz,2013-2014,19,NA
-19/Feb/2014,Alcatraz,2013-2014,9,NA
-25/Sep/2014,Alcatraz,2014-2015,42,NA
-08/Oct/2014,Alcatraz,2014-2015,191,NA
-15/Oct/2014,Alcatraz,2014-2015,188,NA
-21/Oct/2014,Alcatraz,2014-2015,279,NA
-29/Oct/2014,Alcatraz,2014-2015,244,NA
-06/Nov/2014,Alcatraz,2014-2015,733,NA
-14/Nov/2014,Alcatraz,2014-2015,537,NA
-21/Nov/2014,Alcatraz,2014-2015,834,NA
-29/Nov/2014,Alcatraz,2014-2015,639,NA
-04/Dic/2014,Alcatraz,2014-2015,627,NA
-10/Dic/2014,Alcatraz,2014-2015,679,NA
-16/Dic/2014,Alcatraz,2014-2015,844,NA
-09/Ene/2015,Alcatraz,2014-2015,857,NA
-16/Ene/2015,Alcatraz,2014-2015,667,NA
-21/Ene/2015,Alcatraz,2014-2015,509,NA
-27/Ene/2015,Alcatraz,2014-2015,169,NA
-06/Feb/2015,Alcatraz,2014-2015,66,NA
-13/Feb/2015,Alcatraz,2014-2015,22,NA
-24/Sep/2015,Alcatraz,2015-2016,5,NA
-02/Oct/2015,Alcatraz,2015-2016,47,NA
-07/Oct/2015,Alcatraz,2015-2016,68,NA
-13/Oct/2015,Alcatraz,2015-2016,349,NA
-22/Oct/2015,Alcatraz,2015-2016,543,NA
-27/Oct/2015,Alcatraz,2015-2016,551,NA
-04/Nov/2015,Alcatraz,2015-2016,744,NA
-10/Nov/2015,Alcatraz,2015-2016,907,NA
-21/Nov/2015,Alcatraz,2015-2016,1209,NA
-25/Nov/2015,Alcatraz,2015-2016,1090,NA
-11/Dic/2015,Alcatraz,2015-2016,1224,NA
-14/Ene/2016,Alcatraz,2015-2016,434,NA
-23/Ene/2016,Alcatraz,2015-2016,165,NA
-27/Ene/2016,Alcatraz,2015-2016,57,NA
-03/Feb/2016,Alcatraz,2015-2016,11,NA
-04/Oct/2016,Alcatraz,2016-2017,73,NA
-21/Oct/2016,Alcatraz,2016-2017,400,NA
-24/Oct/2016,Alcatraz,2016-2017,340,NA
-02/Nov/2016,Alcatraz,2016-2017,577,NA
-08/Nov/2016,Alcatraz,2016-2017,738,NA
-15/Nov/2016,Alcatraz,2016-2017,774,NA
-29/Nov/2016,Alcatraz,2016-2017,847,NA
-09/Dic/2016,Alcatraz,2016-2017,1184,NA
-14/Dic/2016,Alcatraz,2016-2017,1102,NA
-05/Ene/2017,Alcatraz,2016-2017,274,NA
-13/Ene/2017,Alcatraz,2016-2017,151,NA
-18/Ene/2017,Alcatraz,2016-2017,98,NA
-04/Oct/2017,Alcatraz,2017-2018,256,NA
-11/Oct/2017,Alcatraz,2017-2018,390,NA
-20/Oct/2017,Alcatraz,2017-2018,601,NA
-24/Oct/2017,Alcatraz,2017-2018,491,NA
-03/Nov/2017,Alcatraz,2017-2018,648,NA
-10/Nov/2017,Alcatraz,2017-2018,744,NA
-15/Nov/2017,Alcatraz,2017-2018,960,NA
-22/Nov/2017,Alcatraz,2017-2018,1032,NA
-01/Dic/2017,Alcatraz,2017-2018,1104,NA
-05/Dic/2017,Alcatraz,2017-2018,1041,NA
-09/Ene/2018,Alcatraz,2017-2018,382,NA
-19/Ene/2018,Alcatraz,2017-2018,233,NA
-23/Ene/2018,Alcatraz,2017-2018,150,NA
-31/Ene/2018,Alcatraz,2017-2018,119,NA
-08/Feb/2018,Alcatraz,2017-2018,100,NA
-13/Feb/2018,Alcatraz,2017-2018,94,NA
-08/Mar/2018,Alcatraz,2017-2018,61,NA
-15/Mar/2018,Alcatraz,2017-2018,43,NA
-05/Oct/2018,Alcatraz,2018-2019,358,NA
-10/Oct/2018,Alcatraz,2018-2019,434,NA
-18/Oct/2018,Alcatraz,2018-2019,329,NA
-26/Oct/2018,Alcatraz,2018-2019,408,NA
-01/Nov/2018,Alcatraz,2018-2019,479,NA
-07/Nov/2018,Alcatraz,2018-2019,402,NA
-14/Nov/2018,Alcatraz,2018-2019,597,NA
-22/Nov/2018,Alcatraz,2018-2019,626,NA
-29/Nov/2018,Alcatraz,2018-2019,780,NA
-04/Dic/2018,Alcatraz,2018-2019,828,NA
-13/Dic/2018,Alcatraz,2018-2019,842,NA
-09/Ene/2019,Alcatraz,2018-2019,232,NA
-17/Ene/2019,Alcatraz,2018-2019,189,NA
-30/Ene/2019,Alcatraz,2018-2019,105,NA
-14/Feb/2019,Alcatraz,2018-2019,86,NA
-21/Feb/2019,Alcatraz,2018-2019,91,NA
-28/Feb/2019,Alcatraz,2018-2019,49,NA
-27/Ene/2012,Patos,2011-2012,0,No usar
-28/Feb/2012,Patos,2011-2012,488,No usar
-30/Mar/2012,Patos,2011-2012,235,No usar
-27/Abr/2012,Patos,2011-2012,216,No usar
-31/May/2012,Patos,2011-2012,8,No usar
-29/Jun/2012,Patos,2011-2012,0,No usar
-27/Jul/2012,Patos,2011-2012,0,No usar
-26/Oct/2012,Patos,2012-2013,600,NA
-30/Nov/2012,Patos,2012-2013,1464,NA
-14/Dic/2012,Patos,2012-2013,1528,NA
-25/Feb/2013,Patos,2012-2013,388,NA
-26/Abr/2013,Patos,2012-2013,90,NA
-24/May/2013,Patos,2012-2013,289,NA
-26/Jul/2013,Patos,2012-2013,0,NA
-31/Oct/2013,Patos,2013-2014,484,NA
-29/Nov/2013,Patos,2013-2014,501,NA
-13/Dic/2013,Patos,2013-2014,1040,NA
-28/Feb/2014,Patos,2013-2014,174,NA
-28/Mar/2014,Patos,2013-2014,30,NA
-18/Abr/2013,Patos,2013-2014,100,NA
-30/May/2013,Patos,2013-2014,14,NA
-25/Jul/2014,Patos,2013-2014,0,NA
-24/Oct/2014,Patos,2014-2015,496,NA
-21/Nov/2014,Patos,2014-2015,990,Se perdió el pico de temporada en diciembre 2014
-23/Ene/2015,Patos,2014-2015,447,NA
-20/Feb/2015,Patos,2014-2015,216,NA
-20/Mar/2015,Patos,2014-2015,139,NA
-17/Jul/2015,Patos,2014-2015,0,NA
-26/Feb/2016,Patos,2015-2016,52,No usar
-25/Mar/2016,Patos,2015-2016,156,No usar
-22/Abr/2016,Patos,2015-2016,167,No usar
-27/May/2016,Patos,2015-2016,24,No usar
-22/Jul/2016,Patos,2015-2016,0,No usar
-31/Ago/2016,Patos,2016-2017,0,No usar
-24/Feb/2017,Patos,2016-2017,1,No usar
-31/Mar/2017,Patos,2016-2017,68,No usar
-28/Abr/2017,Patos,2016-2017,104,No usar
-23/Jun/2017,Patos,2016-2017,178,No usar
-21/Jul/2017,Patos,2016-2017,0,No usar
-22/Sep/2017,Patos,2017-2018,0,NA
-20/Oct/2017,Patos,2017-2018,562,NA
-17/Nov/2017,Patos,2017-2018,482,NA
-05/Dic/2017,Patos,2017-2018,1230,NA
-19/Ene/2018,Patos,2017-2018,193,NA
-13/Abr/2018,Patos,2017-2018,319,NA
-25/May/2018,Patos,2017-2018,1,NA
-27/Jun/2018,Patos,2017-2018,42,NA
-19/Sep/2018,Patos,2018-2019,236,NA
-17/Oct/2018,Patos,2018-2019,202,NA
-16/Nov/2018,Patos,2018-2019,265,NA
-12/Dic/2018,Patos,2018-2019,495,NA
-31/Ene/2019,Patos,2018-2019,445,NA
-28/Feb/2019,Patos,2018-2019,234,NA
-29/Mar/2019,Patos,2018-2019,149,NA
-20/Abr/2019,Patos,2018-2019,421,NA
-31/May/2019,Patos,2018-2019,336,NA
-26/Feb/2012,Pajaros,2011-2012,584,NA
-29/Mar/2012,Pajaros,2011-2012,616,NA
-26/Abr/2012,Pajaros,2011-2012,1168,NA
-30/May/2012,Pajaros,2011-2012,168,NA
-28/Jun/2012,Pajaros,2011-2012,12,NA
-26/Jul/2012,Pajaros,2011-2012,0,NA
-27/Sep/2012,Pajaros,2012-2013,0,NA
-25/Oct/2012,Pajaros,2012-2013,1700,NA
-29/Nov/2012,Pajaros,2012-2013,2480,NA
-27/Feb/2013,Pajaros,2012-2013,338,NA
-28/Mar/2013,Pajaros,2012-2013,0,NA
-25/Abr/2013,Pajaros,2012-2013,427,NA
-23/May/2013,Pajaros,2012-2013,190,NA
-27/Jun/2013,Pajaros,2012-2013,0,NA
-25/Jun/2013,Pajaros,2012-2013,0,NA
-19/Sep/2013,Pajaros,2013-2014,620,NA
-30/Oct/2013,Pajaros,2013-2014,565,NA
-28/Nov/2013,Pajaros,2013-2014,1390,NA
-27/Feb/2014,Pajaros,2013-2014,0,NA
-27/Mar/2014,Pajaros,2013-2014,17,NA
-29/May/2014,Pajaros,2013-2014,0,NA
-26/Jun/2014,Pajaros,2013-2014,44,NA
-24/Jul/2014,Pajaros,2013-2014,2,NA
-28/Ago/2014,Pajaros,2014-2015,0,NA
-25/Sep/2014,Pajaros,2014-2015,535,NA
-23/Oct/2014,Pajaros,2014-2015,980,NA
-20/Nov/2014,Pajaros,2014-2015,792,NA
-19/Feb/2015,Pajaros,2014-2015,279,NA
-19/Mar/2015,Pajaros,2014-2015,0,NA
-15/May/2015,Pajaros,2014-2015,0,NA
-16/Jul/2015,Pajaros,2014-2015,0,NA
-25/Feb/2016,Pajaros,2015-2016,378,No usar
-24/Mar/2016,Pajaros,2015-2016,26,No usar
-21/Abr/2016,Pajaros,2015-2016,17,No usar
-26/May/2016,Pajaros,2015-2016,16,No usar
-23/Jun/2016,Pajaros,2015-2016,135,No usar
-22/Oct/2016,Pajaros,2016-2017,0,No usar
-23/Feb/2017,Pajaros,2016-2017,69,No usar
-30/Mar/2017,Pajaros,2016-2017,570,No usar
-22/Jun/2017,Pajaros,2016-2017,0,No usar
-20/Jul/2017,Pajaros,2016-2017,0,No usar
-21/Sep/2017,Pajaros,2017-2018,0,NA
-19/Oct/2017,Pajaros,2017-2018,0,NA
-16/Nov/2017,Pajaros,2017-2018,0,NA
-04/Dic/2017,Pajaros,2017-2018,813,NA
-19/Ene/2018,Pajaros,2017-2018,438,NA
-08/Mar/2018,Pajaros,2017-2018,586,NA
-12/Abr/2018,Pajaros,2017-2018,142,NA
-24/May/2018,Pajaros,2017-2018,12,NA
-26/Jun/2018,Pajaros,2017-2018,0,NA
-18/Sep/2018,Pajaros,2018-2019,0,NA
-16/Oct/2018,Pajaros,2018-2019,611,NA
-17/Nov/2018,Pajaros,2018-2019,636,NA
-11/Dic/2018,Pajaros,2018-2019,267,NA
-30/Ene/2019,Pajaros,2018-2019,432,NA
-27/Feb/2019,Pajaros,2018-2019,418,NA
-28/Mar/2019,Pajaros,2018-2019,31,NA
-19/Abr/2019,Pajaros,2018-2019,211,NA
-30/May/2019,Pajaros,2018-2019,360,NA
-28/Mar/2014,Bledos,2013-2014,5,No usar
-18/Abr/2014,Bledos,2013-2014,0,No usar
-25/Jul/2014,Bledos,2013-2014,0,No usar
-24/Feb/2017,Bledos,2016-2017,0,No usar
-31/Mar/2017,Bledos,2016-2017,0,No usar
-28/Abr/2017,Bledos,2016-2017,15,No usar
-23/Jun/2017,Bledos,2016-2017,0,No usar
-21/Jul/2017,Bledos,2016-2017,0,No usar
-22/Sep/2017,Bledos,2017-2018,0,No usar
-20/Oct/2017,Bledos,2017-2018,90,No usar
-17/Nov/2017,Bledos,2017-2018,165,No usar
-05/Dic/2017,Bledos,2017-2018,659,No usar
-18/Ene/2018,Bledos,2017-2018,517,No usar
-09/Mar/2018,Bledos,2017-2018,38,No usar
-13/Abr/2018,Bledos,2017-2018,22,No usar
-25/May/2018,Bledos,2017-2018,3,No usar
-27/Jun/2018,Bledos,2017-2018,5,No usar
-19/Sep/2018,Bledos,2018-2019,0,No usar
-17/Oct/2018,Bledos,2018-2019,333,No usar
-16/Nov/2018,Bledos,2018-2019,637,No usar
-12/Dic/2018,Bledos,2018-2019,676,No usar
-31/Ene/2019,Bledos,2018-2019,362,No usar
-28/Feb/2019,Bledos,2018-2019,383,No usar
-20/Abr/2019,Bledos,2018-2019,56,No usar
-01/Oct/2019,Alcatraz,2019-2020,402,NA
-18/Oct/2019,Alcatraz,2019-2020,417,section H not counted
-06/Nov/2019,Alcatraz,2019-2020,682,NA
-26/Nov/2019,Alcatraz,2019-2020,745,NA
-13/Dic/2019,Alcatraz,2019-2020,778,NA
-09/Ene/2020,Alcatraz,2019-2020,360,NA
-31/Ene/2020,Alcatraz,2019-2020,136,NA
-NA,Coronado,2012-2013,187,NA
-NA,Coronado,2013-2014,185,NA
-NA,Coronado,2014-2015,127,NA
-NA,Coronado,2015-2016,168,NA
-NA,Coronado,2016-2017,93,NA
-NA,Coronado,2017-2018,175,NA
-NA,Coronado,2018-2019,312,NA
-NA,Todos Santos,2013-2014,137,NA
-NA,Todos Santos,2014-2015,164,NA
-NA,Todos Santos,2015-2016,100,NA
-NA,Todos Santos,2016-2017,238,NA
-NA,Todos Santos,2017-2018,123,NA
-NA,Todos Santos,2018-2019,209,NA
-NA,San Martin,2013-2014,600,NA
-NA,San Martin,2014-2015,478,NA
-NA,San Martin,2015-2016,564,NA
-NA,San Martin,2016-2017,791,NA
-NA,San Martin,2017-2018,534,NA
-NA,San Jeronimo,2013-2014,126,NA
-NA,San Jeronimo,2014-2015,99,NA
-NA,San Jeronimo,2015-2016,96,NA
-NA,San Jeronimo,2016-2017,150,NA
-NA,San Jeronimo,2017-2018,104,NA
-NA,Natividad,2013-2014,693,NA
-NA,Natividad,2014-2015,265,NA
-NA,Natividad,2015-2016,361,NA
-NA,Natividad,2016-2017,434,NA
-NA,Natividad,2017-2018,721,NA
-NA,Natividad,2018-2019,625,NA
-NA,San Roque,2009-2010,15,NA
-NA,San Roque,2010-2011,82,NA
-NA,San Roque,2011-2012,17,NA
-NA,San Roque,2012-2013,103,NA
-NA,San Roque,2013-2014,34,NA
-NA,San Roque,2014-2015,60,NA
-NA,San Roque,2015-2016,57,NA
-NA,San Roque,2016-2017,113,NA
-NA,San Roque,2017-2018,61,NA
-NA,San Roque,2018-2019,36,NA
-NA,Asuncion,2009-2010,7,NA
-NA,Asuncion,2011-2012,15,NA
-NA,Asuncion,2012-2013,128,NA
-NA,Asuncion,2013-2014,1,NA
-NA,Asuncion,2014-2015,50,NA
-NA,Asuncion,2015-2016,53,NA
-NA,Asuncion,2016-2017,131,NA
-NA,Asuncion,2017-2018,16,NA
-NA,Asuncion,2018-2019,152,NA
-NA,San Benito,2015-2016,20,NA
-NA,San Benito,2016-2017,40,NA
-NA,San Benito,2017-2018,10,NA
-NA,San Benito,2018-2019,7,NA
+Fecha,Isla,Temporada,Nidos_activos_por_visita,Notas
+01/Ene/2004,Alcatraz,2003,NA,Sin datos en esta temporada
+01/Ene/2005,Alcatraz,2004,NA,Sin datos en esta temporada
+01/Ene/2007,Alcatraz,2006,NA,Sin datos en esta temporada
+01/Ene/2008,Alcatraz,2007,NA,Sin datos en esta temporada
+01/Ene/2009,Alcatraz,2008,NA,Sin datos en esta temporada
+01/Ene/2015,Bledos,2014,NA,No usar
+01/Ene/2016,Bledos,2015,NA,No usar
+05/Oct/2000,Alcatraz,2000,353,NA
+12/Oct/2000,Alcatraz,2000,547,NA
+17/Oct/2000,Alcatraz,2000,592,NA
+25/Oct/2000,Alcatraz,2000,537,NA
+03/Nov/2000,Alcatraz,2000,571,NA
+12/Nov/2000,Alcatraz,2000,564,NA
+28/Nov/2000,Alcatraz,2000,1037,NA
+12/Dic/2000,Alcatraz,2000,1220,NA
+02/Ene/2001,Alcatraz,2000,1225,NA
+08/Mar/2001,Alcatraz,2000,496,NA
+07/Abr/2001,Alcatraz,2000,61,NA
+12/Sep/2001,Alcatraz,2001,324,NA
+23/Sep/2001,Alcatraz,2001,649,NA
+07/Oct/2001,Alcatraz,2001,1091,NA
+25/Oct/2001,Alcatraz,2001,1088,NA
+30/Oct/2001,Alcatraz,2001,683,NA
+04/Nov/2001,Alcatraz,2001,538,NA
+07/Nov/2001,Alcatraz,2001,513,NA
+14/Nov/2001,Alcatraz,2001,643,NA
+24/Nov/2001,Alcatraz,2001,722,NA
+29/Nov/2001,Alcatraz,2001,1093,NA
+13/Dic/2001,Alcatraz,2001,801,NA
+12/Ene/2002,Alcatraz,2001,1039,NA
+19/Ene/2002,Alcatraz,2001,1034,NA
+17/Feb/2002,Alcatraz,2001,837,NA
+23/Feb/2002,Alcatraz,2001,607,NA
+28/Feb/2002,Alcatraz,2001,548,NA
+04/Mar/2002,Alcatraz,2001,391,NA
+19/Mar/2002,Alcatraz,2001,109,NA
+01/Abr/2002,Alcatraz,2001,11,NA
+27/Oct/2002,Alcatraz,2002,1075,NA
+02/Nov/2002,Alcatraz,2002,971,NA
+07/Nov/2002,Alcatraz,2002,1020,NA
+24/Nov/2002,Alcatraz,2002,1510,NA
+30/Nov/2002,Alcatraz,2002,1683,NA
+08/Dic/2002,Alcatraz,2002,1628,NA
+24/Ene/2003,Alcatraz,2002,949,NA
+29/Ene/2003,Alcatraz,2002,263,NA
+22/Feb/2003,Alcatraz,2002,4,NA
+22/Oct/2005,Alcatraz,2005,583,No usar
+05/Nov/2005,Alcatraz,2005,817,No usar
+31/Ene/2006,Alcatraz,2005,275,No usar
+16/Mar/2006,Alcatraz,2005,342,No usar
+25/Abr/2006,Alcatraz,2005,43,No usar
+15/Oct/2009,Alcatraz,2009,527,NA
+26/Oct/2009,Alcatraz,2009,801,NA
+09/Nov/2009,Alcatraz,2009,937,NA
+23/Nov/2009,Alcatraz,2009,991,NA
+01/Dic/2009,Alcatraz,2009,1291,NA
+17/Dic/2009,Alcatraz,2009,1394,NA
+13/Ene/2010,Alcatraz,2009,858,NA
+29/Ene/2010,Alcatraz,2009,50,NA
+07/Oct/2010,Alcatraz,2010,447,NA
+14/Oct/2010,Alcatraz,2010,652,NA
+21/Oct/2010,Alcatraz,2010,1004,NA
+25/Oct/2010,Alcatraz,2010,1054,NA
+09/Nov/2010,Alcatraz,2010,1334,NA
+18/Nov/2010,Alcatraz,2010,1556,NA
+02/Dic/2010,Alcatraz,2010,1968,NA
+10/Dic/2010,Alcatraz,2010,1782,NA
+17/Ene/2011,Alcatraz,2010,478,NA
+25/Ene/2011,Alcatraz,2010,192,NA
+16/Feb/2011,Alcatraz,2010,44,NA
+06/Sep/2011,Alcatraz,2011,0,NA
+28/Sep/2011,Alcatraz,2011,290,NA
+15/Oct/2011,Alcatraz,2011,691,NA
+26/Oct/2011,Alcatraz,2011,714,NA
+14/Nov/2011,Alcatraz,2011,1048,NA
+25/Nov/2011,Alcatraz,2011,1544,NA
+05/Dic/2011,Alcatraz,2011,1298,NA
+12/Dic/2011,Alcatraz,2011,888,NA
+09/Ene/2012,Alcatraz,2011,528,NA
+18/Ene/2012,Alcatraz,2011,243,NA
+26/Ene/2012,Alcatraz,2011,193,NA
+02/Feb/2012,Alcatraz,2011,167,NA
+16/Feb/2012,Alcatraz,2011,246,NA
+28/Feb/2012,Alcatraz,2011,286,NA
+14/Mar/2012,Alcatraz,2011,206,NA
+29/Mar/2012,Alcatraz,2011,59,NA
+19/Abr/2012,Alcatraz,2011,13,NA
+18/Sep/2012,Alcatraz,2012,21,NA
+10/Feb/2012,Alcatraz,2011,571,NA
+24/Oct/2012,Alcatraz,2012,739,NA
+05/Nov/2012,Alcatraz,2012,906,NA
+20/Nov/2012,Alcatraz,2012,1158,NA
+03/Dic/2012,Alcatraz,2012,1142,NA
+12/Dic/2012,Alcatraz,2012,1468,NA
+08/Ene/2013,Alcatraz,2012,1351,NA
+23/Ene/2013,Alcatraz,2012,1083,NA
+05/Feb/2013,Alcatraz,2012,699,NA
+21/Feb/2013,Alcatraz,2012,439,NA
+05/Mar/2013,Alcatraz,2012,173,NA
+20/Mar/2013,Alcatraz,2012,98,NA
+04/Abr/2013,Alcatraz,2012,22,NA
+18/Sep/2013,Alcatraz,2013,27,NA
+25/Sep/2013,Alcatraz,2013,174,NA
+02/Oct/2013,Alcatraz,2013,430,NA
+09/Oct/2013,Alcatraz,2013,605,NA
+16/Oct/2013,Alcatraz,2013,465,NA
+23/Oct/2013,Alcatraz,2013,452,NA
+30/Oct/2013,Alcatraz,2013,423,NA
+06/Nov/2013,Alcatraz,2013,314,NA
+13/Nov/2013,Alcatraz,2013,228,NA
+20/Nov/2013,Alcatraz,2013,162,NA
+26/Nov/2013,Alcatraz,2013,88,NA
+06/Dic/2013,Alcatraz,2013,109,NA
+11/Dic/2013,Alcatraz,2013,281,NA
+09/Ene/2014,Alcatraz,2013,506,NA
+16/Ene/2014,Alcatraz,2013,406,NA
+22/Ene/2014,Alcatraz,2013,406,NA
+30/Ene/2014,Alcatraz,2013,265,NA
+06/Feb/2014,Alcatraz,2013,82,NA
+12/Feb/2014,Alcatraz,2013,19,NA
+19/Feb/2014,Alcatraz,2013,9,NA
+25/Sep/2014,Alcatraz,2014,42,NA
+08/Oct/2014,Alcatraz,2014,191,NA
+15/Oct/2014,Alcatraz,2014,188,NA
+21/Oct/2014,Alcatraz,2014,279,NA
+29/Oct/2014,Alcatraz,2014,244,NA
+06/Nov/2014,Alcatraz,2014,733,NA
+14/Nov/2014,Alcatraz,2014,537,NA
+21/Nov/2014,Alcatraz,2014,834,NA
+29/Nov/2014,Alcatraz,2014,639,NA
+04/Dic/2014,Alcatraz,2014,627,NA
+10/Dic/2014,Alcatraz,2014,679,NA
+16/Dic/2014,Alcatraz,2014,844,NA
+09/Ene/2015,Alcatraz,2014,857,NA
+16/Ene/2015,Alcatraz,2014,667,NA
+21/Ene/2015,Alcatraz,2014,509,NA
+27/Ene/2015,Alcatraz,2014,169,NA
+06/Feb/2015,Alcatraz,2014,66,NA
+13/Feb/2015,Alcatraz,2014,22,NA
+24/Sep/2015,Alcatraz,2015,5,NA
+02/Oct/2015,Alcatraz,2015,47,NA
+07/Oct/2015,Alcatraz,2015,68,NA
+13/Oct/2015,Alcatraz,2015,349,NA
+22/Oct/2015,Alcatraz,2015,543,NA
+27/Oct/2015,Alcatraz,2015,551,NA
+04/Nov/2015,Alcatraz,2015,744,NA
+10/Nov/2015,Alcatraz,2015,907,NA
+21/Nov/2015,Alcatraz,2015,1209,NA
+25/Nov/2015,Alcatraz,2015,1090,NA
+11/Dic/2015,Alcatraz,2015,1224,NA
+14/Ene/2016,Alcatraz,2015,434,NA
+23/Ene/2016,Alcatraz,2015,165,NA
+27/Ene/2016,Alcatraz,2015,57,NA
+03/Feb/2016,Alcatraz,2015,11,NA
+04/Oct/2016,Alcatraz,2016,73,NA
+21/Oct/2016,Alcatraz,2016,400,NA
+24/Oct/2016,Alcatraz,2016,340,NA
+02/Nov/2016,Alcatraz,2016,577,NA
+08/Nov/2016,Alcatraz,2016,738,NA
+15/Nov/2016,Alcatraz,2016,774,NA
+29/Nov/2016,Alcatraz,2016,847,NA
+09/Dic/2016,Alcatraz,2016,1184,NA
+14/Dic/2016,Alcatraz,2016,1102,NA
+05/Ene/2017,Alcatraz,2016,274,NA
+13/Ene/2017,Alcatraz,2016,151,NA
+18/Ene/2017,Alcatraz,2016,98,NA
+04/Oct/2017,Alcatraz,2017,256,NA
+11/Oct/2017,Alcatraz,2017,390,NA
+20/Oct/2017,Alcatraz,2017,601,NA
+24/Oct/2017,Alcatraz,2017,491,NA
+03/Nov/2017,Alcatraz,2017,648,NA
+10/Nov/2017,Alcatraz,2017,744,NA
+15/Nov/2017,Alcatraz,2017,960,NA
+22/Nov/2017,Alcatraz,2017,1032,NA
+01/Dic/2017,Alcatraz,2017,1104,NA
+05/Dic/2017,Alcatraz,2017,1041,NA
+09/Ene/2018,Alcatraz,2017,382,NA
+19/Ene/2018,Alcatraz,2017,233,NA
+23/Ene/2018,Alcatraz,2017,150,NA
+31/Ene/2018,Alcatraz,2017,119,NA
+08/Feb/2018,Alcatraz,2017,100,NA
+13/Feb/2018,Alcatraz,2017,94,NA
+08/Mar/2018,Alcatraz,2017,61,NA
+15/Mar/2018,Alcatraz,2017,43,NA
+05/Oct/2018,Alcatraz,2018,358,NA
+10/Oct/2018,Alcatraz,2018,434,NA
+18/Oct/2018,Alcatraz,2018,329,NA
+26/Oct/2018,Alcatraz,2018,408,NA
+01/Nov/2018,Alcatraz,2018,479,NA
+07/Nov/2018,Alcatraz,2018,402,NA
+14/Nov/2018,Alcatraz,2018,597,NA
+22/Nov/2018,Alcatraz,2018,626,NA
+29/Nov/2018,Alcatraz,2018,780,NA
+04/Dic/2018,Alcatraz,2018,828,NA
+13/Dic/2018,Alcatraz,2018,842,NA
+09/Ene/2019,Alcatraz,2018,232,NA
+17/Ene/2019,Alcatraz,2018,189,NA
+30/Ene/2019,Alcatraz,2018,105,NA
+14/Feb/2019,Alcatraz,2018,86,NA
+21/Feb/2019,Alcatraz,2018,91,NA
+28/Feb/2019,Alcatraz,2018,49,NA
+27/Ene/2012,Patos,2011,0,No usar
+28/Feb/2012,Patos,2011,488,No usar
+30/Mar/2012,Patos,2011,235,No usar
+27/Abr/2012,Patos,2011,216,No usar
+31/May/2012,Patos,2011,8,No usar
+29/Jun/2012,Patos,2011,0,No usar
+27/Jul/2012,Patos,2012,0,No usar
+26/Oct/2012,Patos,2012,600,NA
+30/Nov/2012,Patos,2012,1464,NA
+14/Dic/2012,Patos,2012,1528,NA
+25/Feb/2013,Patos,2012,388,NA
+26/Abr/2013,Patos,2012,90,NA
+24/May/2013,Patos,2012,289,NA
+26/Jul/2013,Patos,2013,0,NA
+31/Oct/2013,Patos,2013,484,NA
+29/Nov/2013,Patos,2013,501,NA
+13/Dic/2013,Patos,2013,1040,NA
+28/Feb/2014,Patos,2013,174,NA
+28/Mar/2014,Patos,2013,30,NA
+18/Abr/2013,Patos,2012,100,NA
+30/May/2013,Patos,2012,14,NA
+25/Jul/2014,Patos,2014,0,NA
+24/Oct/2014,Patos,2014,496,NA
+21/Nov/2014,Patos,2014,990,Se perdió el pico de temporada en diciembre 2014
+23/Ene/2015,Patos,2014,447,NA
+20/Feb/2015,Patos,2014,216,NA
+20/Mar/2015,Patos,2014,139,NA
+17/Jul/2015,Patos,2015,0,NA
+26/Feb/2016,Patos,2015,52,No usar
+25/Mar/2016,Patos,2015,156,No usar
+22/Abr/2016,Patos,2015,167,No usar
+27/May/2016,Patos,2015,24,No usar
+22/Jul/2016,Patos,2016,0,No usar
+31/Ago/2016,Patos,2016,0,No usar
+24/Feb/2017,Patos,2016,1,No usar
+31/Mar/2017,Patos,2016,68,No usar
+28/Abr/2017,Patos,2016,104,No usar
+23/Jun/2017,Patos,2016,178,No usar
+21/Jul/2017,Patos,2017,0,No usar
+22/Sep/2017,Patos,2017,0,NA
+20/Oct/2017,Patos,2017,562,NA
+17/Nov/2017,Patos,2017,482,NA
+05/Dic/2017,Patos,2017,1230,NA
+19/Ene/2018,Patos,2017,193,NA
+13/Abr/2018,Patos,2017,319,NA
+25/May/2018,Patos,2017,1,NA
+27/Jun/2018,Patos,2017,42,NA
+19/Sep/2018,Patos,2018,236,NA
+17/Oct/2018,Patos,2018,202,NA
+16/Nov/2018,Patos,2018,265,NA
+12/Dic/2018,Patos,2018,495,NA
+31/Ene/2019,Patos,2018,445,NA
+28/Feb/2019,Patos,2018,234,NA
+29/Mar/2019,Patos,2018,149,NA
+20/Abr/2019,Patos,2018,421,NA
+31/May/2019,Patos,2018,336,NA
+26/Feb/2012,Pajaros,2011,584,NA
+29/Mar/2012,Pajaros,2011,616,NA
+26/Abr/2012,Pajaros,2011,1168,NA
+30/May/2012,Pajaros,2011,168,NA
+28/Jun/2012,Pajaros,2011,12,NA
+26/Jul/2012,Pajaros,2012,0,NA
+27/Sep/2012,Pajaros,2012,0,NA
+25/Oct/2012,Pajaros,2012,1700,NA
+29/Nov/2012,Pajaros,2012,2480,NA
+27/Feb/2013,Pajaros,2012,338,NA
+28/Mar/2013,Pajaros,2012,0,NA
+25/Abr/2013,Pajaros,2012,427,NA
+23/May/2013,Pajaros,2012,190,NA
+27/Jun/2013,Pajaros,2012,0,NA
+25/Jun/2013,Pajaros,2012,0,NA
+19/Sep/2013,Pajaros,2013,620,NA
+30/Oct/2013,Pajaros,2013,565,NA
+28/Nov/2013,Pajaros,2013,1390,NA
+27/Feb/2014,Pajaros,2013,0,NA
+27/Mar/2014,Pajaros,2013,17,NA
+29/May/2014,Pajaros,2013,0,NA
+26/Jun/2014,Pajaros,2013,44,NA
+24/Jul/2014,Pajaros,2014,2,NA
+28/Ago/2014,Pajaros,2014,0,NA
+25/Sep/2014,Pajaros,2014,535,NA
+23/Oct/2014,Pajaros,2014,980,NA
+20/Nov/2014,Pajaros,2014,792,NA
+19/Feb/2015,Pajaros,2014,279,NA
+19/Mar/2015,Pajaros,2014,0,NA
+15/May/2015,Pajaros,2014,0,NA
+16/Jul/2015,Pajaros,2015,0,No usar
+25/Feb/2016,Pajaros,2015,378,No usar
+24/Mar/2016,Pajaros,2015,26,No usar
+21/Abr/2016,Pajaros,2015,17,No usar
+26/May/2016,Pajaros,2015,16,No usar
+23/Jun/2016,Pajaros,2015,135,No usar
+22/Oct/2016,Pajaros,2016,0,No usar
+23/Feb/2017,Pajaros,2016,69,No usar
+30/Mar/2017,Pajaros,2016,570,No usar
+22/Jun/2017,Pajaros,2016,0,No usar
+20/Jul/2017,Pajaros,2017,0,No usar
+21/Sep/2017,Pajaros,2017,0,NA
+19/Oct/2017,Pajaros,2017,0,NA
+16/Nov/2017,Pajaros,2017,0,NA
+04/Dic/2017,Pajaros,2017,813,NA
+19/Ene/2018,Pajaros,2017,438,NA
+08/Mar/2018,Pajaros,2017,586,NA
+12/Abr/2018,Pajaros,2017,142,NA
+24/May/2018,Pajaros,2017,12,NA
+26/Jun/2018,Pajaros,2017,0,NA
+18/Sep/2018,Pajaros,2018,0,NA
+16/Oct/2018,Pajaros,2018,611,NA
+17/Nov/2018,Pajaros,2018,636,NA
+11/Dic/2018,Pajaros,2018,267,NA
+30/Ene/2019,Pajaros,2018,432,NA
+27/Feb/2019,Pajaros,2018,418,NA
+28/Mar/2019,Pajaros,2018,31,NA
+19/Abr/2019,Pajaros,2018,211,NA
+30/May/2019,Pajaros,2018,360,NA
+28/Mar/2014,Bledos,2013,5,No usar
+18/Abr/2014,Bledos,2013,0,No usar
+25/Jul/2014,Bledos,2014,0,No usar
+24/Feb/2017,Bledos,2016,0,No usar
+31/Mar/2017,Bledos,2016,0,No usar
+28/Abr/2017,Bledos,2016,15,No usar
+23/Jun/2017,Bledos,2016,0,No usar
+21/Jul/2017,Bledos,2017,0,No usar
+22/Sep/2017,Bledos,2017,0,No usar
+20/Oct/2017,Bledos,2017,90,No usar
+17/Nov/2017,Bledos,2017,165,No usar
+05/Dic/2017,Bledos,2017,659,No usar
+18/Ene/2018,Bledos,2017,517,No usar
+09/Mar/2018,Bledos,2017,38,No usar
+13/Abr/2018,Bledos,2017,22,No usar
+25/May/2018,Bledos,2017,3,No usar
+27/Jun/2018,Bledos,2017,5,No usar
+19/Sep/2018,Bledos,2018,0,No usar
+17/Oct/2018,Bledos,2018,333,No usar
+16/Nov/2018,Bledos,2018,637,No usar
+12/Dic/2018,Bledos,2018,676,No usar
+31/Ene/2019,Bledos,2018,362,No usar
+28/Feb/2019,Bledos,2018,383,No usar
+20/Abr/2019,Bledos,2018,56,No usar
+01/Oct/2019,Alcatraz,2019,402,NA
+18/Oct/2019,Alcatraz,2019,417,section H not counted
+06/Nov/2019,Alcatraz,2019,682,NA
+26/Nov/2019,Alcatraz,2019,745,NA
+13/Dic/2019,Alcatraz,2019,778,NA
+09/Ene/2020,Alcatraz,2019,360,NA
+31/Ene/2020,Alcatraz,2019,136,NA
+NA,Alcatraz,2020,760,Enviado por correo
+NA,Coronado,2013,187,NA
+NA,Coronado,2014,185,NA
+NA,Coronado,2015,127,NA
+NA,Coronado,2016,168,NA
+NA,Coronado,2017,93,NA
+NA,Coronado,2018,175,NA
+NA,Coronado,2019,312,NA
+NA,Todos Santos,2014,137,NA
+NA,Todos Santos,2015,164,NA
+NA,Todos Santos,2016,100,NA
+NA,Todos Santos,2017,238,NA
+NA,Todos Santos,2018,123,NA
+NA,Todos Santos,2019,209,NA
+NA,San Martin,2014,600,NA
+NA,San Martin,2015,478,NA
+NA,San Martin,2016,564,NA
+NA,San Martin,2017,791,NA
+NA,San Martin,2018,534,NA
+NA,San Jeronimo,2014,126,NA
+NA,San Jeronimo,2015,99,NA
+NA,San Jeronimo,2016,96,NA
+NA,San Jeronimo,2017,150,NA
+NA,San Jeronimo,2018,104,NA
+NA,Natividad,2014,693,NA
+NA,Natividad,2015,265,NA
+NA,Natividad,2016,361,NA
+NA,Natividad,2017,434,NA
+NA,Natividad,2018,721,NA
+NA,Natividad,2019,625,NA
+NA,San Roque,2010,15,NA
+NA,San Roque,2011,82,NA
+NA,San Roque,2012,17,NA
+NA,San Roque,2013,103,NA
+NA,San Roque,2014,34,NA
+NA,San Roque,2015,60,NA
+NA,San Roque,2016,57,NA
+NA,San Roque,2017,113,NA
+NA,San Roque,2018,61,NA
+NA,San Roque,2019,36,NA
+NA,Asuncion,2010,7,NA
+NA,Asuncion,2012,15,NA
+NA,Asuncion,2013,128,NA
+NA,Asuncion,2014,1,NA
+NA,Asuncion,2015,50,NA
+NA,Asuncion,2016,53,NA
+NA,Asuncion,2017,131,NA
+NA,Asuncion,2018,16,NA
+NA,Asuncion,2019,152,NA
+NA,San Benito,2016,20,NA
+NA,San Benito,2017,40,NA
+NA,San Benito,2018,10,NA
+NA,San Benito,2019,7,NA
+NA,Coronado Norte,1971,5,Reference: Gress et al. (1973). 
+NA,Coronado Norte,1974,4,Reference: D.W Anderson; unpubl. Data. None of the other islands were visited.
+NA,Coronado Norte,1976,0,Reference: D.W Anderson; unpubl. Data. None of the other islands were visited.
+NA,Coronado Norte,1977,6,Reference: D.W Anderson; unpubl. Data. None of the other islands were visited.
+NA,Coronado Norte,1980,48,Reference: D.W Anderson; unpubl. Data. None of the other islands were visited.
+NA,Coronado Norte,1981,0,Reference: D.W Anderson and F. Gress; unpubl. Data. None of the other islands were visited.
+NA,Coronado Norte,1982,29,Reference: D.W Anderson and F. Gress; unpubl. Data. None of the other islands were visited.
+NA,Coronado Norte,1983,10,Reference: D.W Anderson and F. Gress; unpubl. Data. None of the other islands were visited.
+NA,Coronado Norte,1984,42,Reference: D.W Anderson and F. Gress; unpubl. Data. None of the other islands were visited.
+NA,Coronado Norte,1985,0,Reference: D.W Anderson; unpubl. Data. None of the other islands were visited.
+NA,Coronado Norte,1989,12,Reference: F. Gress; unpubl. Data. 
+NA,Coronado Norte,1991,24,Reference: F. Gress; unpubl. Data. 
+NA,Coronado Norte,2002,163,Reference: Gress et al. 2005. 
+NA,Coronado Norte,2003,220,Reference: Gress et al. 2005. 
+19/Abr/2005,Coronado Norte,2005,130,Reference: Carter et al. 2006. Actual and potential nests.
+20/May/2005,Coronado Norte,2005,130,Reference: Carter et al. 2006. 
+22/Jun/2005,Coronado Norte,2005,130,Reference: Carter et al. 2006. 
+19/Jul/2005,Coronado Norte,2005,130,Reference: Carter et al. 2006. Chicks of all ages
+04/Mar/2006,Coronado Norte,2006,38,Reference: Whitworth et al. 2007. No cormorant chicks were observed
+23/Abr/2006,Coronado Norte,2006,75,Reference: Whitworth et al. 2009. 
+21/May/2006,Coronado Norte,2006,50,Reference: Whitworth et al. 2011. The reduced number of active nests since late April presumably reflected fledging; there was no evidence of widespread nest abandonment.
+18/Jun/2006,Coronado Norte,2006,168,Reference: Whitworth et al. 2013. 
+NA,Coronado Sur,1969,32,Reference: Gress et al. (1973). 
+NA,Coronado Sur,1970,30,Reference: Gress et al. (1973). 
+NA,Coronado Sur,1971,25,Reference: Gress et al. (1973). 
+NA,Coronado Sur,1986,30,Reference: W.T. Everett; unpubl. Data. 
+NA,Coronado Sur,1987,30,Reference: W.T. Everett; unpubl. Data. 
+NA,Coronado Sur,1988,30,Reference: W.T. Everett; unpubl. Data. 
+NA,Coronado Sur,1989,16,Reference: F. Gress; unpubl. Data. 
+NA,Coronado Sur,1990,70,Reference: F. Gress; unpubl. Data. 
+NA,Coronado Sur,1991,150,Reference: F. Gress; unpubl. Data. 
+NA,Coronado Sur,1993,140,Reference: F. Gress and H. Carter; unpubl. Data. 
+NA,Coronado Sur,2002,155,Reference: Gress et al. 2005. 
+NA,Coronado Sur,2003,176,Reference: Gress et al. 2005. 
+19/Abr/2005,Coronado Sur,2005,110,Reference: Carter et al. 2006. Actual and potential nests.
+20/May/2005,Coronado Sur,2005,170,Reference: Carter et al. 2006. 
+22/Jun/2005,Coronado Sur,2005,170,Reference: Carter et al. 2006. 
+19/Jul/2005,Coronado Sur,2005,170,Reference: Carter et al. 2006. Chicks of all ages
+04/Mar/2006,Coronado Sur,2006,40,Reference: Whitworth et al. 2008. No cormorant chicks were observed
+23/Abr/2006,Coronado Sur,2006,180,Reference: Whitworth et al. 2010. 
+21/May/2006,Coronado Sur,2006,150,Reference: Whitworth et al. 2012. Fledging from earlier-built nests had just begun.
+18/Jun/2006,Coronado Sur,2006,230,Reference: Whitworth et al. 2014. The total number of nest attempts on South Island was 230; the largest on record

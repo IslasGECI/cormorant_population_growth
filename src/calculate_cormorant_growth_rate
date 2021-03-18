@@ -5,89 +5,51 @@
 from cli_paths import path_files
 from geci_plots import *
 from bootstraping_tools import *
+from population_growth import *
 
 import os
 import pandas as pd
 
-path = path_files()
+interest_variable = "Nidos_activos_por_visita"
+lambdas_results = []
 
+path = path_files()
 data_path = path.input[0][0]
 latex_table = path.output[0][0]
 
 cormorant_data = pd.read_csv(data_path)
-lambdas_results = []
+cormorant_data = cormorant_data.dropna(subset=[interest_variable])
+
 
 for islet in cormorant_data.Isla.unique():
-    plot_data = cormorant_data[cormorant_data.Isla == islet]
-    season = plot_data["Intervalo"].str.split("-", n=1, expand=True)
-    plot_data["Temporada"] = season[0].astype("int32")
-    plot_data = plot_data.rename(columns={"Nidos_activos_por_visita": "Maxima_cantidad_nidos"})
-    plot_data = plot_data.reset_index(drop=True)
+    fit_data = filter_data_by_islet(cormorant_data, islet)
 
-    ticks_text = plot_data.Intervalo.unique()
-    ticks_positions = ticks_positions_array(ticks_text)
-
-    plot_data = plot_data.dropna(subset=["Maxima_cantidad_nidos"])
-    min_value = plot_data["Maxima_cantidad_nidos"].min()
-    max_value = plot_data["Maxima_cantidad_nidos"].max()
-    time_fit = np.array(plot_data.index) + 1
-    time_to_model = np.linspace(time_fit.min(), time_fit.max(), 100)
-
-    parameters = lambda_calculator(plot_data["Temporada"], plot_data["Maxima_cantidad_nidos"])
     lambdas_distribution, intervals = bootstrap_from_time_series(
-        plot_data,
-        "Maxima_cantidad_nidos",
-        N=20,
+        fit_data,
+        interest_variable,
+        N=2000,
         return_distribution=True,
         remove_outliers=True,
     )
-    lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
-    p_value_mayor, p_value_menor = calculate_p_values(lambdas_distribution)
 
     lambda_latex = generate_latex_interval_string(intervals)
-
+    lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
+    p_value_mayor, p_value_menor = calculate_p_values(lambdas_distribution)
     lambdas_results.append([islet, lambda_latex, p_value_mayor, p_value_menor])
 
-    model_min = power_law(time_to_model, intervals[0], parameters[1])
-    model_med = power_law(time_to_model, intervals[1], parameters[1])
-    model_max = power_law(time_to_model, intervals[2], parameters[1])
-
-    fig, ax = geci_plot()
-    ax.fill_between(
-        time_to_model, model_min, model_max, alpha=0.2, label="Confidence zone", color="b"
-    )
-    plt.plot(time_fit, plot_data["Maxima_cantidad_nidos"], "-Dk", label="Active Nests")
-    plt.plot(time_to_model, model_med, label="Population growth model", color="b")
-    if islet == 'Natividad':
-        leg = plt.legend(loc='upper left')
-    else:
-        leg = plt.legend(loc='best')
-    plt.xlim(time_fit.min() - 0.2, time_fit.max())
-    plt.ylim(min_value, max_value)
-    plt.ylabel("Number of breeding pairs", size=20)
-    plt.xlabel("Seasons", size=20)
-    plt.gcf().subplots_adjust(bottom=0.2)
-    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-
-    plt.xticks(ticks_positions, ticks_text, rotation=90, size=15)
-    y_ticks_array = rounded_ticks_array(max_value, min_value)
-    plt.yticks(y_ticks_array)
-    plt.draw()
-
-    p = leg.get_window_extent()
-    ax.annotate(
-        r"$\lambda =$ {}".format(lambda_latex),
-        (p.p0[0], p.p1[1] - 320),
-        xycoords="figure pixels",
-        fontsize=25,
-        color="k",
-        alpha=1,
-    )
-
-    plt.savefig(
-        "reports/figures/cormorant_population_trend_{}".format(islet.replace(" ", "_").lower()),
-        dpi=300,
-    )
+    Modelo_Tendencia_Poblacional = Population_Trend_Model(fit_data, intervals, interest_variable)
+    Graficador = Plotter_Population_Trend_Model()
+    Graficador.plot_smooth(Modelo_Tendencia_Poblacional)
+    Graficador.plot_model(Modelo_Tendencia_Poblacional)
+    Graficador.plot_data(Modelo_Tendencia_Poblacional, fit_data[interest_variable])
+    legend_mpl_object = Graficador.set_legend_location(islet)
+    Graficador.set_x_lim(Modelo_Tendencia_Poblacional)
+    Graficador.set_y_lim(fit_data[interest_variable])
+    Graficador.set_labels()
+    Graficador.set_ticks(Modelo_Tendencia_Poblacional)
+    Graficador.draw()
+    Graficador.plot_growth_rate_interval(legend_mpl_object, lambda_latex)
+    Graficador.savefig(islet)
 
 lambdas_table = pd.DataFrame(lambdas_results)
 lambdas_table.columns = ["Islet", "Growth_rate", "p_value", "p_value_menor"]

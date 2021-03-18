@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#
+data_file=${1}
+table_name=$(basename "$data_file" .csv)
+csvsql --snifflimit 0 --no-inference --blanks --query "
+SELECT
+  Fecha,
+  Isla,
+    CASE
+      WHEN SUBSTR(Fecha,4,3) IN ('Ene','Feb','Mar','Abr','May','Jun')
+        THEN (CAST(SUBSTR(Fecha,8,4) AS INTEGER)-1) || '-' || CAST(SUBSTR(Fecha,8,4) AS INTEGER)
+      WHEN SUBSTR(Fecha,4,3) IN ('Jul','Ago','Sep','Oct','Nov','Dic')
+        THEN CAST(SUBSTR(Fecha,8,4) AS INTEGER) || '-' || (CAST(SUBSTR(Fecha,8,4) AS INTEGER)+1)
+      WHEN Fecha = 'NA'
+        THEN (CAST(Temporada AS INTEGER)-1) || '-' || CAST(Temporada AS INTEGER)
+    END Temporada,
+  Nidos_activos_por_visita,
+  Notas
+FROM ${table_name}
+" ${data_file} 
