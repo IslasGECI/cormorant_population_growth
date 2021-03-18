@@ -22,10 +22,6 @@ cormorant_data = cormorant_data.dropna(subset=[interest_variable])
 
 
 
-def resample_seasons(df):
-    first_season = int(df.Temporada.min())
-    last_season = int(df.Temporada.max())
-    return np.linspace(first_season, last_season, last_season-first_season+ 1).astype(int)
 
 def plot_growth_rate_interval(legend_mpl_object, lambda_latex):
     legend_box_positions = legend_mpl_object.get_window_extent()
