@@ -60,6 +60,27 @@ def calculate_upper_limit(data_interest_variable):
     )
     return upper_limit
 
+class Population_Trend_Model():
+    def __init__(self, fit_data, intervals, interest_variable):
+        self.intervals = intervals
+        self.plot_seasons = fit_data["Temporada"][:] - fit_data["Temporada"].iloc[0] + 1
+        self.ticks_text = resample_seasons(fit_data)
+        self.ticks_positions = ticks_positions_array(self.ticks_text)
+        self.time_to_model = np.linspace(self.ticks_positions.min(), self.ticks_positions.max(), 100)
+        self.parameters = lambda_calculator(fit_data["Temporada"], fit_data[interest_variable])[1]
+
+    @property
+    def model_min(self):
+        return power_law(self.time_to_model, self.intervals[0], self.parameters)
+
+    @property
+    def model_med(self):
+        return power_law(self.time_to_model, self.intervals[1], self.parameters)
+
+    @property
+    def model_max(self):
+        return power_law(self.time_to_model, self.intervals[2], self.parameters)
+
 for islet in cormorant_data.Isla.unique():
     fit_data = filter_data_by_islet(cormorant_data, islet)
 
@@ -76,24 +97,31 @@ for islet in cormorant_data.Isla.unique():
     p_value_mayor, p_value_menor = calculate_p_values(lambdas_distribution)
     lambdas_results.append([islet, lambda_latex, p_value_mayor, p_value_menor])
 
-    plot_seasons = fit_data["Temporada"][:] - fit_data["Temporada"].iloc[0] + 1
-    ticks_text = resample_seasons(fit_data)
-    ticks_positions = ticks_positions_array(ticks_text)
-    time_to_model = np.linspace(ticks_positions.min(), ticks_positions.max(), 100)
-
-    parameters = lambda_calculator(fit_data["Temporada"], fit_data[interest_variable])
-    model_min = power_law(time_to_model, intervals[0], parameters[1])
-    model_med = power_law(time_to_model, intervals[1], parameters[1])
-    model_max = power_law(time_to_model, intervals[2], parameters[1])
+    Modelo_Tendencia_Poblacional = Population_Trend_Model(fit_data, intervals, interest_variable)
 
     fig, ax = geci_plot()
     ax.fill_between(
-        time_to_model, model_min, model_max, alpha=0.2, label="Confidence zone", color="b"
+        Modelo_Tendencia_Poblacional.time_to_model,
+        Modelo_Tendencia_Poblacional.model_min,
+        Modelo_Tendencia_Poblacional.model_max,
+        alpha=0.2,
+        label="Confidence zone",
+        color="b"
     )
-    plt.plot(time_to_model, model_med, label="Population growth model", color="b")
-    plt.plot(plot_seasons, fit_data[interest_variable], "-Dk", label="Active Nests")
+    plt.plot(
+        Modelo_Tendencia_Poblacional.time_to_model,
+        Modelo_Tendencia_Poblacional.model_med,
+        label="Population growth model",
+        color="b"
+    )
+    plt.plot(
+        Modelo_Tendencia_Poblacional.plot_seasons,
+        fit_data[interest_variable],
+        "-Dk",
+        label="Active Nests"
+    )
     legend_mpl_object = set_legend_location(islet)
-    plt.xlim(ticks_positions.min() - 0.2, ticks_positions.max())
+    plt.xlim(Modelo_Tendencia_Poblacional.ticks_positions.min() - 0.2, Modelo_Tendencia_Poblacional.ticks_positions.max())
     ax.set_ylim(
         0,
         calculate_upper_limit(fit_data[interest_variable]),
