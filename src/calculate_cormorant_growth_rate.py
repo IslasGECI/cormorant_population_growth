@@ -21,8 +21,6 @@ cormorant_data = pd.read_csv(data_path)
 cormorant_data = cormorant_data.dropna(subset=[interest_variable])
 
 
-
-
 def plot_growth_rate_interval(legend_mpl_object, lambda_latex):
     legend_box_positions = legend_mpl_object.get_window_extent()
     ax.annotate(
@@ -34,24 +32,28 @@ def plot_growth_rate_interval(legend_mpl_object, lambda_latex):
         alpha=1,
     )
 
+
 def set_labels():
     plt.ylabel("Number of breeding pairs", size=20)
     plt.xlabel("Seasons", size=20)
+
 
 def set_ticks(Population_Trend_Model):
     plt.xticks(
         Population_Trend_Model.ticks_positions,
         Population_Trend_Model.ticks_text,
         rotation=90,
-        size=20
+        size=20,
     )
     plt.yticks(size=20)
+
 
 def set_legend_location(islet):
     legend_mpl_object = plt.legend(loc="best")
     if islet == "Natividad":
         legend_mpl_object = plt.legend(loc="upper left")
     return legend_mpl_object
+
 
 def calculate_upper_limit(data_interest_variable):
     upper_limit = roundup(
@@ -60,13 +62,16 @@ def calculate_upper_limit(data_interest_variable):
     )
     return upper_limit
 
-class Population_Trend_Model():
+
+class Population_Trend_Model:
     def __init__(self, fit_data, intervals, interest_variable):
         self.intervals = intervals
         self.plot_seasons = fit_data["Temporada"][:] - fit_data["Temporada"].iloc[0] + 1
         self.ticks_text = resample_seasons(fit_data)
         self.ticks_positions = ticks_positions_array(self.ticks_text)
-        self.time_to_model = np.linspace(self.ticks_positions.min(), self.ticks_positions.max(), 100)
+        self.time_to_model = np.linspace(
+            self.ticks_positions.min(), self.ticks_positions.max(), 100
+        )
         self.parameters = lambda_calculator(fit_data["Temporada"], fit_data[interest_variable])[1]
 
     @property
@@ -80,6 +85,7 @@ class Population_Trend_Model():
     @property
     def model_max(self):
         return power_law(self.time_to_model, self.intervals[2], self.parameters)
+
 
 for islet in cormorant_data.Isla.unique():
     fit_data = filter_data_by_islet(cormorant_data, islet)
@@ -106,22 +112,25 @@ for islet in cormorant_data.Isla.unique():
         Modelo_Tendencia_Poblacional.model_max,
         alpha=0.2,
         label="Confidence zone",
-        color="b"
+        color="b",
     )
     plt.plot(
         Modelo_Tendencia_Poblacional.time_to_model,
         Modelo_Tendencia_Poblacional.model_med,
         label="Population growth model",
-        color="b"
+        color="b",
     )
     plt.plot(
         Modelo_Tendencia_Poblacional.plot_seasons,
         fit_data[interest_variable],
         "-Dk",
-        label="Active Nests"
+        label="Active Nests",
     )
     legend_mpl_object = set_legend_location(islet)
-    plt.xlim(Modelo_Tendencia_Poblacional.ticks_positions.min() - 0.2, Modelo_Tendencia_Poblacional.ticks_positions.max())
+    plt.xlim(
+        Modelo_Tendencia_Poblacional.ticks_positions.min() - 0.2,
+        Modelo_Tendencia_Poblacional.ticks_positions.max(),
+    )
     ax.set_ylim(
         0,
         calculate_upper_limit(fit_data[interest_variable]),
