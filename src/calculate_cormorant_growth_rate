@@ -21,16 +21,6 @@ cormorant_data = pd.read_csv(data_path)
 cormorant_data = cormorant_data.dropna(subset=[interest_variable])
 
 
-
-
-
-
-
-
-
-
-
-
 for islet in cormorant_data.Isla.unique():
     fit_data = filter_data_by_islet(cormorant_data, islet)
 
@@ -60,7 +50,7 @@ for islet in cormorant_data.Isla.unique():
     Graficador.draw()
     Graficador.plot_growth_rate_interval(legend_mpl_object, lambda_latex)
     Graficador.savefig(islet)
-    
+
 lambdas_table = pd.DataFrame(lambdas_results)
 lambdas_table.columns = ["Islet", "Growth_rate", "p_value", "p_value_menor"]
 

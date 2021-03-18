@@ -44,6 +44,7 @@ class Population_Trend_Model:
     def model_max(self):
         return power_law(self.time_to_model, self.intervals[2], self.parameters)
 
+
 class Plotter_Population_Trend_Model:
     def __init__(self):
         self.fig, self.ax = geci_plot()
@@ -57,7 +58,7 @@ class Plotter_Population_Trend_Model:
             label="Confidence zone",
             color="b",
         )
-    
+
     def plot_model(self, Population_Trend_Model):
         plt.plot(
             Population_Trend_Model.time_to_model,
@@ -66,7 +67,7 @@ class Plotter_Population_Trend_Model:
             color="b",
         )
 
-    def plot_data(self, Population_Trend_Model,fit_data):
+    def plot_data(self, Population_Trend_Model, fit_data):
         plt.plot(
             Population_Trend_Model.plot_seasons,
             fit_data,
@@ -101,7 +102,6 @@ class Plotter_Population_Trend_Model:
         plt.ylabel("Number of breeding pairs", size=20)
         plt.xlabel("Seasons", size=20)
 
-
     def set_ticks(self, Population_Trend_Model):
         plt.xticks(
             Population_Trend_Model.ticks_positions,
@@ -126,4 +126,3 @@ class Plotter_Population_Trend_Model:
         if islet == "Natividad":
             legend_mpl_object = plt.legend(loc="upper left")
         return legend_mpl_object
-
