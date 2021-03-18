@@ -159,7 +159,6 @@ clean:
 
 mutants:
 	mutmut run --paths-to-mutate population_growth
-	mutmut run --paths-to-mutate src
 
 tests:
 	pytest tests/test_Population_trend.py
