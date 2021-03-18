@@ -156,6 +156,7 @@ clean:
 	rm --force --recursive src/__pycache__/
 	rm --force --recursive tests/__pycache__/
 	rm --force --recursive population_growth/__pycache__/
+	rm --force .mutmut-cache
 
 mutants:
 	mutmut run --paths-to-mutate population_growth
