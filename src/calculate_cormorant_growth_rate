@@ -43,8 +43,13 @@ def set_labels():
     plt.ylabel("Number of breeding pairs", size=20)
     plt.xlabel("Seasons", size=20)
 
-def set_ticks():
-    plt.xticks(ticks_positions, ticks_text, rotation=90, size=20)
+def set_ticks(Population_Trend_Model):
+    plt.xticks(
+        Population_Trend_Model.ticks_positions,
+        Population_Trend_Model.ticks_text,
+        rotation=90,
+        size=20
+    )
     plt.yticks(size=20)
 
 def set_legend_location(islet):
@@ -127,7 +132,7 @@ for islet in cormorant_data.Isla.unique():
         calculate_upper_limit(fit_data[interest_variable]),
     )
     set_labels()
-    set_ticks()
+    set_ticks(Modelo_Tendencia_Poblacional)
     plt.gcf().subplots_adjust(bottom=0.2)
     plt.draw()
     plot_growth_rate_interval(legend_mpl_object, lambda_latex)
