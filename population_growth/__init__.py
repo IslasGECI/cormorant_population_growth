@@ -1,1 +1,1 @@
-from .population_growth import Population_trend
+from .population_growth_model import *

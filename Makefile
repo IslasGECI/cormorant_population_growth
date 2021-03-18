@@ -85,9 +85,9 @@ $(csvCormorantCleanData): $(csvCormorantMaximumNests) src/query_burrows_quantity
 		--input $< \
 		--output $(csvCormorantCleanData)
 
-$(pngPopulationGrowRateCormorantAllIslets) $(csvCormorantAllGrowthRates): $(csvCormorantCleanData) src/calculate_cormorant_growth_rate
+$(pngPopulationGrowRateCormorantAllIslets) $(csvCormorantAllGrowthRates): $(csvCormorantCleanData) src/calculate_cormorant_growth_rate.py
 	$(checkDirectories)
-	$(word 2, $^) \
+	python -m src.calculate_cormorant_growth_rate \
 		--input $< \
 		--output $(csvCormorantAllGrowthRates)
 

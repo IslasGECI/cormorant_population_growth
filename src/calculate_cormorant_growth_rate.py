@@ -5,6 +5,7 @@
 from cli_paths import path_files
 from geci_plots import *
 from bootstraping_tools import *
+from population_growth import *
 
 import os
 import pandas as pd
@@ -20,8 +21,6 @@ cormorant_data = pd.read_csv(data_path)
 cormorant_data = cormorant_data.dropna(subset=[interest_variable])
 
 
-def filter_data_by_islet(df, islet):
-    return df[df.Isla == islet]
 
 def resample_seasons(df):
     first_season = int(df.Temporada.min())
