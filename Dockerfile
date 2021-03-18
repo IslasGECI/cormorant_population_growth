@@ -9,6 +9,7 @@ RUN pip install --upgrade pip && pip install \
     pandasql
 
 RUN pip install \
+    . \
     black \
     flake8 \
     mutmut \
