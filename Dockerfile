@@ -12,6 +12,7 @@ RUN pip install --upgrade pip && \
 RUN pip install \
     black \
     flake8 \
+    mutmut \
     pylint \
     pytest \
     rope

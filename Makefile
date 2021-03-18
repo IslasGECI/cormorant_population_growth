@@ -13,7 +13,7 @@ define checkDirectories
 mkdir --parents $(@D)
 endef
 
-.PHONY: all clean tests
+.PHONY: all check clean mutants tests
 
 # II. Declaración de las variables
 # ===========================================================================
@@ -129,6 +129,14 @@ $(csvCormorantSeasonInterval): $(csvConteoNidosCormoranOrejon) src/query_get_sea
 # ===========================================================================
 # Elimina los residuos de LaTeX
 
+check:
+	black --check --line-length 100 population_growth
+	black --check --line-length 100 src
+	black --check --line-length 100 tests
+	flake8 --max-line-length 100 population_growth
+	flake8 --max-line-length 100 src
+	flake8 --max-line-length 100 tests
+
 clean:
 	rm --force reports/*.aux
 	rm --force reports/*.dvi
@@ -149,5 +157,10 @@ clean:
 	rm --force --recursive tests/__pycache__/
 	rm --force --recursive population_growth/__pycache__/
 
+mutants:
+	mutmut run --paths-to-mutate population_growth
+	mutmut run --paths-to-mutate src
+
 tests:
 	pytest tests/test_Population_trend.py
+
