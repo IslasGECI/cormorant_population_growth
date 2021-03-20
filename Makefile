@@ -162,5 +162,5 @@ mutants:
 	mutmut run --paths-to-mutate population_growth
 
 tests:
-	pytest tests/test_Population_trend.py
+	pytest tests/test_Population_trend.py --verbose
 
