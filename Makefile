@@ -158,11 +158,16 @@ clean:
 	rm --force --recursive population_growth/__pycache__/
 	rm --force .mutmut-cache
 
-mutants: tests
-	mutmut run --paths-to-mutate population_growth --runner 'pytest -k "tests_Plotter_Population_Trend_Model" --mpl'
-
-tests:
-	mkdir --parents tests/baseline
-	pytest -k "tests_Plotter_Population_Trend_Model" --mpl-generate-path tests/baseline/
+coverage: set_tests
 	pytest -k "tests_Plotter_Population_Trend_Model" --mpl --verbose
 
+mutants: set_tests
+	mutmut run --paths-to-mutate population_growth --runner 'pytest -k "tests_Plotter_Population_Trend_Model" --mpl'
+
+set_tests:
+	mkdir --parents tests/baseline
+	pytest -k "tests_Plotter_Population_Trend_Model" --mpl-generate-path tests/baseline/
+
+
+tests:
+	pytest -k "tests_Plotter_Population_Trend_Model" --mpl --verbose

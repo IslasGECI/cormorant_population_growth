@@ -9,7 +9,7 @@ jobs:
     - name: Construye imagen
       run: docker build --tag islasgeci .
     - name: Corre pruebas
-      run: docker run islasgeci make tests
+      run: docker run islasgeci make coverage
     - name: Ejecuta objetivo principal del Makefile
       run: docker run islasgeci make
     - name: Verifica el formato
