@@ -24,16 +24,20 @@ def tests_calculate_upper_limit():
     expected_limit = calculate_upper_limit(cormorant_data["Temporada"])
     obtained_limit = 3000
     assert expected_limit == obtained_limit
-    
+
 
 Plotter = Plotter_Population_Trend_Model()
-class Tests_Plotter_Population_Trend_Model():
+
+
+class Tests_Plotter_Population_Trend_Model:
     def tests_init_(self):
         fig, ax = geci_plot()
         assert type(fig) == type(Plotter.fig)
 
-Model = Population_Trend_Model(cormorant_data, [1, 2, 3], "Temporada")
-class Test_Population_Trend_Model():
 
+Model = Population_Trend_Model(cormorant_data, [1, 2, 3], "Temporada")
+
+
+class Test_Population_Trend_Model:
     def test_ticks_text(self):
         assert (Model.ticks_text == np.array([2020, 2021])).all()
