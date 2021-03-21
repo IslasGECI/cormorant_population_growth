@@ -12,7 +12,7 @@ jobs:
       run: docker run islasgeci make coverage
     - name: Ejecuta objetivo principal del Makefile
       run: docker run islasgeci make
-    - name: Verifica el formato
-      run: docker run islasgeci make check
     - name: Evalúa resistencia a mutaciones
       run: docker run islasgeci make mutants
+    - name: Verifica el formato
+      run: docker run islasgeci make check
