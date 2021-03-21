@@ -66,6 +66,7 @@ class Plotter_Population_Trend_Model:
             label="Population growth model",
             color="b",
         )
+        return self.fig
 
     def plot_data(self, Population_Trend_Model, fit_data):
         plt.plot(

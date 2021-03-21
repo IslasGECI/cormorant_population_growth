@@ -15,4 +15,5 @@ RUN pip install \
     mutmut \
     pylint \
     pytest \
+    pytest-mpl \
     rope
