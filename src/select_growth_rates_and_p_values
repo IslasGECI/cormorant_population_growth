@@ -6,6 +6,6 @@
 data_file=${1}
 p_value_column=${2}
 conditional=${3}
-fields='1'
+field_option=1
 
-select_growth_rates_and_p_values ${data_file} ${p_value_column} ${conditional} ${fields}
+select_growth_rates_and_p_values ${data_file} ${p_value_column} "${conditional}" ${field_option}
