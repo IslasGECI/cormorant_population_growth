@@ -20,6 +20,6 @@ RUN pip install \
 
 RUN git clone https://github.com/IslasGECI/queries.git && \
     cd queries && \
-    git reset --hard 22dde8e803a948288db083f9a7552a17fc1ad86e && \
+    git reset --hard 544f891035d424dd80f333b00f42da0c0914aebb && \
     make install && \
     cd ..
