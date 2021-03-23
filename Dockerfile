@@ -17,3 +17,9 @@ RUN pip install \
     pytest \
     pytest-mpl \
     rope
+
+RUN git clone https://github.com/IslasGECI/queries.git && \
+    cd queries && \
+    git reset --hard 22dde8e803a948288db083f9a7552a17fc1ad86e && \
+    make install && \
+    cd ..
