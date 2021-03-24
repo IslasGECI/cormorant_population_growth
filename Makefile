@@ -159,15 +159,14 @@ clean:
 	rm --force .mutmut-cache
 
 coverage: set_tests
-	pytest -k "tests_Plotter_Population_Trend_Model" --mpl --verbose
+	pytest --mpl --verbose
 
 mutants: set_tests
-	mutmut run --paths-to-mutate population_growth --runner 'pytest -k "tests_Plotter_Population_Trend_Model" --mpl'
+	mutmut run --paths-to-mutate population_growth --runner 'pytest --mpl'
 
 set_tests:
 	mkdir --parents tests/baseline
-	pytest -k "tests_Plotter_Population_Trend_Model" --mpl-generate-path tests/baseline/
-
+	pytest --mpl-generate-path tests/baseline/
 
 tests:
-	pytest -k "tests_Plotter_Population_Trend_Model" --mpl --verbose
+	pytest --mpl --verbose
