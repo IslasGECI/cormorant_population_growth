@@ -23,3 +23,7 @@ RUN git clone https://github.com/IslasGECI/queries.git && \
     git reset --hard 544f891035d424dd80f333b00f42da0c0914aebb && \
     make install && \
     cd ..
+
+RUN curl -fsSL https://git.io/shellspec | sh -s -- --yes
+ENV PATH="/home/jovyan/.local/lib/shellspec:$PATH"
+RUN shellspec --init
