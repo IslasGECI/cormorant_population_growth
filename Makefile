@@ -163,7 +163,7 @@ coverage: set_tests
 
 mutants: set_tests
 	mutmut run --paths-to-mutate population_growth --runner 'pytest --mpl'
-	mutmut run --paths-to-mutate src --runner 'pytest --mpl'
+	mutmut run --paths-to-mutate src --runner 'shellspec'
 
 set_tests:
 	mkdir --parents tests/baseline
