@@ -1,8 +1,14 @@
 .*
+*.aux
 *.bbl
 *.blg
+*.log
+*.out
+*.pdf
 *.png
 *.pyc
+*.pytxcode
+data/processed/
 reports/non-tabular/
 reports/pythontex-files-tendencia_poblacional_cormoran/
 reports/tables/
