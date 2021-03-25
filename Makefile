@@ -138,25 +138,25 @@ check:
 	flake8 --max-line-length 100 tests
 
 clean:
+	rm --force --recursive data/processed/
+	rm --force --recursive population_growth/__pycache__/
+	rm --force --recursive reports/figures/
+	rm --force --recursive reports/non-tabular/
+	rm --force --recursive reports/pythontex*/
+	rm --force --recursive reports/tables/
+	rm --force --recursive src/__pycache__/
+	rm --force --recursive tests/__pycache__/
+	rm --force .mutmut-cache
 	rm --force reports/*.aux
+	rm --force reports/*.bbl
+	rm --force reports/*.blg
 	rm --force reports/*.dvi
 	rm --force reports/*.fdb_latexmk
 	rm --force reports/*.fls
 	rm --force reports/*.log
-	rm --force reports/*.bbl
-	rm --force reports/*.blg
-	rm --force reports/*.pytxcode
 	rm --force reports/*.out
 	rm --force reports/*.pdf
-	rm --force --recursive reports/tables/
-	rm --force --recursive data/processed/
-	rm --force --recursive reports/figures/
-	rm --force --recursive reports/non-tabular/
-	rm --force --recursive reports/pythontex*/
-	rm --force --recursive src/__pycache__/
-	rm --force --recursive tests/__pycache__/
-	rm --force --recursive population_growth/__pycache__/
-	rm --force .mutmut-cache
+	rm --force reports/*.pytxcode
 
 coverage: set_tests
 	pytest --mpl --verbose
