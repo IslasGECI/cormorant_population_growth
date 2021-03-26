@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #
 # Wrapper para calculate_cormorant_growth_rate.py
-src/calculate_cormorant_growth_rate.py "$@"
+python src/calculate_cormorant_growth_rate.py "$@"

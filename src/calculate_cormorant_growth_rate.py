@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # calculate_cormorant_growth_rate calcula la tasa de crecimiento fundamental (lambda)
 # utilizando un model de una ley de potencia a los datos de cantidad de nidos de cormoran orejon en Isla Alcatraz
 from cli_paths import path_files

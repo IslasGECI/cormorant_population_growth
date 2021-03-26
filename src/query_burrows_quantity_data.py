@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#
 # query_burrows_quantity_data limpia la base de datos de especies con menos de 3 temporadas
 
 import pandas as pd

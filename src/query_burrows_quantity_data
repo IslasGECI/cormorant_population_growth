@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #
 # Wrapper par query_burrows_quantity_data.py
-src/query_burrows_quantity_data.py "$@"
+python src/query_burrows_quantity_data.py "$@"
