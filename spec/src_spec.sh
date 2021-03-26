@@ -20,8 +20,10 @@ Describe 'scripts in src/'
     AfterEach 'cleanup'
 
     It 'generates output file'
+      checksum() { md5sum tests/cormorant_all_islets_clean_data.csv | cut -d " " -f1; }
       When call src/query_burrows_quantity_data --input tests/data_tests/cormorant_all_islets_data_test.csv --output tests/cormorant_all_islets_clean_data.csv
       The file tests/cormorant_all_islets_clean_data.csv should be exist
+      The result of function checksum should eq "0d1f3fbff1628e385d777a0ae42584df"
     End
   End
 End
