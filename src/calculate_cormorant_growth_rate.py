@@ -14,6 +14,7 @@ lambdas_results = []
 path = path_files()
 data_path = path.input[0][0]
 latex_table = path.output[0][0]
+bootstraping_iterations = 20
 
 cormorant_data = pd.read_csv(data_path)
 cormorant_data = cormorant_data.dropna(subset=[interest_variable])
@@ -25,7 +26,7 @@ for islet in cormorant_data.Isla.unique():
     lambdas_distribution, intervals = bootstrap_from_time_series(
         fit_data,
         interest_variable,
-        N=20,
+        N=bootstraping_iterations,
         return_distribution=True,
         remove_outliers=True,
     )
