@@ -1,7 +1,5 @@
 #shellcheck shell=sh
 Describe 'scripts in src/'
-  executable() { chmod +x src/*; }
-  BeforeAll 'executable'
 
   Describe 'script calculate_cormorant_growth_rate'
     cleanup() { rm --force tests/cormorant_all_islets_growth_rates.csv; }
