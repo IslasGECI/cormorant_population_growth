@@ -14,7 +14,12 @@ lambdas_results = []
 cli = geci_cli()
 data_path = cli.input[0][0]
 latex_table = cli.output[0][0]
-bootstraping_iterations = int(cli.iterations[0][0])
+try:
+    bootstraping_iterations = int(cli.iterations[0][0])
+except:
+    bootstraping_iterations = 2000
+
+print(f'Number of bootstraping iterations {bootstraping_iterations}')
 
 cormorant_data = pd.read_csv(data_path)
 cormorant_data = cormorant_data.dropna(subset=[interest_variable])
