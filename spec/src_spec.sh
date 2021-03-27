@@ -10,7 +10,7 @@ Describe 'scripts in src/'
     It 'generates output file'
       checksum() { md5sum tests/cormorant_all_islets_growth_rates.csv | cut -d " " -f1; }
       When call src/calculate_cormorant_growth_rate --input tests/data_tests/cormorant_all_islets_clean_data_test.csv --output tests/cormorant_all_islets_growth_rates.csv --iterations 20
-      The stdout should be present
+      The first line of stdout should equal "Number of bootstraping iterations 20"
       The file tests/cormorant_all_islets_growth_rates.csv should be exist
       The result of function checksum should eq "3bbd56343572f3708ebdb6613c11e450"
     End
