@@ -25,7 +25,7 @@ Describe 'scripts in src/'
       checksum() { md5sum tests/cormorant_all_islets_clean_data.csv | cut -d " " -f1; }
       When call src/query_burrows_quantity_data --input tests/data_tests/cormorant_all_islets_data_test.csv --output tests/cormorant_all_islets_clean_data.csv
       The file tests/cormorant_all_islets_clean_data.csv should be exist
-      The result of function checksum should eq "0d1f3fbff1628e385d777a0ae42584df"
+      The result of function checksum should eq "da4a67958f82c746279b4076c7d629fc"
     End
   End
 End
