@@ -37,7 +37,6 @@ for islet in cormorant_data.Isla.unique():
     )
 
     lambda_latex = generate_latex_interval_string(intervals)
-    lambdas_distribution = pd.DataFrame({"Tasa de crecimiento": lambdas_distribution})
     p_value_mayor, p_value_menor = calculate_p_values(lambdas_distribution)
     lambdas_results.append([islet, lambda_latex, p_value_mayor, p_value_menor])
 
@@ -57,8 +56,5 @@ for islet in cormorant_data.Isla.unique():
 
 lambdas_table = pd.DataFrame(lambdas_results)
 lambdas_table.columns = ["Islet", "Growth_rate", "p_value", "p_value_menor"]
-
-if not os.path.exists("reports/tables"):
-    os.makedirs("reports/tables")
 
 lambdas_table.round(decimals=3).to_csv(latex_table, index=False)
