@@ -129,6 +129,15 @@ $(csvCormorantSeasonInterval): $(csvConteoNidosCormoranOrejon) src/query_get_sea
 # ===========================================================================
 # Elimina los residuos de LaTeX
 
+.PHONY: \
+		check \
+		clean \
+		coverage \
+		format \
+		mutants \
+		set_tests \
+		tests
+
 check:
 	black --check --line-length 100 population_growth
 	black --check --line-length 100 src
@@ -160,6 +169,11 @@ clean:
 
 coverage: set_tests
 	pytest --mpl --verbose
+
+format:
+	black --line-length 100 population_growth
+	black --line-length 100 src
+	black --line-length 100 tests
 
 mutants: set_tests
 	mutmut run --paths-to-mutate population_growth --runner 'pytest --mpl'
