@@ -14,9 +14,9 @@ lambdas_results = []
 cli = geci_cli()
 data_path = cli.input[0][0]
 latex_table = cli.output[0][0]
-if hasattr(cli, "iterations"):
+try:
     bootstraping_iterations = int(cli.iterations[0][0])
-else:
+except:
     bootstraping_iterations = 2000  # pragma: no mutate
 
 print(f"Number of bootstraping iterations {bootstraping_iterations}")
