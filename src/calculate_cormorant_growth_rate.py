@@ -15,9 +15,9 @@ cli = geci_cli()
 data_path = cli.input[0][0]
 latex_table = cli.output[0][0]
 try:
-    bootstraping_iterations = int(cli.iterations[0][0])
+    bootstraping_iterations = int(cli.iterations[0][0])  # pragma: no mutate or it will timeout
 except:
-    bootstraping_iterations = 2000  # pragma: no mutate
+    bootstraping_iterations = 2000  # pragma: no mutate or it will timeout
 
 print(f"Number of bootstraping iterations {bootstraping_iterations}")
 
