@@ -1,11 +1,9 @@
-FROM islasgeci/jupyter:dcc0
+FROM islasgeci/base:95ac
 
-WORKDIR /workdir
 COPY . .
 
 RUN pip install --upgrade pip && pip install \
     git+https://github.com/IslasGECI/analytictools.git@29ecd2646109cdfb11638ad5fee7e7457a442e9c \
-    git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta \
     pandasql
 
 RUN pip install \
@@ -25,5 +23,5 @@ RUN git clone https://github.com/IslasGECI/queries.git && \
     cd ..
 
 RUN curl -fsSL https://git.io/shellspec | sh -s -- --yes
-ENV PATH="/home/jovyan/.local/lib/shellspec:$PATH"
+ENV PATH="/root/.local/lib/shellspec:$PATH"
 RUN shellspec --init
