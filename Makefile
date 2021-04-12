@@ -87,6 +87,7 @@ $(csvCormorantCleanData): $(csvCormorantMaximumNests) src/query_burrows_quantity
 
 $(pngPopulationGrowRateCormorantAllIslets) $(csvCormorantAllGrowthRates): $(csvCormorantCleanData) src/calculate_cormorant_growth_rate
 	$(checkDirectories)
+	mkdir reports/tables # 💩 TODO: src/calculate_cormorant_growth_rate tiene más de una responsabilidad; hay que partirlo en una parte para las figuras y otra para la tabla.
 	$(word 2, $^) \
 		--input $< \
 		--output $(csvCormorantAllGrowthRates)
