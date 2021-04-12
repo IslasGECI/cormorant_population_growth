@@ -1,4 +1,4 @@
-FROM islasgeci/base:95ac
+FROM islasgeci/base:dc92
 
 COPY . .
 
