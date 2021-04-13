@@ -16,6 +16,5 @@ Para reproducir el reporte ejecuta:
 docker pull islasgeci/cormorant_population_growth:latests
 docker run --name cormorant_population_growth islasgeci/cormorant_population_growth:latests make
 docker cp cormorant_population_growth:/workdir/reports/tendencia_poblacional_cormoran.pdf .
+xdg-open tendencia_poblacional_cormoran.pdf
 ```
-
-Las instrucciones anteriores dejarán una copia del reporte en el directorio actual.
