@@ -1,5 +1,5 @@
-name: Conservación de Islas
-on: [push, pull_request]
+name: Check build
+on: pull_request
 jobs:
   actions:
     runs-on: ubuntu-latest
@@ -8,11 +8,11 @@ jobs:
       uses: actions/checkout@v2
     - name: Construye imagen
       run: docker build --tag islasgeci .
-    - name: Corre pruebas
-      run: docker run islasgeci make coverage
-    - name: Ejecuta objetivo principal del Makefile
-      run: docker run islasgeci make
-    - name: Evalúa resistencia a mutaciones
-      run: docker run islasgeci make mutants
     - name: Verifica el formato
       run: docker run islasgeci make check
+    - name: Corre pruebas
+      run: docker run islasgeci make coverage
+    - name: Evalúa resistencia a mutaciones
+      run: docker run islasgeci make mutants
+    - name: Ejecuta objetivo principal del Makefile
+      run: docker run islasgeci make
