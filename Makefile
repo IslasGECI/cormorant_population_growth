@@ -74,27 +74,27 @@ reports/tendencia_poblacional_cormoran.pdf: reports/tendencia_poblacional_cormor
 
 $(csvCormorantMaximumNests): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
 	$(checkDirectories)
-	$(word 2, $^) \
+	src/calculate_max_nest_quantity \
 		$< \
 		sql/max_nest_quantity.sql \
 		> $@
 
 $(csvCormorantCleanData): $(csvCormorantMaximumNests) src/query_burrows_quantity_data
 	$(checkDirectories)
-	$(word 2, $^) \
+	src/query_burrows_quantity_data \
 		--input $< \
 		--output $(csvCormorantCleanData)
 
 $(pngPopulationGrowRateCormorantAllIslets) $(csvCormorantAllGrowthRates): $(csvCormorantCleanData) src/calculate_cormorant_growth_rate
 	$(checkDirectories)
-	mkdir reports/tables # 💩 TODO: src/calculate_cormorant_growth_rate tiene más de una responsabilidad; hay que partirlo en una parte para las figuras y otra para la tabla.
-	$(word 2, $^) \
+	mkdir reports/tables
+	src/calculate_cormorant_growth_rate \
 		--input $< \
 		--output $(csvCormorantAllGrowthRates)
 
 $(csvCormorantsPopulationDecreasing): $(csvCormorantAllGrowthRates) src/select_growth_rates_and_p_values
 	$(checkDirectories)
-	$(word 2, $^) \
+	src/select_growth_rates_and_p_values \
 		$< \
 		p_value_menor \
 		"<= 0.1" \
@@ -102,7 +102,7 @@ $(csvCormorantsPopulationDecreasing): $(csvCormorantAllGrowthRates) src/select_g
 
 $(csvCormorantsPopulationGrowing): $(csvCormorantAllGrowthRates) src/select_growth_rates_and_p_values
 	$(checkDirectories)
-	$(word 2, $^) \
+	src/select_growth_rates_and_p_values \
 		$< \
 		p_value \
 		"<= 0.1" \
@@ -110,7 +110,7 @@ $(csvCormorantsPopulationGrowing): $(csvCormorantAllGrowthRates) src/select_grow
 
 $(csvCormorantsPopulationWithoutSignificance): $(csvCormorantAllGrowthRates) src/select_growth_rates_and_p_values
 	$(checkDirectories)
-	$(word 2, $^) \
+	src/select_growth_rates_and_p_values \
 		$< \
 		p_value \
 		"> 0.1 AND p_value < 0.9" \
@@ -118,7 +118,7 @@ $(csvCormorantsPopulationWithoutSignificance): $(csvCormorantAllGrowthRates) src
 
 $(csvCormorantSeasonInterval): $(csvConteoNidosCormoranOrejon) src/query_get_season_interval
 	$(checkDirectories)
-	$(word 2, $^) \
+	src/query_get_season_interval \
 		$< \
 		> $@
 
