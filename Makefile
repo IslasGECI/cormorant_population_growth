@@ -17,9 +17,9 @@ pngPopulationGrowRateCormorantAllIslets = \
 
 csvCormorantAllGrowthRates = reports/tables/cormorant_all_islets_growth_rates.csv
 
-csvCormorantsPopulationGrowing = reports/tables/cormorant_colonies_growing.csv
-
 csvCormorantsPopulationDecreasing = reports/tables/cormorant_colonies_decreasing.csv
+
+csvCormorantsPopulationGrowing = reports/tables/cormorant_colonies_growing.csv
 
 csvCormorantsPopulationWithoutSignificance = reports/tables/cormorant_colonies_without_significance.csv
 
@@ -30,13 +30,13 @@ reports/tendencia_poblacional_cormoran.pdf: reports/tendencia_poblacional_cormor
 	cd $(<D) && pdflatex $(<F)
 	cd $(<D) && pdflatex $(<F)
 
-define checkDirectories
-	mkdir --parents $(@D)
-endef
-
 csvCormorantMaximumNests = data/processed/cormorant_all_islets_data.csv
 
 csvConteoNidosCormoranOrejon = data/raw/conteo_nidos_cormoran_todas_islas.csv
+
+define checkDirectories
+	mkdir --parents $(@D)
+endef
 
 $(csvCormorantMaximumNests): $(csvConteoNidosCormoranOrejon) src/calculate_max_nest_quantity
 	$(checkDirectories)
