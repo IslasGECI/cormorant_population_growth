@@ -16,7 +16,7 @@ RUN pip install --upgrade pip && pip install \
     tqdm
 
 # IslasGECI/queries
-RUN git clone --branch feature/Agrega_funcionalidad_a_query https://github.com/IslasGECI/queries.git && \
+RUN git clone --depth 1 --branch feature/Agrega_funcionalidad_a_query https://github.com/IslasGECI/queries.git && \
     cd queries && \
     make install
 
