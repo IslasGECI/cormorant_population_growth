@@ -9,6 +9,8 @@ jobs:
     steps:
     - name: Copia repositorio
       uses: actions/checkout@v2
+    - name: Check analyses.json
+      run: docker run --rm --volume ${PWD}:/checkanalyses islasgeci/misctools:latest bash -c "cd /checkanalyses && geci-checkanalyses"
     - name: Construye imagen
       run: docker build --tag islasgeci/cormorant_population_growth:latest --tag islasgeci/cormorant_population_growth:${github_sha:0:4} .
     - name: Verifica el formato
