@@ -1,6 +1,7 @@
 import numpy as np
-from geci_plots import *
-from bootstraping_tools import *
+from geci_plots import geci_plot, roundup, ticks_positions_array, order_magnitude
+from bootstraping_tools import lambda_calculator, power_law
+import matplotlib.pyplot as plt
 
 
 def filter_data_by_islet(df, islet):

@@ -1,8 +1,7 @@
 import pytest
-import numpy as np
 from unittest.mock import Mock
 
-from population_growth import *
+from population_growth import Population_Trend_Model, Plotter_Population_Trend_Model
 
 
 @pytest.mark.mpl_image_compare

@@ -1,5 +1,11 @@
-from population_growth import *
-import pytest
+from population_growth import (
+    Population_Trend_Model,
+    Plotter_Population_Trend_Model,
+    filter_data_by_islet,
+    resample_seasons,
+    calculate_upper_limit,
+)
+from geci_plots import geci_plot
 import pandas as pd
 import numpy as np
 from pandas._testing import assert_frame_equal
@@ -32,7 +38,7 @@ Plotter = Plotter_Population_Trend_Model()
 class Tests_Plotter_Population_Trend_Model:
     def tests_init_(self):
         fig, ax = geci_plot()
-        assert type(fig) == type(Plotter.fig)
+        assert type(fig) == type(Plotter.fig)  # noqa
 
 
 Model = Population_Trend_Model(cormorant_data, [1, 2, 3], "Temporada")
