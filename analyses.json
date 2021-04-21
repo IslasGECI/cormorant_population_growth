@@ -5,27 +5,27 @@
         "description": "Tendencia poblacional de cormoran orejón en Alcatraz",
         "report": "tendencia_poblacional_cormoran.pdf",
         "results": [
-            "pngPopulationGrowRateCormorantAlcatraz.png",
-            "pngPopulationGrowRateCormorantPatos.png",
-            "pngPopulationGrowRateCormorantPajaros.png",
-            "Double-crested_Cormorant.png",
+            "cormorant_all_islets_growth_rates.csv",
+            "csvCormorantBurrowsQuantityPacificIslands.csv",
             "csvCormorantsPopulationDecreasing.csv",
             "csvCormorantsPopulationGrowing.csv",
-            "csvGrowthRateCormorantPacificIslands",
-            "csvCormorantBurrowsQuantityPacificIslands.csv",
             "csvFullResultsCormorantPacificIslands.csv",
+            "csvGrowthRateCormorantPacificIslands",
             "csvMaximumNestsAlcatraz.csv",
-            "csvMaximumNestsPatos.csv",
             "csvMaximumNestsPajaros.csv",
+            "csvMaximumNestsPatos.csv",
+            "Double-crested_Cormorant.png",
             "growth_rate_distribution_cormorant_alcatraz.csv",
-            "growth_rate_distribution_cormorant_patos.csv",
             "growth_rate_distribution_cormorant_pajaros.csv",
-            "cormorant_all_islets_growth_rates.csv"
+            "growth_rate_distribution_cormorant_patos.csv",
+            "pngPopulationGrowRateCormorantAlcatraz.png",
+            "pngPopulationGrowRateCormorantPajaros.png",
+            "pngPopulationGrowRateCormorantPatos.png"
         ],
         "scripts": [
+            "src/calculate_burrows_quantity_per_species",
             "src/calculate_cormorant_growth_rate",
-            "src/calculate_max_nest_quantity",
-            "src/calculate_burrows_quantity_per_species"
+            "src/calculate_max_nest_quantity"
         ],
         "data": [
             {
