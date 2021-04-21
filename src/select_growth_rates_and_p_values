@@ -1,18 +1,11 @@
 #!/usr/bin/env bash
 #
+# Este query selecciona la tasa de crecimiento poblacional y el p-valor de las tablas de tasas de
+# crecimiento por isla.
+
 data_file=${1}
-table_name=$(basename "${data_file}" .csv)
 p_value_column=${2}
 conditional=${3}
-csvsql --snifflimit 0 --no-inference --blanks --query "
-SELECT 
-  Islet AS 'Archipelago/Island',
-  Growth_rate AS 'Growth rate',
-  CASE
-    WHEN ${p_value_column} < 0.001
-    THEN '$<0.001$'
-    ELSE ${p_value_column}
-  END 'p-value'
-FROM ${table_name}
-WHERE ${p_value_column} ${conditional}
-" ${data_file}
+field_option=1
+
+select_growth_rates_and_p_values ${data_file} ${p_value_column} "${conditional}" ${field_option}

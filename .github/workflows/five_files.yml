@@ -1,0 +1,20 @@
+name: Five files
+on:
+  pull_request:
+    branches:
+      - develop
+      - master
+jobs:
+  actions:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Copia repositorio
+      uses: actions/checkout@v2
+    - name: Check analyses.json
+      run: docker run --rm --volume ${PWD}:/checkanalyses islasgeci/misctools:latest bash -c "cd /checkanalyses && geci-checkanalyses"
+    - name: Construye imagen
+      run: docker build --tag islasgeci .
+    - name: Verifica el formato
+      run: docker run islasgeci make check
+    - name: Ejecuta objetivo principal del Makefile
+      run: docker run islasgeci make

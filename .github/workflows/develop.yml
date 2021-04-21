@@ -1,0 +1,32 @@
+name: Latest
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  actions:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Copia repositorio
+      uses: actions/checkout@v2
+    - name: Check analyses.json
+      run: docker run --rm --volume ${PWD}:/checkanalyses islasgeci/misctools:latest bash -c "cd /checkanalyses && geci-checkanalyses"
+    - name: Construye imagen
+      run: docker build --tag islasgeci/cormorant_population_growth:latest --tag islasgeci/cormorant_population_growth:${github_sha:0:4} .
+    - name: Verifica el formato
+      run: docker run islasgeci/cormorant_population_growth:latest make check
+    - name: Corre pruebas
+      run: docker run islasgeci/cormorant_population_growth:latest make coverage
+    - name: Evalúa resistencia a mutaciones
+      run: docker run islasgeci/cormorant_population_growth:latest make mutants
+    - name: Ejecuta objetivo principal del Makefile
+      run: docker run islasgeci/cormorant_population_growth:latest make
+    - name: Docker log-in
+      env:
+        docker_username: ${{ secrets.docker_username }}
+        docker_password: ${{ secrets.docker_password }}
+      run: echo "${docker_password}" | docker login -u "${docker_username}" --password-stdin
+    - name: Sube latest a Docker Hub
+      run: docker push islasgeci/cormorant_population_growth:latest
+    - name: Sube sha a Docker Hub
+      run: docker push islasgeci/cormorant_population_growth:${github_sha:0:4}

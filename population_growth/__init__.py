@@ -1,1 +1,1 @@
-from .population_growth_model import *
+from .population_growth_model import *  # noqa

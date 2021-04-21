@@ -1,18 +1,26 @@
-FROM islasgeci/jupyter:dcc0
-
-WORKDIR /workdir
+FROM islasgeci/base:dc92
 COPY . .
 
+# Install modules with pip
 RUN pip install --upgrade pip && pip install \
-    git+https://github.com/IslasGECI/analytictools.git@bf4af5a568534e120fe1228277584226c97e017e \
-    git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta \
-    pandasql
-
-RUN pip install \
     . \
     black \
     flake8 \
+    git+https://github.com/IslasGECI/analytictools.git@29ecd2646109cdfb11638ad5fee7e7457a442e9c \
     mutmut \
+    pandasql \
     pylint \
     pytest \
-    rope
+    pytest-mpl \
+    rope \
+    tqdm
+
+# IslasGECI/queries
+RUN git clone --depth 1 --branch v0.1.0 https://github.com/IslasGECI/queries.git && \
+    cd queries && \
+    make install
+
+# ShellSpec
+RUN curl -fsSL https://git.io/shellspec | sh -s -- --yes
+ENV PATH="/root/.local/lib/shellspec:$PATH"
+RUN shellspec --init
