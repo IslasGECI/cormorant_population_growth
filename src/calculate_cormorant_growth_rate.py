@@ -1,7 +1,7 @@
 # calculate_cormorant_growth_rate calcula la tasa de crecimiento fundamental (lambda)
 # utilizando un model de una ley de potencia a los datos de cantidad de nidos de cormoran orejon en Isla Alcatraz
 from geci_cli import geci_cli
-from bootstraping_tools import (
+from bootstrapping_tools import (
     calculate_p_values,
     bootstrap_from_time_series,
     generate_latex_interval_string,
