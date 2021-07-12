@@ -110,6 +110,17 @@ check:
 	flake8 --max-line-length 100 src
 	flake8 --max-line-length 100 tests
 
+# V. Reglas phonies
+# ===========================================================================
+
+$(csvDatosParejasAvesMarinas):
+	$(checkDirectories)
+	descarga_datos $(@F) $(@D) parejas_aves_marinas_islas_del_pacifico
+#=============================================================================
+# V. Reglas del resto de los phonies
+# ===========================================================================
+# Elimina los residuos de LaTeX
+
 clean:
 	rm --force --recursive data/processed/
 	rm --force --recursive population_growth/__pycache__/
