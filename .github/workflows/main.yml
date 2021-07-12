@@ -2,7 +2,7 @@ name: Stable
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   actions:
     runs-on: ubuntu-latest
