@@ -5,7 +5,7 @@
 import os
 
 from bootstrapping_tools import *
-from cli_paths import path_files
+from geci_cli import geci_cli
 from geci_plots import *
 from matplotlib.ticker import MaxNLocator
 from tqdm import tqdm
@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import pandasql as ps
 
-path=path_files()
+path=geci_cli()
 data_path = path.input[0][0]
 latex_table = path.output[1][0]
 results_table = path.output[0][0]
