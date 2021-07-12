@@ -5,6 +5,7 @@
 from geci_cli import geci_cli
 from geci_plots import *
 from bootstrapping_tools import *
+from matplotlib.ticker import MaxNLocator
 
 import os
 import pandas as pd
