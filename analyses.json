@@ -1,47 +1,48 @@
 [
-  {"name": "Tendencia poblacional de cormoran en Alcatraz",
-    "docker_parent_image": "islasgeci/jupyter:5869",
-    "description": "Tendencia poblacional de cormoran orejón en Alcatraz",
-    "report": "tendencia_poblacional_cormoran.pdf",
-    "results": [
-        "pngPopulationGrowRateCormorantAlcatraz.png",
-        "pngPopulationGrowRateCormorantPatos.png",
-        "pngPopulationGrowRateCormorantPajaros.png",
-        "Double-crested_Cormorant.png",
-        "csvCormorantsPopulationDecreasing.csv",
-        "csvCormorantsPopulationGrowing.csv",
-        "csvGrowthRateCormorantPacificIslands",
-        "csvCormorantBurrowsQuantityPacificIslands.csv",
-        "csvFullResultsCormorantPacificIslands.csv",
-        "csvMaximumNestsAlcatraz.csv",
-        "csvMaximumNestsPatos.csv",
-        "csvMaximumNestsPajaros.csv",
-        "growth_rate_distribution_cormorant_alcatraz.csv",
-        "growth_rate_distribution_cormorant_patos.csv",
-        "growth_rate_distribution_cormorant_pajaros.csv",
-        "cormorant_all_islets_growth_rates.csv"
-    ],
-    "scripts": [
-        "src/calculate_cormorant_growth_rate",
-        "src/calculate_max_nest_quantity",
-        "src/calculate_burrows_quantity_per_species"
-    ],
-    "data": [
-        {
-            "source": "tabular_data_packages",
-            "version": "dd4283115b07c19ad2ac6c3f10ef9a8dc7e506cd",
-            "path": "conteo_nidos_cormoran_todas_islas",
-            "type": "csv",
-            "filename": "conteo_nidos_cormoran_todas_islas.csv"
-        },
-        {
-            "source": "tabular_data_packages",
-            "version": "be27a96dc6280b16f556a962508a6b5d4b7fbea1",
-            "path": "parejas_aves_marinas_islas_del_pacifico",
-            "type": "csv",
-            "filename": "parejas_aves_marinas_islas_del_pacifico.csv"
-        }
-    ],
-    "requirements": []
-}
+    {
+        "name": "Tendencia poblacional de cormoran en Alcatraz",
+        "image_tag": "1f8f",
+        "description": "Tendencia poblacional de cormoran orejón en Alcatraz",
+        "report": "tendencia_poblacional_cormoran.pdf",
+        "results": [
+            "cormorant_all_islets_growth_rates.csv",
+            "csvCormorantBurrowsQuantityPacificIslands.csv",
+            "csvCormorantsPopulationDecreasing.csv",
+            "csvCormorantsPopulationGrowing.csv",
+            "csvFullResultsCormorantPacificIslands.csv",
+            "csvGrowthRateCormorantPacificIslands",
+            "csvMaximumNestsAlcatraz.csv",
+            "csvMaximumNestsPajaros.csv",
+            "csvMaximumNestsPatos.csv",
+            "Double-crested_Cormorant.png",
+            "growth_rate_distribution_cormorant_alcatraz.csv",
+            "growth_rate_distribution_cormorant_pajaros.csv",
+            "growth_rate_distribution_cormorant_patos.csv",
+            "pngPopulationGrowRateCormorantAlcatraz.png",
+            "pngPopulationGrowRateCormorantPajaros.png",
+            "pngPopulationGrowRateCormorantPatos.png"
+        ],
+        "scripts": [
+            "src/calculate_burrows_quantity_per_species",
+            "src/calculate_cormorant_growth_rate",
+            "src/calculate_max_nest_quantity"
+        ],
+        "data": [
+            {
+                "source": "tabular_data_packages",
+                "version": "ed1aa16e170889afc22efc27949ef420664bd4f7",
+                "path": "conteo_nidos_cormoran_todas_islas",
+                "type": "csv",
+                "filename": "conteo_nidos_cormoran_todas_islas.csv"
+            },
+            {
+                "source": "tabular_data_packages",
+                "version": "be27a96dc6280b16f556a962508a6b5d4b7fbea1",
+                "path": "parejas_aves_marinas_islas_del_pacifico",
+                "type": "csv",
+                "filename": "parejas_aves_marinas_islas_del_pacifico.csv"
+            }
+        ],
+        "requirements": []
+    }
 ]

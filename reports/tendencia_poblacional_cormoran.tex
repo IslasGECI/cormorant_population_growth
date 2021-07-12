@@ -11,7 +11,22 @@
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{caption}
+\usepackage{pgfplotstable}
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry} 
+
+\pgfplotstableread[col sep=comma]{./tables/cormorant_all_islets_growth_rates.csv}\AllGrowthRates
+
+\pgfplotstablecreatecol[
+  create col/assign/.code={%
+    \getthisrow{Growth_rate}\entry
+    \edef\entry{\entry}%
+    \pgfkeyslet{/pgfplots/table/create col/next content}\entry
+  }]
+  {Growth rate}\AllGrowthRates
+
+\pgfplotstableread[col sep=comma]{./tables/cormorant_colonies_growing.csv}\ColoniesGrowing
+\pgfplotstableread[col sep=comma]{./tables/cormorant_colonies_decreasing.csv}\ColoniesDecreasing
+\pgfplotstableread[col sep=comma]{./tables/cormorant_colonies_without_significance.csv}\ColoniesWithoutSignificance
 
 \author{Fernando Alvarez y Maritza Bello}
 
@@ -22,13 +37,29 @@
 \maketitle
 
 \begin{abstract}
-La población de cormorán orejón está disminuyendo en las islas Alcatraz, Pájaros, Patos y San Benito. En Isla Asunción la población va en aumento. Esta información la obtenemos a partir de ajustar un modelo de crecimiento poblacional, a los datos de cantidad de nidos de cormorán orejón en once islas distintas.
+La población de cormorán orejón está disminuyendo en las islas Alcatraz, Pájaros, Patos y San
+Benito. En Isla Asunción y el histórico de Coronado Norte y Coronado Sur nos indican que la
+población está en aumento. Esta información la obtenemos a partir de ajustar un modelo de
+crecimiento poblacional, a los datos de cantidad de nidos de cormorán orejón en
+once islas distintas.
 
 \end{abstract}
 
 \section*{Datos}
 
-Utilizamos dos conjuntos de datos para estos resultados. La base de datos de GECI: \href{https://drive.google.com/drive/u/0/folders/1K2-itQXbNXPhrz4Pb3eRr9NG9A4rR47o}{{\color{blue}\textit{\underline{cantidad de parejas de aves marinas del pacífico}}}}, donde registramos la cantidad anual de parejas o madrigueras para un total de 9 islas y 18 especies. De esta base de datos utilizamos solamente los datos de cormorán orejón. También utilizamos la base de datos \href{https://drive.google.com/drive/folders/1aXmotwcGcZjK52USWMdlZoffaMUlI0tT}{{\color{blue}\textit{\underline{conteo de nidos de cormorán}}}}, la cual nos fue compartida por CONANP. En esta tabla tenemos cantidad de nidos por observación directa de 3 islas del golfo de California: Patos, Pajaros y Bledos.
+Utilizamos dos conjuntos de datos para estos resultados. La base de datos de GECI:
+\href{https://drive.google.com/drive/u/0/folders/1K2-itQXbNXPhrz4Pb3eRr9NG9A4rR47o}{{\color{blue}\textit{cantidad
+de parejas de aves marinas del pacífico}}}, donde registramos la cantidad anual de parejas o
+madrigueras para un total de 9 islas y 18 especies. De esta base de datos utilizamos solamente los
+datos de cormorán orejón. También utilizamos la base de datos
+\href{https://drive.google.com/drive/folders/1aXmotwcGcZjK52USWMdlZoffaMUlI0tT}{{\color{blue}\textit{\underline{conteo
+de nidos de cormorán}}}}, la cual CONANP nos compartió. En esta tabla tenemos cantidad de nidos por
+observación directa de 3 islas del golfo de California: Patos, Pájaros y Bledos. Agregamos también
+la serie de tiempo histórica para Cornoado Norte y Coronado Sur.
+
+Para Alcatraz y las islas del golfo, consideramos el mes de julio como el corte en
+las temporadas. Por ejemplo, la temporada 2018 abarca el periodo entre julio 2018 y junio 2019.
+Calculamos la máxima cantidad de parejas de cada temporada con base en este intervalo.
 
 
 \section*{Metodología}
@@ -50,7 +81,7 @@ Para calcular la tasa de crecimiento fundamental $\lambda$, tomamos la máxima c
 Hicimos un remuestreo no paramétrico de los datos de cantidad de madrigueras. Este procedimiento no hace suposiciones de la distribución de los datos \cite{carpenter2000bootstrap}. El algoritmo que implementamos es el siguiente: 
 
 \begin{itemize}
-    \item Tomamos una muestra de $n$ observaciones aleatorias con la posibilidad de remplazo, a partir del conjunto original de datos de cantidad de madrigueras con actividad, $ N_{\mbox{obs}} $. Esta muestra es un conjunto de datos bootstrap, $N^{*}$. Donde $n$ es el total de registros ($n=14$ para Alcatraz, $n=5$ para Patos y $n=6$ para Pajaros).
+    \item Tomamos una muestra de $n$ observaciones aleatorias con la posibilidad de remplazo, a partir del conjunto original de datos de cantidad de madrigueras con actividad, $ N_{\mbox{obs}} $. Esta muestra es un conjunto de datos bootstrap, $N^{*}$. Donde $n$ es el total de registros ($n=14$ para Alcatraz, $n=5$ para Patos y $n=6$ para Pájaros).
     \item Calculamos la versión bootstrap $\lambda^*$ de la tasa de crecimiento $\lambda$, ajustando el modelo (1) al nuevo conjunto $N^{*}$.
     \item Repetimos los pasos anteriores $B = 2000$ veces y obtenemos la distribución bootstrap de la tasa de crecimiento $\lambda^*$.
 \end{itemize}
@@ -59,76 +90,182 @@ Con esto, calculamos un intervalo de confianza del 95\% para $ \lambda^* $.
 
 \section*{Resultados}
 
-En la Tabla \ref{tab:csvTodasLambdas}  mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para isla Patos, el valor central de la distribución es $0.91$, el límite inferior es $0.91 - 0.14 = 0.77$ y el límite superior $ 0.91 + 0.15 = 1.06$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
+En la Tabla \ref{tab:csvTodasLambdas}  mostramos las tasas de crecimiento $\lambda^*$ y su respectivo intervalo de confianza del 95\%. Por ejemplo para Isla Patos, el valor central de la distribución es $0.91$, el límite inferior es $0.91 - 0.14 = 0.77$ y el límite superior $ 0.91 + 0.15 = 1.06$. A continuación podemos ver una gráfica para los datos de cada isla y el modelo ajustado.
 
 \begin{table}[H]
-\centering
-\caption{Intervalos de confianza del 95\% de las tasas de crecimiento ($\lambda$) de cormorán orejón en once colonias, del Noroeste de México. Fueron calculadas a partir de ajustar el modelo (1) a los datos del máximo de nidos en cada temporada. Realizamos un remuestreo bootstrapping de cada serie de tiempo, para calcular los intervalos de confianza. El periodo de tiempo analizado varía entre el 2000 al 2020.}
-\label{tab:csvTodasLambdas}
-\csvautotabular{tables/cormorant_all_islets_growth_rates.csv}
+  \centering
+  \caption{Intervalos de confianza del 95\% de las tasas de crecimiento ($\lambda$) de cormorán orejón en once colonias, del Noroeste de México. Fueron calculadas a partir de ajustar el modelo (1) a los datos del máximo de nidos en cada temporada. Realizamos un remuestreo bootstrapping de cada serie de tiempo, para calcular los intervalos de confianza. El periodo de tiempo analizado varía entre el 2000 al 2020.}
+   \pgfplotstabletypeset[
+     string type,
+     columns={Islet,{Growth rate}},
+     assign column name/.style={/pgfplots/table/column name={\textbf{#1}}},
+    every head row/.style={before row=\toprule,after row=\midrule},
+    every last row/.style={after row=\bottomrule},
+    ]{\AllGrowthRates}
+  \label{tab:csvTodasLambdas}
 \end{table}
 
-Realizamos pruebas estadísticas, con un nivel de significancia de $\alpha = 0.1$, para determinar si nuestros resultados tienen significancia estadística. Por ejemplo, para la hipótesis nula de una población estable o en crecimiento ($H_0: \lambda\geq 1$), el p-valor para las islas Alcatraz y Pajaros es $p=0.01$ y para isla Patos es $p=0.07$. Podemos concluir que los datos, nos brindan información suficiente para decir con seguridad que la población está disminuyendo.
+Los renglones Coronado, Coronado Norte y Coronado Sur corresponden a distintos conjuntos de datos.
+Los de Coronado Norte y Coronado Sur son los resultados que obtuvimos a partir de las series de
+tiempo históricas, de 1969-2005 para Coronado Sur y de 1971-2005 para Coronado Norte. El renglón de
+Coronado corresponde a los datos de GECI en el intervalo 2013-2019, considerando la cantidad de
+nidos en ambas islas.
+
+Realizamos pruebas estadísticas, con un nivel de significancia de $\alpha = 0.1$, para determinar si nuestros resultados tienen significancia estadística. Las tablas \ref{tab:csvPobAumentando} y \ref{tab:csvPobDisminuyendo} muestran las colonias con las cuales obtuvimos resultados con significancia estadística y pudimos estimar una tendencia poblacional.
 
 \begin{table}[H]
-\centering
-\caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico que están en crecimiento ($H_o: \lambda\leq 1$, $\alpha = 0.1$).}
-\label{tab:csvPobAumentando}
-\csvautotabular{tables/csvCormorantsPopulationGrowing.csv}
+  \centering
+  \caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico que están en crecimiento ($H_o: \lambda\leq 1$, $\alpha = 0.1$).}
+   \pgfplotstabletypeset[
+     string type,
+     assign column name/.style={/pgfplots/table/column name={\textbf{#1}}},
+    every head row/.style={before row=\toprule,after row=\midrule},
+    every last row/.style={after row=\bottomrule},
+    ]{\ColoniesGrowing}
+  \label{tab:csvPobAumentando}
 \end{table}
 
 
 \begin{table}[H]
-\centering
-\caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico que están decreciendo ($H_o: \lambda\geq 1$, $\alpha = 0.1$).}
-\label{tab:csvPobDisminuyendo}
-\csvautotabular{tables/csvCormorantsPopulationDecreasing.csv}
+  \centering
+  \caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico que están decreciendo ($H_o: \lambda\geq 1$, $\alpha = 0.1$).}
+   \pgfplotstabletypeset[
+     string type,
+     assign column name/.style={/pgfplots/table/column name={\textbf{#1}}},
+    every head row/.style={before row=\toprule,after row=\midrule},
+    every last row/.style={after row=\bottomrule},
+    ]{\ColoniesDecreasing}
+  \label{tab:csvPobDisminuyendo}
+\end{table}
+
+La tabla \ref{tab:csvPobSinSignificancia} muestra las colonias para las cuales no contamos con información suficiente para rechazar la hipótesis nula.
+
+\begin{table}[H]
+  \centering
+  \caption{Tasa de crecimiento para las colonias de cormorán orejón en el pacífico para las que no observaron tendencias globales aparentes. El valor p calculado no tuvo significancia en las dos hipótesis nula probadas: de una población en crecimiento, ni de una población en decrecimiento.}
+   \pgfplotstabletypeset[
+      string type,
+      columns={Archipelago/Island,{Growth rate}},
+      assign column name/.style={/pgfplots/table/column name={\textbf{#1}}},
+      every head row/.style={before row=\toprule,after row=\midrule},
+      every last row/.style={after row=\bottomrule},
+    ]{\ColoniesWithoutSignificance}
+  \label{tab:csvPobSinSignificancia}
 \end{table}
 
 
 \section*{Series de tiempo}
 
-\subsection*{Isla Alcatraz}
+\subsection*{Alcatraz}
 
 \begin{figure}[H]
 \hspace{-2cm}
-    \includegraphics[scale=0.7]{figures/pngPopulationGrowRateCormorantAlcatraz.png}
-\caption{En azul se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) de los ultimos 20 años en Isla Alcatraz. En naranja el modelo de crecimiento poblacional ajustado.}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_alcatraz.png}
+\caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada en el periodo de 2000-2020 en Isla Alcatraz. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. El valor p indica que el tamaño poblacional de la colonia está decreciendo.}
 \end{figure}
 
 Descartamos el punto correspondiente a la temporada 2005-2006. El tamaño poblacional oscila entre 800 y 2000 parejas. 
 
-\subsection*{Isla Patos}
+\subsection*{Asunción}
 
 \begin{figure}[H]
 \hspace{-2cm}
-    \includegraphics[scale=0.7]{figures/pngPopulationGrowRateCormorantPatos.png}
-\caption{En azul se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2012-2018 en Isla Patos en Sinaloa. En naranja el modelo de crecimiento poblacional ajustado.}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_asuncion.png}
+\caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada en el periodo de 2009-2019 en Isla Asunción. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. El valor p indica que el tamaño poblacional de la colonia está en crecimiento.}
 \end{figure}
 
-Descartamos los puntos correspondientes a las temporadas 2011-2012, 2015-2016 y 2016-2017 de las cuales no tenemos el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
-
-
-\subsection*{Isla Pajaros}
+\subsection*{Coronado}
 
 \begin{figure}[H]
 \hspace{-2cm}
-    \includegraphics[scale=0.7]{figures/pngPopulationGrowRateCormorantPajaros.png}
-\caption{En azul se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2012-2018 en Isla Pajaros en Sinaloa. En naranja el modelo de crecimiento poblacional ajustado.}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_coronado.png}
+\caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada en el periodo de 2012-2019 en Isla Coronado. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. No se encontraron tendencias significativas para esta colonia.}
+\end{figure}
+
+\subsection*{Natividad}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_natividad.png}
+\caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada del periodo 2013-2019 en Isla Natividad. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. No se encontraron tendencias significativas para esta colonia.}
+\end{figure}
+
+\subsection*{Isla Pájaros}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_pajaros.png}
+\caption{En negro se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2011-2019 en Isla Pájaros. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. El valor p nos indica que esta colonia está decreciendo.}
 \end{figure}
 
 Descartamos los puntos correspondiente a las temporadas 2015-2016 y 2016-2017 de las cuales no tenemos el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
 
 
-\subsection*{Islas del Pacífico}
+\subsection*{Isla Patos}
 
 \begin{figure}[H]
 \hspace{-2cm}
-    \includegraphics[scale=0.7]{figures/Double-crested_Cormorant.png}
-\caption{Serie de tiempo del tamaño poblacional de Double-crested Cormorant para todas las colonias de las islas del noroeste de México. Los datos van del 2010 al 2019.}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_patos.png}
+\caption{En negro se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2012-2019 en Isla Patos. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. El valor p nos indica que esta colonia está decreciendo.}
 \end{figure}
 
-Para el cormorán orejón tenemos datos en ocho islas del pacífico norte de México. Las poblaciones de Todos Santos, San Roque, San Benito y Asunción parecen tener una ligera correlación, las demás no parecen tener una tendencia. La población de Asunción tiene una tasa de crecimiento mayor a 1 y en San Benito menor a 1 $(p < 0.1)$.
+Descartamos los puntos correspondientes a las temporadas 2011-2012, 2015-2016 y 2016-2017 de las cuales no tenemos el máximo de nidos de la temporada. La tendencia poblacional va en decremento.
+
+\subsection*{San Benito}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_san_benito.png}
+\caption{En negro se muestran los máximos de la cantidad de nidos activos de cormorán orejón para cada temporada (Sep-Abr) del periodo 2015-2019 en Isla San Benito. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. El valor p nos indica que esta colonia está decreciendo.}
+\end{figure}
+
+\subsection*{San Jerónimo}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_san_jeronimo.png}
+\caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada del periodo 2013-2018 en Isla San Jerónimo. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. No se encontraron tendencias significativas para esta colonia.}
+\end{figure}
+
+\subsection*{San Martín}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_san_martin.png}
+\caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada del periodo 2013-2018 en Isla San Martín. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. No se encontraron tendencias significativas para esta colonia.}
+\end{figure}
+
+\subsection*{San Roque}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_san_roque.png}
+\caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada del periodo 2013-2018 en Isla San Roque. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. No se encontraron tendencias significativas para esta colonia.}
+\end{figure}
+
+\subsection*{Todos Santos}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_todos_santos.png}
+\caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada del periodo 2013-2019 en Isla Todos Santos. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. No se encontraron tendencias significativas para esta colonia.}
+\end{figure}
+
+\subsection*{Coronado Norte}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_coronado_norte.png}
+\caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada del periodo 1971-2006 en Isla Coronado Norte. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. El valor p indica que el tamaño poblacional de la colonia está en crecimiento.}
+\end{figure}
+
+\subsection*{Coronado Sur}
+
+\begin{figure}[H]
+\hspace{-2cm}
+    \includegraphics[scale=0.7]{figures/cormorant_population_trend_coronado_sur.png}
+\caption{En negro se muestran los máximos en la cantidad de nidos activos de cormorán orejón para cada temporada del periodo 1969-2006 en Isla Coronado Sur. La banda azul representa el intervalo de confianza del 95\% para la tasa de crecimiento. La línea azul y el valor de $\lambda$ mostrado en la gráfica, representan el valor central de la distribución bootstrapping de la tasa de crecimiento. El valor p indica que el tamaño poblacional de la colonia está en crecimiento.}
+\end{figure}
 
 \bibliography{../references/tendencia_poblacional_cormoran} 
 \bibliographystyle{apalike}

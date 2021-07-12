@@ -1,24 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env bash
 #
-# query_burrows_quantity_data limpia la base de datos de especies con menos de 3 temporadas
-
-import pandas as pd
-
-from geci_cli import geci_cli
-
-path = geci_cli()
-
-data_path = path.input[0][0]
-output_file = path.output[0][0]
-
-burrows_data = pd.read_csv(data_path)
-
-data_cut = burrows_data.copy()
-for especie,_ in burrows_data.groupby(by='Nombre_en_ingles'):
-    species_data = burrows_data[(burrows_data.Nombre_en_ingles == especie)]
-    for isla,_ in species_data.groupby(by='Isla'):
-        data_per_island = species_data[species_data.Isla == isla]
-        if len(data_per_island) < 3:
-            data_cut = data_cut.drop(data_per_island.index)
-
-data_cut.to_csv(output_file, index=False)
+# Wrapper par query_burrows_quantity_data.py
+python src/query_burrows_quantity_data.py "$@"

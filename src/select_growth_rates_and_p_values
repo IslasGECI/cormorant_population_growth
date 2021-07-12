@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 #
-DATA_FILE=${1}
-TABLE_NAME=$(basename "$DATA_FILE" .csv)
-P_VALUE_COLUMN=${2}
-csvsql -y 0 -I --blanks --query \
-    "SELECT 
-      Especie,
-      Isla,
-      Tasa_de_crecimiento AS 'Tasa de crecimiento',
-      ${P_VALUE_COLUMN} AS 'p-valor'
-    FROM ${TABLE_NAME}
-    WHERE ${P_VALUE_COLUMN} <= 0.1" \
-${DATA_FILE}
+# Este query selecciona la tasa de crecimiento poblacional y el p-valor de las tablas de tasas de
+# crecimiento por isla.
+
+data_file=${1}
+p_value_column=${2}
+conditional=${3}
+field_option=1
+
+select_growth_rates_and_p_values ${data_file} ${p_value_column} "${conditional}" ${field_option}
