@@ -4,7 +4,7 @@
 # utilizando un ajuste de una ley de potencia a los datos de cantidad de nidos
 import os
 
-from bootstraping_tools import *
+from bootstrapping_tools import *
 from cli_paths import path_files
 from geci_plots import *
 from matplotlib.ticker import MaxNLocator

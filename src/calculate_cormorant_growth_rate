@@ -4,7 +4,7 @@
 # utilizando un model de una ley de potencia a los datos de cantidad de nidos de cormoran orejon en Isla Alcatraz
 from cli_paths import path_files
 from geci_plots import *
-from bootstraping_tools import *
+from bootstrapping_tools import *
 
 import os
 import pandas as pd

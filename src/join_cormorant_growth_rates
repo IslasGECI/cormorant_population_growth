@@ -9,7 +9,7 @@ matplotlib.use("Agg")
 
 from cli_paths import path_files
 from matplotlib.ticker import MaxNLocator
-from bootstraping_tools import *
+from bootstrapping_tools import *
 
 import matplotlib.pyplot as plt
 import numpy as np
