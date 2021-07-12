@@ -183,7 +183,7 @@ $(csvCormorantAllGrowthRates): src/join_cormorant_growth_rates $(csvGrowthRateDi
 
 $(csvDatosParejasAvesMarinas):
 	$(checkDirectories)
-	descarga_datos $(@F) $(@D)
+	descarga_datos $(@F) $(@D) parejas_aves_marinas_islas_del_pacifico
 #=============================================================================
 # V. Reglas del resto de los phonies
 # ===========================================================================

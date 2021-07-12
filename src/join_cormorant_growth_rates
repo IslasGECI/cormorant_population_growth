@@ -7,16 +7,16 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from cli_paths import path_files
+from geci_cli import geci_cli
 from matplotlib.ticker import MaxNLocator
-from bootstraping_tools import *
+from bootstrapping_tools import *
 
 import matplotlib.pyplot as plt
 import numpy as np
 import os
 import pandas as pd
 
-path = path_files()
+path = geci_cli()
 
 pacific_data = path.input[0][0]
 patos_data = path.input[1][0]

@@ -4,9 +4,9 @@
 
 import pandas as pd
 
-from cli_paths import path_files
+from geci_cli import geci_cli
 
-path = path_files()
+path = geci_cli()
 
 data_path = path.input[0][0]
 output_file = path.output[0][0]

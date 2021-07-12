@@ -2,14 +2,15 @@
 #
 # calculate_cormorant_growth_rate calcula la tasa de crecimiento fundamental (lambda)
 # utilizando un model de una ley de potencia a los datos de cantidad de nidos de cormoran orejon en Isla Alcatraz
-from cli_paths import path_files
+from geci_cli import geci_cli
 from geci_plots import *
-from bootstraping_tools import *
+from bootstrapping_tools import *
+from matplotlib.ticker import MaxNLocator
 
 import os
 import pandas as pd
 
-path = path_files()
+path = geci_cli()
 
 data_path = path.input[0][0]
 distribution_file = path.output[0][0]
